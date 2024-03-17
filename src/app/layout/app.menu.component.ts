@@ -17,11 +17,46 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Workstation Portal', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Projects', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Self Service Portal', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'User Management Portal', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/dashboard'] }
+                ]
+            },
+            {
+                label: 'Project Management Portal',
+                items: [
+                    { label: 'My Projects', icon: 'pi pi-fw pi-home', routerLink: ['/project-management-portal/my-projects'] }
+                ]
+            },
+            {
+                label: 'Workstation Portal',
+                items: [
+                    { label: 'My Timesheet', icon: 'pi pi-fw pi-home', routerLink: ['/workstation-portal/my-timesheet'] },
+                    { label: 'Document Editor', icon: 'pi pi-fw pi-home', routerLink: ['/workstation-portal/document-editor'] },
+                ]
+            },
+            {
+                label: 'Self Service Portal',
+                items: [
+                    { label: 'DayOffs', icon: 'pi pi-fw pi-home', routerLink: ['/self-service-portal/dayoffs'] },
+                    { label: 'Benefits', icon: 'pi pi-fw pi-home', routerLink: ['/self-service-portal/benefits'] },
+                    { label: 'Training Programs', icon: 'pi pi-fw pi-home', routerLink: ['/self-service-portal/training'] },
+                    { label: 'My Personal Information', icon: 'pi pi-fw pi-home', routerLink: ['/self-service-portal/my-personal-information'] },
+                ]
+            },
+            {
+                label: 'Evaluation Portal',
+                items: [
+                    { label: 'Self Assessment', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/self-assessment'] },
+                    { label: 'Manager Evaluation', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/manager-evaluation'] },
+                    { label: 'Development Plan', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/development-plan'] },
+                    { label: 'Follow-Up Meetings', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/follow-up-meetings'] },
+                ]
+            },
+            {
+                label: 'User Management Portal',
+                items: [
+                    { label: 'Employees', icon: 'pi pi-fw pi-home', routerLink: ['/user-management-portal/employees'] },
+                    { label: 'Groups', icon: 'pi pi-fw pi-home', routerLink: ['/user-management-portal/groups'] },
+                    { label: 'Roles', icon: 'pi pi-fw pi-home', routerLink: ['/user-management-portal/roles'] }
                 ]
             },
             {
