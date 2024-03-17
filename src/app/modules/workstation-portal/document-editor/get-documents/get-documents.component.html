@@ -1,0 +1,9 @@
+<p-tree [value]="files" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedDocument"></p-tree>
+<div *ngIf="selectedDocument; else elseBlock">
+    <app-get-document class="mt-2" [document]="selectedDocument" ></app-get-document>
+</div>
+<ng-template #elseBlock>
+    <div class="card mt-2 flex justify-content-center">
+        <lottie-player src="https://lottie.host/6bca5a8f-b476-4b96-9e52-4460e5086db0/q5YNZlYgcz.json" background="##FFFFFF" speed="1" style="width: 40vw;height: 40vh;" loop autoplay direction="1" mode="normal"></lottie-player>
+    </div>
+</ng-template>

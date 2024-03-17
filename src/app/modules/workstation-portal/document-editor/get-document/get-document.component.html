@@ -1,0 +1,29 @@
+<div class="card">
+    <form [formGroup]="documentFormGroup">
+        <div>
+            <p-inplace closable="closable">
+                <ng-template pTemplate="display">
+                    <h1>{{document.name}}</h1>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <input type="text" formControlName="name" pInputText />
+                </ng-template>
+            </p-inplace>
+        </div>
+        <div>
+            <p-inplace closable="closable">
+                <ng-template pTemplate="display">
+                    <span>{{document.description}}</span>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <textarea rows="5" cols="30" pInputTextarea [autoResize]="true"  formControlName="description"></textarea>
+                </ng-template>
+            </p-inplace>
+        </div>
+        <p-editor formControlName="text" [style]="{ height: '320px' }"></p-editor>
+        <div class="footer flex justify-content-end mt-2">
+            <button pButton pRipple label="Reset" icon="pi pi-replay" class="p-button-text" (click)="reset()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+        </div>
+    </form>
+</div>
