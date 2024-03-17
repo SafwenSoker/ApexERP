@@ -10,6 +10,18 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 path: '', component: AppLayoutComponent,
                 children: [
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+                    { path: 'project-management-portal', loadChildren: () => import('./modules/user-management-portal/users/users.module').then(m => m.UsersModule)},
+                    { path: 'user-management-portal/employees', loadChildren: () => import('./modules/user-management-portal/users/users.module').then(m => m.UsersModule)},
+                    { path: 'user-management-portal/groups', loadChildren: () => import('./modules/user-management-portal/groups/groups.module').then(m => m.GroupsModule)},
+                    { path: 'user-management-portal/roles', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+                    { path: 'self-service-portal/dayoff-requests', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+                    { path: 'self-service-portal/benefits', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+                    { path: 'self-service-portal/events', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+                    { path: 'workstation-portal/my-timesheet', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+                    { path: 'workstation-portal/document-editor', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+                    { path: 'evaluation-portal/document-editor', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
+
+                    { path: 'evaluation-portal', loadChildren: () => import('./modules/user-management-portal/roles/roles.module').then(m => m.RolesModule)},
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
                     { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
