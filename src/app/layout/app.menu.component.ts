@@ -52,11 +52,11 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'User Management Portal',
+                label: 'Employees Management Portal',
                 items: [
-                    { label: 'Employees', icon: 'pi pi-fw pi-users', routerLink: ['/user-management-portal/employees'] },
-                    { label: 'Groups', icon: 'pi pi-fw pi-building', routerLink: ['/user-management-portal/groups'] },
-                    { label: 'Roles', icon: 'pi pi-fw pi-shield', routerLink: ['/user-management-portal/roles'] }
+                    { label: 'Employees', icon: 'pi pi-fw pi-users', routerLink: ['/employees-management-portal/employees'] },
+                    { label: 'Groups', icon: 'pi pi-fw pi-building', routerLink: ['/employees-management-portal/groups'] },
+                    { label: 'Roles', icon: 'pi pi-fw pi-shield', routerLink: ['/employees-management-portal/roles'] }
                 ]
             },
             {
