@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12 lg:col-6 xl:col">
+        <div class="card mb-0">
+            <h2>DaysOff Request</h2>
+            <div class="flex flex-column md:flex-row">
+                <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+                    <div class="flex flex-wrap justify-content-start align-items-center gap-2">
+                        <div class="flex justify-content-center flex-column">
+                            <h3 class="flex justify-content-center">From</h3>
+                            <p-calendar [showTime]="true" [showSeconds]="true" [inline]="true"
+                                ></p-calendar>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2">
+                    <p-divider layout="vertical" styleClass="hidden md:flex"></p-divider>
+                    <p-divider layout="horizontal" styleClass="flex md:hidden" [align]="'center'"></p-divider>
+                </div>
+                <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+                    <div class="flex flex-wrap justify-content-start align-items-center gap-2">
+                        <div class="flex justify-content-center flex-column">
+                            <h3 class="flex justify-content-center">To</h3>
+                            <p-calendar [showTime]="true" [showSeconds]="true" [inline]="true"
+                                ></p-calendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-1">
+                    <div class="text-center p-3 border-round-sm font-bold">Reason</div>
+                </div>
+                <div class="col-11">
+                    <p-dropdown [options]="daysOffTypeDropdownItems" [(ngModel)]="selectedDaysOffType" optionLabel="name" [showClear]="true" placeholder="Select a Reason"></p-dropdown>
+                </div>
+                <div class="col-1">
+                    <div class="text-center p-3 border-round-sm font-bold">Note</div>
+                </div>
+                <div class="col-11">
+                    <textarea rows="5" class="max-w-full min-w-full" pInputTextarea [autoResize]="true" formControlName="note"></textarea>
+                </div>
+            </div>
+            <div class="footer flex justify-content-end">
+                <button pButton pRipple label="Reset" icon="pi pi-replay" class="p-button-text" (click)="reset()"></button>
+                <button pButton pRipple label="Request" icon="pi pi-check" class="p-button-text" (click)="request()"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
