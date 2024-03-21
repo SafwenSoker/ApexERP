@@ -1,18 +1,18 @@
 import { Document } from "../workstation-portal/document.model";
-import { Sprint } from "./sprint.model";
+import { GroupOfTasks } from "./group-of-tasks";
 
 export class Project {
-    private id: String;
+    private id: Number;
     private name: String;
     private description: String;
-    private sprints?: Sprint[];
+    private groupsOfTasks?: GroupOfTasks[];
     private documents?: Document[];
 
-    constructor(id: String, name: String, description: String, sprints?: Sprint[], documents?: Document[]) {
+    constructor(id: Number, name: String, description: String, groupsOfTasks?: GroupOfTasks[], documents?: Document[]) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.sprints = sprints ? sprints : null;
+        this.groupsOfTasks = groupsOfTasks ? groupsOfTasks : null;
         this.documents = documents ? documents : null;
     }
 
@@ -28,8 +28,8 @@ export class Project {
         return this.description;
     }
 
-    public getSprints(){
-        return this.sprints;
+    public getGroupsOfTasks(){
+        return this.groupsOfTasks;
     }
 
     public getDocuments(){
@@ -41,7 +41,7 @@ export class Project {
             key: this.id,
             label: this.name,
             icon: "pi pi-fw pi-folder",
-            children: [this.documents.map(document => document.getDocumentsTreeRepresentation()),this.sprints.map(sprint => sprint.getDocumentsTreeRepresentation())]
+            // children: [this.documents.map(document => document.getDocumentsTreeRepresentation()),this.groupsOfTasks.map(groupOfTasks => groupOfTasks.getDocumentsTreeRepresentation())]
         }
     }
 }

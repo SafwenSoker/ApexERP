@@ -1,11 +1,18 @@
 import { BenefitType } from "./benefit-type";
 
 export class Benefit {
-    private benefitType: BenefitType;
-    private description:String;
+    private id: Number;
+    name: String;
+    type: BenefitType;
+    description: String;
+    backgroundImage: String;
 
-    constructor(benefitType: BenefitType, description: String) {
-        this.benefitType = benefitType;
+
+    constructor(id: Number, name: String, type: BenefitType, description: String,backgroundImage: String) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
         this.description = description;
+        this.backgroundImage = backgroundImage;
     }
 }

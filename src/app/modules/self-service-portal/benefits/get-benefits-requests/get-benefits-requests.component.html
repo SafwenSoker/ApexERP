@@ -1,0 +1,92 @@
+<div *ngIf="manager;" class="grid flex justify-content-evenly flex-wrap card-container">
+    <p-tabMenu class="col-12 md:col-12 lg:col-12 xl-col-12" [scrollable]="true" [model]="items"
+        [style]="{'font-size': '11px'}"></p-tabMenu>
+</div>
+
+<div class="card">
+    <p-toast></p-toast>
+    <p-table #dt [value]="benefitsRequests" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['id', 'employee.name', 'benefit.name']" [tableStyle]="{ 'min-width': '75rem' }"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage Benefits Requests</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id">Id <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="employee.name">Employee Name <p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="benefit.name" style="min-width:10rem">Benefit Name <p-sortIcon
+                        field="category"></p-sortIcon></th>
+                <th>Benefit Type</th>
+                <th>Benefit Image</th>
+                <th>Employee Motivation</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-benefitRequest>
+            <tr>
+                <td>{{ benefitRequest.id }}</td>
+
+                <td>{{ benefitRequest.employeeId}}</td>
+                <td>{{ benefitRequest.benefit.name }}</td>
+                <td>
+                    <div *ngIf="benefitRequest.benefit.type === benefitType.MONEY">
+                        <i class="pi pi-money-bill"></i>
+                    </div>
+                    <div *ngIf="benefitRequest.benefit.type === benefitType.TROPHY">
+                        <i class="pi pi-fw pi-filter-fill"></i>
+                    </div>
+                    <div *ngIf="benefitRequest.benefit.type === benefitType.PROMOTION">
+                        <i class="pi pi-angle-double-up"></i>
+                    </div>
+                </td>
+                <td><img [src]=benefitRequest.benefit.backgroundImage [alt]="benefitRequest.name" width="50"
+                        class="shadow-4" /></td>
+                <td>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary mr-2"
+                        (click)="viewBenefitRequestMotivation(benefitRequest.motivation)"></button>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-success mr-2"
+                        (click)="acceptBenefitRequest(benefitRequest)"></button>
+                    <button pButton pRipple icon="pi pi-times-circle" class="p-button-rounded p-button-warning"
+                        (click)="rejectBenefitRequest(benefitRequest)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">In total there are {{ benefitsRequests
+                ?benefitsRequests.length : 0 }} products.</div>
+        </ng-template>
+    </p-table>
+</div>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-dialog [(visible)]="showMotivationDialogVisible">
+
+    <ng-template pTemplate="headless" style="backdrop-filter: blur(2px);z-index: 1101;">
+        <div class="min-w-full ml-2 p-2 flex align-items-end justify-content-end gap-2  w-8rem">
+            <i pButton type="button" (click)="closeMotivationDialog()" class="pi pi-times bg-cyan-600"
+                style="font-size: 2rem"></i>
+        </div>
+        <div class="flex flex-column px-8 py-5 gap-4"
+            style="border-radius: 12px; background-image: radial-gradient(circle at left top, var(--teal-100), var(--cyan-600));backdrop-filter: blur(2px);z-index: 1101; ">
+            <div class="flex justify-content-center">
+                <lottie-player src="https://lottie.host/f53994de-19d8-496e-9d2d-aad43eedbb1a/7Tja6bQqo2.json"
+                    background="##fff" speed="1" style="width: 300px; height: 300px" autoplay direction="1"
+                    mode="normal"></lottie-player>
+            </div>
+            <div class="inline-flex flex-column gap-2 text-primary-50 font-semibold">
+                <label for="username" class="text-primary-50 font-semibold">Motivation</label>
+                {{selectedBenefitRequestMotivation}}
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

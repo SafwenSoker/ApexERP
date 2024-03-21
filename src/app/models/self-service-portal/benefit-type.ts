@@ -1,5 +1,5 @@
 export enum BenefitType {
-    MONEY,
-    PROMOTION,
-    TROPHY
+    MONEY = "Money",
+    PROMOTION = "Promotion",
+    TROPHY = "Trophy"
 }

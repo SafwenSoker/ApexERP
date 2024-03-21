@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GetSprintsComponent } from './get-sprints.component';
+import { GetGroupOfTasksComponent } from './get-group-of-tasks.component';
 
-describe('GetSprintsComponent', () => {
-  let component: GetSprintsComponent;
-  let fixture: ComponentFixture<GetSprintsComponent>;
+describe('GetGroupOfTasksComponent', () => {
+  let component: GetGroupOfTasksComponent;
+  let fixture: ComponentFixture<GetGroupOfTasksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GetSprintsComponent]
+      imports: [GetGroupOfTasksComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(GetSprintsComponent);
+    fixture = TestBed.createComponent(GetGroupOfTasksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateSprintComponent } from './create-sprint.component';
+import { RequestBenefitComponent } from './request-benefit.component';
 
-describe('CreateSprintComponent', () => {
-  let component: CreateSprintComponent;
-  let fixture: ComponentFixture<CreateSprintComponent>;
+describe('RequestBenefitComponent', () => {
+  let component: RequestBenefitComponent;
+  let fixture: ComponentFixture<RequestBenefitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateSprintComponent]
+      imports: [RequestBenefitComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CreateSprintComponent);
+    fixture = TestBed.createComponent(RequestBenefitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

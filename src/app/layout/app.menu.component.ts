@@ -36,10 +36,9 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Self Service Portal',
                 items: [
+                    { label: 'My Personal Information', icon: 'pi pi-fw pi-id-card', routerLink: ['/self-service-portal/my-personal-information'] },
                     { label: 'DaysOff', icon: 'pi pi-fw pi-home', routerLink: ['/self-service-portal/daysoff'] },
                     { label: 'Benefits', icon: 'pi pi-fw pi-gift', routerLink: ['/self-service-portal/benefits'] },
-                    { label: 'Training Programs & Events', icon: 'pi pi-fw pi-megaphone', routerLink: ['/self-service-portal/training'] },
-                    { label: 'My Personal Information', icon: 'pi pi-fw pi-id-card', routerLink: ['/self-service-portal/my-personal-information'] },
                 ]
             },
             {

@@ -19,8 +19,6 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     
                     { path: 'self-service-portal/daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule)},
                     { path: 'self-service-portal/benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule)},
-                    { path: 'self-service-portal/events', loadChildren: () => import('./modules/self-service-portal/events/events.module').then(m => m.EventsModule)},
-                    { path: 'self-service-portal/trainings', loadChildren: () => import('./modules/self-service-portal/trainings/trainings.module').then(m => m.TrainingsModule)},
                     
                     { path: 'workstation-portal/my-timesheet', loadChildren: () => import('./modules/workstation-portal/timesheet/timesheet.module').then(m => m.TimesheetModule)},
                     { path: 'workstation-portal/document-editor', loadChildren: () => import('./modules/workstation-portal/document-editor/document-editor.module').then(m => m.DocumentEditorModule)},
