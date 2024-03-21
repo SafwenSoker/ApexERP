@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { GroupOfTasks } from 'src/app/models/project-management-portal/group-of-tasks';
@@ -14,7 +14,7 @@ import { ProjectsService } from 'src/app/services/project-management-portal/proj
   templateUrl: './get-projects.component.html',
   styleUrl: './get-projects.component.scss'
 })
-export class GetProjectsComponent implements OnInit {
+export class GetProjectsComponent implements OnInit, OnDestroy {
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
   projects : Project[];
@@ -61,8 +61,13 @@ export class GetProjectsComponent implements OnInit {
           ])
         ])
       ]
-      this.items = [{ label: 'Computer' }, { label: 'Notebook' }, { label: 'Accessories' }, { label: 'Backpacks' }, { label: 'Item' }];
+      this.items = [{ label: 'My Projects', routerLink: '/project-management-portal/my-projects' }];
 
       this.home = { icon: 'pi pi-home', routerLink: '/project-management-portal/my-projects' };
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

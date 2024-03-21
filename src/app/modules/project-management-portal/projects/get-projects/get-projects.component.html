@@ -1,1 +1,4 @@
 <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+<div class="grid mt-2">
+    <app-get-project *ngFor="let project of projects;" [project]="project" class="col-12 lg:col-12 xl:col-12"></app-get-project>
+</div>
