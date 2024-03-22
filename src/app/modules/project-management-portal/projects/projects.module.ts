@@ -17,7 +17,7 @@ import { UpdateGroupOfTasksComponent } from '../update-group-of-tasks/update-gro
 import { ProjectsRoutingModule } from './projects-routing.module';
 
 import { BreadcrumbModule } from 'primeng/breadcrumb';
-
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    ButtonModule
   ]
 })
 export class ProjectsModule { }
