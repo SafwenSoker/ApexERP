@@ -7,11 +7,11 @@
 <p-dialog [(visible)]="visible" >
     <ng-template pTemplate="headless" style="backdrop-filter: blur(2px);z-index: 1101;">
         <div class="flex flex-column px-8 py-5 gap-4"
-            style="border-radius: 12px; background-image: radial-gradient(circle at left top,#00a3ff, #FFFFFF);backdrop-filter: blur(2px);z-index: 1101; ">
+            style="border-radius: 12px; background-color:#f8f8f8;backdrop-filter: blur(2px);z-index: 1101; ">
             <div class="inline-flex flex-column gap-2">
-                <label for="username" class="text-primary-50 font-semibold">Motivation</label>
+                <label for="username" style="color:black!important;" class="text-primary-50 font-semibold">Motivation</label>
                 <form [formGroup]="requestBenefitFormGroup">
-                    <p-editor [style]="{'background-color': 'transparent', 'max-width':'30vw'}" formControlName="motivation"
+                    <p-editor [style]="{'background-color': 'transparent', 'max-width':'30vw', 'height': '200px'}" formControlName="motivation"
                         ></p-editor>
                 </form>
             </div>
@@ -19,13 +19,13 @@
                 <button (click)="sendBenefitRequest()"
                     class="p-3 flex align-items-center justify-content-center w-7 gap-2 border-round-sm bg-white-alpha-10 shadow-1 border-1 cursor-pointer hover:bg-white-alpha-20 transition-duration-200"
                     style="backdropFilter: blur(27px); borderColor: rgba(255, 255, 255, 0.2);" (click)="showDialog()">
-                    <span class="font-medium text-white white-space-nowrap">Request Benefit</span>
-                    <i class="pi pi-send text-white"></i>
+                    <span class="font-medium text-black white-space-nowrap">Request Benefit</span>
+                    <i class="pi pi-send text-black"></i>
                 </button>
                 <button (click)="closeDialog()"
                     class="p-3 flex align-items-center justify-content-center w-7 gap-2 border-round-sm bg-white-alpha-10 shadow-1 border-1 cursor-pointer hover:bg-white-alpha-20 transition-duration-200"
                     style="backdropFilter: blur(27px); borderColor: rgba(255, 255, 255, 0.2);" (click)="showDialog()">
-                    <span class="font-medium text-white white-space-nowrap">Cancel</span>
+                    <span class="font-medium text-black white-space-nowrap">Cancel</span>
                 </button>
             </div>
         </div>

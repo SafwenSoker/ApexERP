@@ -26,10 +26,10 @@ export class GetBenefitsComponent implements OnInit, OnDestroy {
         }
       );
     this.benefits = [
-      new Benefit(1,"Benefit Name",BenefitType.MONEY,"Benefit Description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg"),
-      new Benefit(2,"Benefit Name",BenefitType.PROMOTION,"Benefit Description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg"),
-      new Benefit(3,"Benefit Name",BenefitType.TROPHY,"Benefit Description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg"),
-      new Benefit(4,"Benefit Name",BenefitType.MONEY,"Benefit Description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg"),
+      new Benefit(1,"Benefit Name",BenefitType.MONEY,"Benefit Description","https://marketing-images.gotinder.com/explore/vert_sporty_v2.webp"),
+      new Benefit(2,"Benefit Name",BenefitType.PROMOTION,"Benefit Description","https://marketing-images.gotinder.com/explore/vert_bingewatchers_v2.webp"),
+      new Benefit(3,"Benefit Name",BenefitType.TROPHY,"Benefit Description","https://marketing-images.gotinder.com/explore/vert_selfcare_v2.webp"),
+      new Benefit(4,"Benefit Name",BenefitType.MONEY,"Benefit Description","https://marketing-images.gotinder.com/explore/vert_wanderlust_v2.webp"),
     ]
     this.items = [
       { label: 'Benefits', routerLink: '/self-service-portal/benefits', styleClass:"flex-1 align-items-center justify-content-center text-center" },

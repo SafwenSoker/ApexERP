@@ -1,9 +1,10 @@
 <div class="layout-topbar">
-    <a style="position: relative;" class="flex align-items-end alin-content-end m-0 p-0 py-0 layout-topbar-logo" routerLink="">
+    <div >
+    <a  class="layout-topbar-logo relative" routerLink="">
         <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.png" alt="logo">
-        <span >ERP</span>
+        <span class="absolute logo" style="bottom: -4px; left: 63px;;">ERP</span>
     </a>
-
+    </div>
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
     </button>
