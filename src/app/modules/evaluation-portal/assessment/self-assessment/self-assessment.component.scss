@@ -1,0 +1,39 @@
+.banner-card {
+    color: #ffffff; /* Text color */
+    padding: 10px; /* Add padding for spacing */
+}
+
+.p-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-img {
+    height: 50px; /* Adjust the height as needed */
+    margin: 10px; /* Add margin for spacing */
+}
+
+.banner-text {
+    font-size: 18px; /* Adjust font size */
+    margin: 10px; /* Add margin for spacing */
+    color: white;
+}
+
+.question {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.radio-buttons {
+    margin-bottom: 20px;
+}
+
+.p-radioButton-label {
+    font-size: 16px;
+}
+
+/* Style the selected radio button */
+.p-radioButton.p-highlight {
+    border-color: #007bff; /* Example color for selected radio button */
+}

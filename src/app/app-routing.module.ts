@@ -23,6 +23,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'workstation-portal/my-timesheet', loadChildren: () => import('./modules/workstation-portal/timesheet/timesheet.module').then(m => m.TimesheetModule)},
                     { path: 'workstation-portal/document-editor', loadChildren: () => import('./modules/workstation-portal/document-editor/document-editor.module').then(m => m.DocumentEditorModule)},
                     
+                    { path: 'evaluation-portal/assessment', loadChildren: () => import('./modules/evaluation-portal/assessment/assessment.module').then(m => m.AssessmentModule)},
                     { path: 'evaluation-portal/self-assessment', loadChildren: () => import('./modules/evaluation-portal/self-assessment/self-assessment.module').then(m => m.SelfAssessmentModule)},
                     { path: 'evaluation-portal/manager-evaluation', loadChildren: () => import('./modules/evaluation-portal/manager-evaluation/manager-evaluation.module').then(m => m.ManagerEvaluationModule)},
                     { path: 'evaluation-portal/development-plan', loadChildren: () => import('./modules/evaluation-portal/development-plan/development-plan.module').then(m => m.DevelopmentPlanModule)},
