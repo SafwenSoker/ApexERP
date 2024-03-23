@@ -1,0 +1,18 @@
+<form>
+    <div *ngFor="let question of assessment.technicalQuestions" class="question-container">
+      <p class="question">{{ question.text }}</p>
+      <div class="radio-buttons">
+        <p-radioButton name="technicalQuestion{{ question.id }}" *ngFor="let option of radioOptions" [value]="option.value" [label]="option.label" [(ngModel)]="question.selectedScore"></p-radioButton>
+      </div>
+    </div>
+    
+    <div *ngFor="let question of assessment.observationalQuestions" class="question-container">
+      <p class="question">{{ question.text }}</p>
+      <div class="radio-buttons">
+        <p-radioButton name="observationalQuestion{{ question.id }}" *ngFor="let option of radioOptions" [value]="option.value" [label]="option.label" [(ngModel)]="question.selectedScore"></p-radioButton>
+      </div>
+    </div>
+  
+    <button type="button" (click)="submitAssessment()">Submit Assessment</button>
+  </form>
+  

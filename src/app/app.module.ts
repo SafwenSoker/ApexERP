@@ -11,6 +11,9 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -24,6 +27,9 @@ import { PhotoService } from './demo/service/photo.service';
         NodeService,
         PhotoService,
         ProductService,
+        BrowserModule,
+        FormsModule,
+        RadioButtonModule
     ],
     bootstrap: [AppComponent],
 })
