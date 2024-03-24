@@ -1,5 +1,4 @@
 <div *ngIf="task">
-    {{task | json}}
     <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
     <div class="grid mt-6 mb-6 ml-1 mr-1">
         <div class="col card flex justify-content-between flex-wrap card-header">
@@ -56,9 +55,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-todo>
                 <tr>
-                    <th style="width: 4rem">
-                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                    </th>
+                    <td>
+                        <p-tableCheckbox [value]="todo"></p-tableCheckbox>
+                    </td>
                     <td>{{ todo }}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"

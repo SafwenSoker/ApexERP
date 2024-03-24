@@ -1,0 +1,17 @@
+.card-header{
+    background-color: #e5f6ff;
+}
+@font-face {
+    src: url('https://github.com/google/fonts/blob/main/ofl/amstelvaralpha/AmstelvarAlpha-VF.ttf');
+    font-family:'AmstelvarAlpha';
+    font-style: normal;
+  }
+  
+  label {
+    font: 1rem monospace;
+  }
+  
+  .sample {
+    font: 2rem 'AmstelvarAlpha', sans-serif;
+    font-family:'AmstelvarAlpha';
+  }
