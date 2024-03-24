@@ -1,1 +1,7 @@
-<p>get-groups-of-tasks works!</p>
+
+<div *ngIf="groupsOfTasks">
+    <div class="grid">
+        <app-get-group-of-tasks *ngFor="let groupOfTasks of groupsOfTasks"
+            [groupOfTasks]="groupOfTasks" class="col-12 lg:col-12 xl:col-12"></app-get-group-of-tasks>
+    </div>
+</div>

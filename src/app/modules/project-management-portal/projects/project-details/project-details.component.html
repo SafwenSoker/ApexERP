@@ -1,1 +1,14 @@
-<p>project-details works!</p>
+<div *ngIf="project">
+    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="grid mt-6 mb-6 ml-1 mr-1">
+        <div class="col card flex justify-content-between flex-wrap card-header">
+            <p class="flex align-items-center sample">{{project.name}}</p>
+            <div>
+                <lottie-player src="https://lottie.host/07551cbf-0573-41f3-97a0-f741f5cf83f1/0EbP3U3KSi.json"
+                    background="transparent" speed="1" style="width: 150px; height: 150px" loop autoplay direction="1"
+                    mode="normal"></lottie-player>
+            </div>
+        </div>
+    </div>
+    <app-get-groups-of-tasks [projectName]="project.getName()"></app-get-groups-of-tasks>
+</div>

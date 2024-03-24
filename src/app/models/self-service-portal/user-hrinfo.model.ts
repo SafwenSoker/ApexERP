@@ -10,9 +10,8 @@ export class UserHRInfo {
     private netSalary: Number;
     private baseSalary: Number;
     private cnssNumber: Number;
-    private transportPrime: Number;
 
-    constructor(cin: String, numberOfHoursOff: Number, startDate: Date, endDate: Date, note: Number, managerId: String, userId: String, netSalary: Number, baseSalary: Number, cnssNumber: Number, transportPrime: Number) {
+    constructor(cin: String, numberOfHoursOff: Number, startDate: Date, endDate: Date, note: Number, managerId: String, userId: String, netSalary: Number, baseSalary: Number, cnssNumber: Number) {
         this.cin = cin;
         this.numberOfHoursOff = numberOfHoursOff;
         this.startDate = startDate;
@@ -23,6 +22,5 @@ export class UserHRInfo {
         this.netSalary = netSalary;
         this.baseSalary = baseSalary;
         this.cnssNumber = cnssNumber;
-        this.transportPrime = transportPrime;
     }
 }

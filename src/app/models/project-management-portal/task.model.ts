@@ -33,6 +33,58 @@ export class Task {
         this.groupOfTasksId = groupOfTasksId;
     }
 
+    public getId() {
+        return this.id;
+    }
+
+    public getName() {
+        return this.name;
+    }
+
+    public getDeadline() {
+        return this.deadline;
+    }
+
+    public getEmployeeId() {
+        return this.employeeId;
+    }
+
+    public getStartDate() {
+        return this.startDate;
+    }
+
+    public getEndDate() {
+        return this.endDate;
+    }
+
+    public getDescription() {
+        return this.description;
+    }
+
+    public getToDoList() {
+        return this.toDoList;
+    }
+
+    public getProjectId() {
+        return this.projectId;
+    }
+
+    public getGroupOfTasksId() {
+        return this.groupOfTasksId;
+    }
+
+    public getStatus() {
+        return this.status;
+    }
+
+    public getTags() {
+        return this.tags;
+    }
+
+    public getUrgency() {
+        return this.urgency;
+    }
+
     getDocumentsTreeRepresentation() {
         return {
             key: this.id,

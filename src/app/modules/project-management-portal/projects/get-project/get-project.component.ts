@@ -7,19 +7,12 @@ import { ProjectsService } from 'src/app/services/project-management-portal/proj
   templateUrl: './get-project.component.html',
   styleUrl: './get-project.component.scss'
 })
-export class GetProjectComponent implements OnInit, OnDestroy{
+export class GetProjectComponent {
 
   @Input() project;
 
   constructor(private router: Router){}
   
-  ngOnInit(): void {
-    
-  }
-  
-  ngOnDestroy(): void {
-    
-  }
 
   redirectToProjectDetails(){
     this.router.navigate(["/project-management-portal/my-projects",this.getProjectRoute()])

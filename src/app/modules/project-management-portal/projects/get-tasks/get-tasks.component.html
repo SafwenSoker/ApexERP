@@ -1,1 +1,6 @@
-<p>get-tasks works!</p>
+<div *ngIf="tasks">
+    <div class="grid">
+        <app-get-task *ngFor="let task of tasks"
+            [task]="task" class="col-12 lg:col-12 xl:col-12"></app-get-task>
+    </div>  
+</div>

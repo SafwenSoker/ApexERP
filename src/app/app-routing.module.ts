@@ -17,6 +17,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'employees-management-portal/groups', loadChildren: () => import('./modules/employees-management-portal/groups/groups.module').then(m => m.GroupsModule)},
                     { path: 'employees-management-portal/roles', loadChildren: () => import('./modules/employees-management-portal/roles/roles.module').then(m => m.RolesModule)},
                     
+                    { path: 'self-service-portal/my-info', loadChildren: () => import('./modules/self-service-portal/user-personal-information/user-personal-information.module').then(m => m.UserPersonalInformationModule)},
                     { path: 'self-service-portal/daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule)},
                     { path: 'self-service-portal/benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule)},
                     

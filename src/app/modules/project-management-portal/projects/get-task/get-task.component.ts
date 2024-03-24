@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Task } from 'src/app/models/project-management-portal/task.model';
 
 @Component({
   selector: 'app-get-task',
@@ -7,4 +9,16 @@ import { Component } from '@angular/core';
 })
 export class GetTaskComponent {
 
+  @Input() task: Task;
+  delivered: boolean = true;
+
+  constructor(private router: Router) { }
+  redirectToGroupOfTasksDetails() {
+    this.router.navigate([this.router.url, "task", this.getTaskRoute()])
+  }
+
+  getTaskRoute() {
+
+    return this.task.getName().split(" ").join("-");
+  }
 }
