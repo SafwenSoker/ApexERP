@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { addProjectSuccess, deleteProjectSuccess, getProjectSuccess, loadProjectsSuccess, updateProjectSuccess, } from './project.actions';
+import { createProjectSuccess, deleteProjectSuccess, getProjectSuccess, loadProjectsSuccess, updateProjectSuccess, } from './project.actions';
 import { initialState, ProjectsState } from './project.state';
 import { Project } from 'src/app/models/project-management-portal/project.model';
 const _projectsReducer = createReducer(
   initialState,
-  on(addProjectSuccess, (state, action) => {
+  on(createProjectSuccess, (state, action) => {
     return {
       ...state,
       projects: [action.project,...state.projects],

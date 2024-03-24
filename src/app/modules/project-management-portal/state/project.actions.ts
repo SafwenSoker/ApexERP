@@ -13,8 +13,8 @@ export const LOAD_PROJECTS = '[projects page] load projects';
 export const LOAD_PROJECTS_SUCCESS = '[projects page] load projects success';
 
 
-export const addProject = createAction(ADD_PROJECT_ACTION,props<{newProject: Project}>());
-export const addProjectSuccess = createAction(ADD_PROJECT_SUCCESS,props<{project: Project}>());
+export const createProject = createAction(ADD_PROJECT_ACTION,props<{newProject: FormData}>());
+export const createProjectSuccess = createAction(ADD_PROJECT_SUCCESS,props<{project: Project}>());
 export const updateProject = createAction(UPDATE_PROJECT_ACTION, props<{updatedProject: Project}>())
 export const updateProjectSuccess = createAction(UPDATE_PROJECT_SUCCESS, props<{project: Project}>())
 export const deleteProject = createAction(DELETE_PROJECT_ACTION, props<{projectId: string}>())

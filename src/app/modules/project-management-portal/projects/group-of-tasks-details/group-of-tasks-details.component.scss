@@ -1,24 +1,16 @@
-.card-header{
+.card-header {
     background-color: #e5f6ff;
+    border: none;
 }
-@font-face {
-    src: url('https://github.com/google/fonts/blob/main/ofl/amstelvaralpha/AmstelvarAlpha-VF.ttf');
-    font-family:'AmstelvarAlpha';
-    font-style: normal;
-  }
-  
-  label {
-    font: 1rem monospace;
-  }
-  
-  .sample {
-    font: 2rem 'AmstelvarAlpha', sans-serif;
-    font-family:"Courier New",monospace;
+
+.sample {
+    font: 2rem "Courier New", sans-serif;
+    font-family: "Courier New", monospace;
     font-weight: bold;
-  }
-  
-  .sample2{
-    font: 2rem 'AmstelvarAlpha', sans-serif;
+}
+
+.sample2 {
+    font: 2rem Verdana, sans-serif;
     font-family: Verdana, sans-serif;
     font-weight: bolder;
-  }
+}

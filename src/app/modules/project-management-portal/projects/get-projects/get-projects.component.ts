@@ -27,16 +27,25 @@ export class GetProjectsComponent implements OnInit, OnDestroy {
   home: MenuItem | undefined;
   projects!: Project[];
   private ngUnsubscribe = new Subject<void>();
-  constructor(private store: Store<AppState>){}
+
+  projectStatuses: any[];
+  selectedProjectStatus: string;
+
+  constructor(private store: Store<AppState>) { }
   ngOnInit() {
-      this.store.dispatch(loadProjects());
-      this.store.select(getProjects).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-        (projects) => {
-          this.projects = projects;
-        }
-      );
-      this.items = [{ label: 'My Projects', routerLink: '/project-management-portal/my-projects' }];
-      this.home = { icon: 'pi pi-home', routerLink: '/project-management-portal/my-projects' };
+    this.store.dispatch(loadProjects());
+    this.store.select(getProjects).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (projects) => {
+        this.projects = projects;
+      }
+    );
+    this.items = [{ label: 'My Projects', routerLink: '/project-management-portal/my-projects' }];
+    this.home = { icon: 'pi pi-home', routerLink: '/project-management-portal/my-projects' };
+    this.projectStatuses = [
+      { label: 'Completed', value: 'completed', icon: "pi pi-fw pi-check",severity:"info" },
+      { label: 'In Progress', value: 'in_progress', icon: "pi pi-fw pi-hourglass",severity:"info"  }
+    ];
+    this.selectedProjectStatus = "None";
   }
 
   ngOnDestroy(): void {

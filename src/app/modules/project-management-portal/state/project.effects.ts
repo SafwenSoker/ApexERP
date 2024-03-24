@@ -7,8 +7,8 @@ import { ProjectsService } from 'src/app/services/project-management-portal/proj
 import { AppState } from 'src/app/store/app.state';
 import { setLoadingSpinner } from 'src/app/store/state/shared.actions';
 import {
-  addProject,
-  addProjectSuccess,
+  createProject,
+  createProjectSuccess,
   deleteProject,
   deleteProjectSuccess,
   getProject,
@@ -18,20 +18,17 @@ import {
   updateProject,
   updateProjectSuccess,
 } from './project.actions';
-import { Project } from 'src/app/models/project-management-portal/project.model';
-import { GroupOfTasks } from 'src/app/models/project-management-portal/group-of-tasks';
-import { Task } from 'src/app/models/project-management-portal/task.model';
-import { TaskStatus } from 'src/app/models/project-management-portal/task-status.model';
-import { TaskUrgency } from 'src/app/models/project-management-portal/task-urgency.model';
-import { TaskTag } from 'src/app/models/project-management-portal/task-tag.model';
 
+import { MessageService,ConfirmationService } from 'primeng/api';
 @Injectable()
 export class ProjectsEffects {
   constructor(
     private actions$: Actions,
     private projectsService: ProjectsService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   getProject$ = createEffect(() => {
@@ -63,44 +60,16 @@ export class ProjectsEffects {
       })
     );
   });
-  addProject$ = createEffect(() => {
+  createProject$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(addProject),
+      ofType(createProject),
       mergeMap((action) => {
         let timerInterval;
-        // Swal.fire({
-        //   title: 'Creating project...!',
-        //   timerProgressBar: true,
-        //   html: '<lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_7jdg5xgb.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>',
-        //   didOpen: () => {
-        //     Swal.showLoading();
-        //   }
-        // }).then((result) => {
-        //   /* Read more about handling dismissals below */
-        //   if (result.dismiss === Swal.DismissReason.timer) {
-        //     console.log('I was closed by the timer');
-        //   }
-        // });
-        return this.projectsService.addProject(action.newProject).pipe(
+        this.messageService.add({severity:'info', summary: 'Info', detail: 'Creating Project'});
+        return this.projectsService.createProject(action.newProject).pipe(
           map((project) => {
-            // Swal.fire({
-            //   position: 'top-end',
-            //   icon: 'success',
-            //   title:
-            //     'Project ' + project.getName() + ' has been successfully created',
-            //   showConfirmButton: false,
-            //   html: 'Redirecting...',
-            //   didOpen: () => {
-            //     Swal.showLoading();
-            //     // this.router.navigate(['project', project.name])
-            //   },
-            // }).then((result) => {
-            //   /* Read more about handling dismissals below */
-            //   if (result.dismiss === Swal.DismissReason.timer) {
-            //     console.log('I was closed by the timer');
-            //   }
-            // });
-            return addProjectSuccess({ project });
+            
+            return createProjectSuccess({ project });
           })
         );
       })

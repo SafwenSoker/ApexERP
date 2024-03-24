@@ -45,7 +45,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
     CreateProjectComponent,
@@ -86,7 +87,9 @@ import { InputTextModule } from 'primeng/inputtext';
     ToolbarModule,
     DialogModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    SelectButtonModule,
+    InputTextareaModule
   ],
   providers :[
     MessageService, ConfirmationService
