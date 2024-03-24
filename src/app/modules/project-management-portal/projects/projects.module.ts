@@ -39,6 +39,12 @@ import { TaskStatusSeverityPipe } from 'src/app/pipes/project-managemeng-portal/
 import { TaskUrgencyValuePipe } from 'src/app/pipes/project-managemeng-portal/task-urgency-value.pipe';
 import { TaskTagValuePipe } from 'src/app/pipes/project-managemeng-portal/task-tag-value.pipe';
 import { TaskStatusValuePipe } from 'src/app/pipes/project-managemeng-portal/task-status-value.pipe';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -74,7 +80,16 @@ import { TaskStatusValuePipe } from 'src/app/pipes/project-managemeng-portal/tas
     TaskStatusSeverityPipe,
     TaskStatusValuePipe,
     TaskUrgencyValuePipe,
-    TaskTagValuePipe
+    TaskTagValuePipe,
+    TableModule,
+    ToastModule,
+    ToolbarModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule
+  ],
+  providers :[
+    MessageService, ConfirmationService
   ]
 })  
 export class ProjectsModule { }
