@@ -16,13 +16,25 @@ import { getProjects } from '../../state/project.selector';
 import { AppState } from 'src/app/store/app.state';
 
 
-
+interface EventItem {
+    status?: string;
+    hours?: string;
+    date?: string;
+    icon?: string;
+    color?: string;
+    image?: string;
+    projectName?: string;
+}
 @Component({
   selector: 'app-get-projects',
   templateUrl: './get-projects.component.html',
   styleUrl: './get-projects.component.scss'
 })
+
+
 export class GetProjectsComponent implements OnInit, OnDestroy {
+    events: EventItem[];
+    events2: EventItem[];
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
   projects!: Project[];
@@ -31,7 +43,21 @@ export class GetProjectsComponent implements OnInit, OnDestroy {
   projectStatuses: any[];
   selectedProjectStatus: string;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>) {
+      this.events = [
+          { projectName: 'Instagram', status: 'Daily Meeting', hours: '10:30', icon: 'pi pi-shopping-cart', color: '#9C27B0', image: 'game-controller.jpg', date:"Aug 20, 2023" },
+          { projectName: 'Whatsapp',status: 'Retrospective', hours: '14:00', icon: 'pi pi-cog', color: '#673AB7' ,date:"Aug 20, 2023"},
+          { projectName: 'Facebook',status: 'Sprint Planning', hours: '16:15', icon: 'pi pi-shopping-cart', color: '#FF9800' ,date:"Aug 20, 2023"},
+          { projectName: 'Instagram',status: 'One to one With manager', hours: '18:00', icon: 'pi pi-check', color: '#607D8B',date:"Aug 20, 2023" }
+      ];
+
+      this.events2 = [
+          { projectName: 'Instagram', status: 'Daily Meeting', hours: '10:30', icon: 'pi pi-shopping-cart', color: '#9C27B0', image: 'game-controller.jpg', date:"Aug 20, 2023" },
+          { projectName: 'Whatsapp',status: 'Retrospective', hours: '14:00', icon: 'pi pi-cog', color: '#673AB7' ,date:"Aug 20, 2023"},
+          { projectName: 'Facebook',status: 'Sprint Planning', hours: '16:15', icon: 'pi pi-shopping-cart', color: '#FF9800' ,date:"Aug 20, 2023"},
+          { projectName: 'Instagram',status: 'One to one With manager', hours: '18:00', icon: 'pi pi-check', color: '#607D8B',date:"Aug 20, 2023" }
+      ];
+  }
   ngOnInit() {
     this.store.dispatch(loadProjects());
     this.store.select(getProjects).pipe(takeUntil(this.ngUnsubscribe)).subscribe(

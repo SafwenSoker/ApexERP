@@ -30,7 +30,7 @@ export class ProjectsService {
           new GroupOfTasks("Group Of Tasks 3",new Date(), new Date(), new Date(), new Date(), [
             new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH, "Something To do,Another Thing to do", 1, 1)
           ])
-        ]),
+        ], [], "#6f42c1"),
         new Project(2, "Project 2", "Brief Description", [
           new GroupOfTasks("Group Of Tasks 4",new Date(), new Date(), new Date(), new Date(), [
             new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH, "Something To do,Another Thing to do", 1, 1)
@@ -38,7 +38,7 @@ export class ProjectsService {
           new GroupOfTasks("Group Of Tasks 5",new Date(), new Date(), new Date(), new Date(), [
             new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH, "Something To do,Another Thing to do", 1, 1)
           ])
-        ]),
+        ],[], "#00b8d4"),
         new Project(3, "Project 3", "Brief Description", [
           new GroupOfTasks("Group Of Tasks 6",new Date(), new Date(), new Date(), new Date(), [
             new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH, "Something To do,Another Thing to do", 1, 1)
@@ -52,7 +52,7 @@ export class ProjectsService {
           new GroupOfTasks("Group Of Tasks 9",new Date(), new Date(), new Date(), new Date(), [
             new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH, "Something To do,Another Thing to do", 1, 1)
           ])
-        ])
+        ],[], "#fd7e14")
       ])
       observer.complete()
     })

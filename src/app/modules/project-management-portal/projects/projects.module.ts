@@ -47,6 +47,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {TimelineModule} from "primeng/timeline";
+import {FileUploadModule} from "primeng/fileupload";
 @NgModule({
   declarations: [
     CreateProjectComponent,
@@ -65,34 +67,36 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     GroupOfTasksDetailsComponent,
     TaskDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    ProjectsRoutingModule,
-    BreadcrumbModule,
-    ButtonModule,
-    StoreModule.forFeature(PROJECT_STATE_NAME, projectsReducer),
-    EffectsModule.forFeature([ProjectsEffects]),
-    TagModule,
-    TaskUrgencyIconPipe,
-    TaskTagIconPipe,
-    TaskStatusIconPipe,
-    TaskUrgencySeverityPipe,
-    TaskTagSeverityPipe,
-    TaskStatusSeverityPipe,
-    TaskStatusValuePipe,
-    TaskUrgencyValuePipe,
-    TaskTagValuePipe,
-    TableModule,
-    ToastModule,
-    ToolbarModule,
-    DialogModule,
-    ButtonModule,
-    InputTextModule,
-    SelectButtonModule,
-    InputTextareaModule
-  ],
+    imports: [
+        CommonModule,
+        ProjectsRoutingModule,
+        BreadcrumbModule,
+        ButtonModule,
+        StoreModule.forFeature(PROJECT_STATE_NAME, projectsReducer),
+        EffectsModule.forFeature([ProjectsEffects]),
+        TagModule,
+        TaskUrgencyIconPipe,
+        TaskTagIconPipe,
+        TaskStatusIconPipe,
+        TaskUrgencySeverityPipe,
+        TaskTagSeverityPipe,
+        TaskStatusSeverityPipe,
+        TaskStatusValuePipe,
+        TaskUrgencyValuePipe,
+        TaskTagValuePipe,
+        TableModule,
+        ToastModule,
+        ToolbarModule,
+        DialogModule,
+        ButtonModule,
+        InputTextModule,
+        SelectButtonModule,
+        InputTextareaModule,
+        TimelineModule,
+        FileUploadModule
+    ],
   providers :[
     MessageService, ConfirmationService
   ]
-})  
+})
 export class ProjectsModule { }

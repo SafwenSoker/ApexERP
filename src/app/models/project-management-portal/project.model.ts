@@ -8,14 +8,16 @@ export class Project {
     private groupsOfTasks?: GroupOfTasks[];
     private documents?: Document[];
     private status?: String;
+    private color?:String;
 
 
-    constructor(id: Number, name: String, description: String, groupsOfTasks?: GroupOfTasks[], documents?: Document[]) {
+    constructor(id: Number, name: String, description: String, groupsOfTasks?: GroupOfTasks[], documents?: Document[], color?: String) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.groupsOfTasks = groupsOfTasks ? groupsOfTasks : null;
         this.documents = documents ? documents : null;
+        this.color = color;
     }
 
     public getId(){
@@ -53,5 +55,9 @@ export class Project {
 
     public setStatus(status: String){
         this.status = status;
+    }
+
+    getColor() {
+        return this.color;
     }
 }

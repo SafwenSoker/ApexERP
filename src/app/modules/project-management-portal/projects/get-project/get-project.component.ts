@@ -7,12 +7,14 @@ import { ProjectsService } from 'src/app/services/project-management-portal/proj
   templateUrl: './get-project.component.html',
   styleUrl: './get-project.component.scss'
 })
-export class GetProjectComponent {
+export class GetProjectComponent{
 
   @Input() project;
 
-  constructor(private router: Router){}
-  
+  constructor(private router: Router){
+  }
+
+
 
   redirectToProjectDetails(){
     this.router.navigate(["/project-management-portal/my-projects",this.getProjectRoute()])
