@@ -11,12 +11,13 @@ export class AssessmentFormComponent implements OnInit {
   assessment: Assessment;
 
   radioOptions = [
-    { value: 1, label: 'Option 1' },
-    { value: 2, label: 'Option 2' },
-    { value: 3, label: 'Option 3' },
-    { value: 4, label: 'Option 4' },
-    { value: 5, label: 'Option 5' },
+    { value: 1, label: 'Unsatisfactory' },
+    { value: 2, label: 'Neutral' },
+    { value: 3, label: 'Positive' },
+    { value: 4, label: 'Significantly Positive' },
+    { value: 5, label: 'Exceptional' },
   ];
+  
 
   constructor() { }
 
@@ -27,6 +28,7 @@ export class AssessmentFormComponent implements OnInit {
   initializeAssessment() {
     this.assessment = {
       id: 1,
+      fiscalYear: 2023,
       cycleId: 1,
       employeeId: 123,
       submissionDate: new Date(),
@@ -41,13 +43,17 @@ export class AssessmentFormComponent implements OnInit {
         { id: 3, text: 'Observational Question 1', score: 0 },
         { id: 4, text: 'Observational Question 2', score: 0 },
       ],
-      managerResponses: [],
+      managerTechnicalResponses: [],
+      managerObservationalResponses: [],
       meetingNotes: '',
       createdAt: new Date(),
       updatedAt: new Date(),
 
       getId() {
         return this.id;
+      },
+      getFiscalYear() {
+        return this.fiscalYear;
       },
       getCycleId() {
         return this.cycleId;
@@ -73,8 +79,11 @@ export class AssessmentFormComponent implements OnInit {
       getObservationalQuestions() {
         return this.observationalQuestions;
       },
-      getManagerResponses() {
-        return this.managerResponses;
+      getManagerTechnicalResponses() {
+        return this.managerTechnicalResponses;
+      },
+      getManagerObservationalResponses() {
+        return this.managerObservationalResponses;
       },
       getMeetingNotes() {
         return this.meetingNotes;
@@ -88,10 +97,6 @@ export class AssessmentFormComponent implements OnInit {
     } as Assessment;
   }
   
-  
-
-
-
   submitAssessment() {
     // Add logic to handle form submission (e.g., send data to backend)
     console.log('Assessment Submitted:', this.assessment);

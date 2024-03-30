@@ -1,0 +1,31 @@
+.message {
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+}
+
+p-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ng-template {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img {
+    width: 200px;
+    padding: 20px;
+    padding-bottom: 0;
+};
+
+.buttons{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

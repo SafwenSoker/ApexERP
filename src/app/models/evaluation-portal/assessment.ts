@@ -1,112 +1,132 @@
-import { AssessmentStatus } from "./assessment-status";
+import { Employees } from '../user-management-portal/employees.model';
+import { AssessmentStatus } from './assessment-status';
 
 export class Assessment {
     //ADD PRIVATE HERE
-     id: number;
-     cycleId: number;
-     employeeId: number;
-     submissionDate: Date;
-     status: AssessmentStatus;
-     deadlineSelfAssessment: Date;
-     deadlineManagerReview: Date;
-     technicalQuestions: Question[];
-     observationalQuestions: Question[];
-     managerResponses: ManagerResponse[];
-     meetingNotes: string;
-     createdAt: Date;
-     updatedAt: Date;
-  
+    id: number;
+    fiscalYear: number;
+    cycleId: number;
+    employeeId: number;
+    submissionDate: Date;
+    status: AssessmentStatus;
+    deadlineSelfAssessment: Date;
+    deadlineManagerReview: Date;
+    technicalQuestions: Question[];
+    observationalQuestions: Question[];
+    relatedManager: number;
+    managerTechnicalResponses: ManagerResponse[];
+    managerObservationalResponses: ManagerResponse[];
+    meetingNotes: string;
+    createdAt: Date;
+    updatedAt: Date;
+
     constructor(
-      id: number,
-      cycleId: number,
-      employeeId: number,
-      submissionDate: Date,
-      status: AssessmentStatus,
-      deadlineSelfAssessment: Date,
-      deadlineManagerReview: Date,
-      technicalQuestions: Question[],
-      observationalQuestions: Question[],
-      managerResponses: ManagerResponse[],
-      meetingNotes: string,
-      createdAt: Date,
-      updatedAt: Date
+        id: number,
+        fiscalYear: number,
+        cycleId: number,
+        employeeId: number,
+        submissionDate: Date,
+        status: AssessmentStatus,
+        deadlineSelfAssessment: Date,
+        deadlineManagerReview: Date,
+        technicalQuestions: Question[],
+        observationalQuestions: Question[],
+        relatedManager: number,
+        managerTechnicalResponses: ManagerResponse[],
+        managerObservationalResponses: ManagerResponse[],
+        meetingNotes: string,
+        createdAt: Date,
+        updatedAt: Date
     ) {
-      this.id = id;
-      this.cycleId = cycleId;
-      this.employeeId = employeeId;
-      this.submissionDate = submissionDate;
-      this.status = status;
-      this.deadlineSelfAssessment = deadlineSelfAssessment;
-      this.deadlineManagerReview = deadlineManagerReview;
-      this.technicalQuestions = technicalQuestions;
-      this.observationalQuestions = observationalQuestions;
-      this.managerResponses = managerResponses;
-      this.meetingNotes = meetingNotes;
-      this.createdAt = createdAt;
-      this.updatedAt = updatedAt;
+        this.id = id;
+        this.fiscalYear = fiscalYear;
+        this.cycleId = cycleId;
+        this.employeeId = employeeId;
+        this.submissionDate = submissionDate;
+        this.status = status;
+        this.deadlineSelfAssessment = deadlineSelfAssessment;
+        this.deadlineManagerReview = deadlineManagerReview;
+        this.technicalQuestions = technicalQuestions;
+        this.observationalQuestions = observationalQuestions;
+        this.relatedManager = relatedManager;
+        this.managerTechnicalResponses = managerTechnicalResponses;
+        this.managerObservationalResponses = managerObservationalResponses;
+        this.meetingNotes = meetingNotes;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
-  
+
     getId(): number {
-      return this.id;
+        return this.id;
     }
-  
+
+    getFiscalYear(): number {
+        return this.fiscalYear;
+    }
+
     getCycleId(): number {
-      return this.cycleId;
+        return this.cycleId;
     }
-  
+
     getEmployeeId(): number {
-      return this.employeeId;
+        return this.employeeId;
     }
-  
+
     getSubmissionDate(): Date {
-      return this.submissionDate;
+        return this.submissionDate;
     }
-  
+
     getStatus(): AssessmentStatus {
-      return this.status;
+        return this.status;
     }
-  
+
     getDeadlineSelfAssessment(): Date {
-      return this.deadlineSelfAssessment;
+        return this.deadlineSelfAssessment;
     }
-  
+
     getDeadlineManagerReview(): Date {
-      return this.deadlineManagerReview;
+        return this.deadlineManagerReview;
     }
-  
+
     getTechnicalQuestions(): Question[] {
-      return this.technicalQuestions;
+        return this.technicalQuestions;
     }
-  
+
     getObservationalQuestions(): Question[] {
-      return this.observationalQuestions;
+        return this.observationalQuestions;
     }
-  
-    getManagerResponses(): ManagerResponse[] {
-      return this.managerResponses;
+
+    getRelatedManager(): number {
+        return this.relatedManager;
     }
-  
+
+    getManagerTechnicalResponses(): ManagerResponse[] {
+        return this.managerTechnicalResponses;
+    }
+    getManagerObservationalResponses(): ManagerResponse[] {
+        return this.managerObservationalResponses;
+    }
+
     getMeetingNotes(): string {
-      return this.meetingNotes;
+        return this.meetingNotes;
     }
-  
+
     getCreatedAt(): Date {
-      return this.createdAt;
+        return this.createdAt;
     }
-  
+
     getUpdatedAt(): Date {
-      return this.updatedAt;
+        return this.updatedAt;
     }
-  }
-  
-  export interface Question {
+}
+
+export interface Question {
     id: number;
     text: string;
     score: number;
-  }
-  
-  export interface ManagerResponse {
+}
+
+export interface ManagerResponse {
     questionId: number;
     newScore: number;
-  }
-  
+}

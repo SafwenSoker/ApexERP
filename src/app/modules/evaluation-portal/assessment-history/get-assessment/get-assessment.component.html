@@ -1,0 +1,38 @@
+<div class="card mb-0">
+    <div class="flex justify-content-between mb-3 flex-1">
+        <div>
+            <span class="block text-500 font-medium mb-3"
+                >Employee: {{ assessment.employeeId }}</span
+            >
+            <span class="block text-500 font-medium mb-3"
+                >Fiscal Year: {{ assessment.fiscalYear }}</span
+            >
+            <span class="block text-500 font-medium mb-3"
+                >Cycle: {{ assessment.cycleId }}</span
+            >
+            <span class="text-500"
+                >Related Manager: {{ assessment.relatedManager }}</span
+            >
+        </div>
+        <div class="flex flex-column align-items-center justify-content-between">
+            <div
+                class="flex align-items-center justify-content-center border-round"
+                [ngStyle]="{ height: '2.5rem' }"
+            >
+                <p-button
+                    (click)="redirectToAssessmentDetails()"
+                    class="border-none"
+                    icon="pi pi-chevron-right"
+                    [rounded]="true"
+                    [outlined]="true"
+                ></p-button>
+            </div>
+            <div
+                class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                style="padding: 5px"
+            >
+                <span>{{ assessment.status }}</span>
+            </div>
+        </div>
+    </div>
+</div>

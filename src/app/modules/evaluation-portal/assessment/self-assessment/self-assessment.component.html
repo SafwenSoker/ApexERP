@@ -1,15 +1,24 @@
-<p-card [style]="{ backgroundColor: 'black', marginBottom: '20px'}">
+<p-card [style]="{ backgroundColor: 'black', marginBottom: '20px' }">
     <div class="p-grid p-nogutter">
         <div class="p-col-fixed">
-            <img src="assets/layout/images/logo-white.png" alt="Logo" class="logo-img">
+            <img
+                src="assets/layout/images/logo-white.png"
+                alt="Logo"
+                class="logo-img"
+            />
         </div>
         <div class="p-col">
-            <p class="banner-text">This page is for you to fill your self-assessment.</p>
+            <p class="banner-text">
+                This page is for you to fill your self-assessment.
+            </p>
         </div>
-
     </div>
 </p-card>
 
-<app-assessment-form></app-assessment-form>
+<div *ngIf="!hasSubmittedAssessment">
+        <app-assessment-form></app-assessment-form>
+  </div>
 
-
+<div *ngIf="hasSubmittedAssessment">
+    <app-assessment-submitted></app-assessment-submitted>
+</div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GetAssessmentComponent } from './get-assessment/get-assessment.component';
 import { GetAssessmentsComponent } from './get-assessments/get-assessments.component';
 
 const routes: Routes = [{
@@ -10,4 +11,4 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ManagerEvaluationRoutingModule { }
+export class AssessmentHistoryRoutingModule { }

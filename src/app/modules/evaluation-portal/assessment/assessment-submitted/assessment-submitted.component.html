@@ -1,0 +1,25 @@
+<p-card [style]="{ marginBottom: '20px' }" style="text-align: center">
+    <ng-template pTemplate="header">
+        <img
+            src="assets/layout/images/logo-dark.png"
+            alt="Logo"
+            class="logo-img"
+        />
+    </ng-template>
+    <div class="p-grid p-nogutter">
+        <div class="p-col">
+            <p class="message">
+                Your assessment has already been submitted. Thank you!
+            </p>
+            <div class="buttons">
+                <p-button type="button" (click)="checkAssessmentStatus()"
+                    >Check Assessment Status</p-button
+                >
+                <br />
+                <p-button type="button" (click)="checkPreviousAssessments()"
+                    >Check Previous Assessments</p-button
+                >
+            </div>
+        </div>
+    </div>
+</p-card>
