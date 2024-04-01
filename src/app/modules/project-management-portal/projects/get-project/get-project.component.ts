@@ -14,12 +14,4 @@ export class GetProjectComponent {
   constructor(private router: Router){}
   
 
-  redirectToProjectDetails(){
-    this.router.navigate(["/project-management-portal/my-projects",this.getProjectRoute()])
-  }
-
-  getProjectRoute(){
-    console.log(this.project.getName().split(" ").join("-"));
-    return this.project.getName().split(" ").join("-");
-  }
 }

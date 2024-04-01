@@ -2,15 +2,15 @@ import { Document } from "../workstation-portal/document.model";
 import { GroupOfTasks } from "./group-of-tasks";
 
 export class Project {
-    private id?: Number;
-    private name: String;
+    private id?: number;
+    private name: string;
     private description: String;
     private groupsOfTasks?: GroupOfTasks[];
     private documents?: Document[];
     private status?: String;
 
 
-    constructor(id: Number, name: String, description: String, groupsOfTasks?: GroupOfTasks[], documents?: Document[]) {
+    constructor(id: number, name: string, description: String, groupsOfTasks?: GroupOfTasks[], documents?: Document[]) {
         this.id = id;
         this.name = name;
         this.description = description;

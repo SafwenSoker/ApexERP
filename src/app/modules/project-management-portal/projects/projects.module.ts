@@ -47,6 +47,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { DragDropModule } from 'primeng/dragdrop';
+import { InplaceModule } from 'primeng/inplace';
+import { EditorModule } from 'primeng/editor';
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [
     CreateProjectComponent,
@@ -89,7 +94,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ButtonModule,
     InputTextModule,
     SelectButtonModule,
-    InputTextareaModule
+    InputTextareaModule,
+    TabMenuModule,
+    DragDropModule,
+    InplaceModule,
+    EditorModule,
+    MultiSelectModule
   ],
   providers :[
     MessageService, ConfirmationService

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject, map, takeUntil } from 'rxjs';
 import { Project } from 'src/app/models/project-management-portal/project.model';
 import { AppState } from 'src/app/store/app.state';
-import { getProject } from '../../state/project.selector';
+import { getProjectByName } from '../../state/project.selector';
 import { MenuItem } from 'primeng/api';
 import { loadProjects } from '../../state/project.actions';
 
@@ -30,7 +30,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
       this.projectName = params.get('project');
       this.projectName = this.projectName.split("-").join(" ");
       this.items = [{ label: 'My Projects', routerLink: '/project-management-portal/my-projects' },{ label: this.projectName, routerLink: '/project-management-portal/my-projects/'+params.get('project') }];
-      this.store.select(getProject(this.projectName)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      this.store.select(getProjectByName(this.projectName)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
         (project) => {
           this.project = project;
         });

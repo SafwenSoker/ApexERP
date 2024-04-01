@@ -9,23 +9,40 @@ export const getProjects = createSelector(getProjectsState, (state) => {
     return state.projects;
 });
 
-
-export const getProject = (projectName: string) =>
+export const getGroupsOfTasks = (projectId: number) =>
     createSelector(getProjectsState, (state) => {
-        const project = state.projects.find((project) => project.getName() === projectName);
+        console.log(state.groupsOfTasks)
+        const groupsOfTasks = state.groupsOfTasks.filter((groupOfTasks) => groupOfTasks.getProjectId() === projectId);
+        return groupsOfTasks;
+    });
+
+export const getTasks = (groupOfTasksId: number) =>
+    createSelector(getProjectsState, (state) => {
+        const tasks = state.tasks.filter((task) => task.getGroupOfTasksId() === groupOfTasksId);
+        return tasks;
+    });
+
+
+export const getProjectById = (projectId: number) =>
+    createSelector(getProjectsState, (state) => {
+        const project = state.projects.find((project) => project.getId() === projectId);
         return project;
     });
 
-export const getGroupOfTasks = (projectName: string, groupOfTasksName: string) => createSelector(getProjectsState, (state) => {
-    let project = state.projects.find((project) => project.getName() === projectName);
-    let groupOfTasks = project.getGroupsOfTasks().find((groupOfTasks) => groupOfTasks.getName() === groupOfTasksName);
+    
+export const getProjectByName = (projectName: string) =>
+createSelector(getProjectsState, (state) => {
+    const project = state.projects.find((project) => project.getName() === projectName);
+    return project;
+});
+
+export const getGroupOfTasks = (groupOfTasksId: number) => createSelector(getProjectsState, (state) => {
+    let groupOfTasks = state.groupsOfTasks.find((groupOfTasks) => groupOfTasks.getId() === groupOfTasksId);
     return groupOfTasks;
 });
 
-export const getTask = (projectName: string, groupOfTasksName: string, taskName: string) => createSelector(getProjectsState, (state) => {
-    let project = state.projects.find((project) => project.getName() === projectName);
-    let groupOfTasks = project.getGroupsOfTasks().find((groupOfTasks) => groupOfTasks.getName() === groupOfTasksName);
-    let task = groupOfTasks.getTasks().find((task) => task.getName() === taskName);
+export const getTask = (taskId: number) => createSelector(getProjectsState, (state) => {
+    let task = state.tasks.find((task) => task.getId() === taskId);
     return task;
 });
 

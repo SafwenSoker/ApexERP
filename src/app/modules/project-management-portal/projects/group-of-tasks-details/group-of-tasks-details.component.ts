@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
@@ -13,32 +13,32 @@ import { loadProjects } from '../../state/project.actions';
   templateUrl: './group-of-tasks-details.component.html',
   styleUrl: './group-of-tasks-details.component.scss'
 })
-export class GroupOfTasksDetailsComponent {
+export class GroupOfTasksDetailsComponent implements OnChanges{
   groupOfTasks!: GroupOfTasks;
-  projectName: string;
-  groupOfTasksName: string;
+  @Input() projectName: string;
+  @Input() groupOfTasksId: number;
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
   private ngUnsubscribe = new Subject<void>();
 
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes && changes['groupOfTasksId'] && changes['groupOfTasksId'].currentValue){
+      this.store.select(getGroupOfTasks(this.groupOfTasksId)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+        (groupOfTasks) => {
+          console.log("selected group of tasks:", groupOfTasks)
+          this.groupOfTasks = groupOfTasks;
+        });
+    }
+  }
 
   ngOnInit(): void {
-    this.store.dispatch(loadProjects());
-    this.route.paramMap.subscribe((params) => {
-      this.projectName = params.get('project');
-      this.groupOfTasksName = params.get('groupOfTasks');
-      this.projectName = this.projectName.split("-").join(" ");
-      this.groupOfTasksName = this.groupOfTasksName.split("-").join(" ");
-      this.items = [{ label: 'My Projects', routerLink: '/project-management-portal/my-projects' }, { label: this.projectName, routerLink: '/project-management-portal/my-projects/' + params.get('project') },{ label: this.groupOfTasksName, routerLink: '/project-management-portal/my-projects/' + params.get('project') + "/group" + params.get('groupOfTasks') }];
-      this.store.select(getGroupOfTasks(this.projectName, this.groupOfTasksName)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-        (groupOfTasks) => {
-          this.groupOfTasks = groupOfTasks;
-        }
-      );
-    })
-    this.home = { icon: 'pi pi-home', routerLink: '/project-management-portal/my-projects' };
+    this.store.select(getGroupOfTasks(this.groupOfTasksId)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (groupOfTasks) => {
+        console.log("selected group of tasks:", groupOfTasks)
+        this.groupOfTasks = groupOfTasks;
+      });
   }
 
   ngOnDestroy(): void {

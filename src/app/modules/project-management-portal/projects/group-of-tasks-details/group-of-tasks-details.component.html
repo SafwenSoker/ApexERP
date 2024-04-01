@@ -1,14 +1,11 @@
 <div *ngIf="groupOfTasks">
-    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
-    <div class="grid mt-6 mb-6 ml-1 mr-1">
-        <div class="col card flex justify-content-between flex-wrap card-header">
-            <p class="flex align-items-center sample">{{groupOfTasks.getName()}}</p>
+    <div class="card mt-4 mb-4">
+        <div class="flex justify-content-between mb-3">
             <div>
-                <lottie-player src="https://lottie.host/549eefcc-df76-419c-9252-ac0ac7dd8220/DgP5lKwP2U.json"
-                    background="transparent" speed="1" style="width: 150px; height: 150px" loop autoplay direction="1"
-                    mode="normal"></lottie-player>
+                <span class="block text-3xl font-medium mb-3">{{groupOfTasks.getName()}}</span>
             </div>
         </div>
+        <span class="text-green-500 font-medium">234</span>
+        <span class="text-500"> employees are part of this phase</span>
     </div>
-    <app-get-tasks [projectName]="projectName" [groupOfTasksName]="groupOfTasksName"></app-get-tasks>
 </div>

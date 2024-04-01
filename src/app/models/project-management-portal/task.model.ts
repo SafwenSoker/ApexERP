@@ -3,21 +3,20 @@ import { TaskTag } from "./task-tag.model";
 import { TaskUrgency } from "./task-urgency.model";
 
 export class Task {
-    private id: Number;
-    private name: String;
+    private id: number;
+    public name: string;
     private deadline: Date;
-    private employeeId: Number;
+    private employeeId: number;
     private startDate: Date;
     private endDate: Date;
-    private description: String;
-    private toDoList: String[];
-    private projectId: Number;
-    private groupOfTasksId: Number;
+    public description: string;
+    private projectId: number;
+    private groupOfTasksId: number;
     private status: TaskStatus;
     private tags: TaskTag[];
     private urgency: TaskUrgency;
 
-    constructor(id: Number, name: String, deadline: Date,employeeId: Number, startDate: Date, endDate: Date, description: String, status: TaskStatus, tags: TaskTag[], urgency: TaskUrgency, toDoList: String, projectId: Number, groupOfTasksId: Number) {
+    constructor(id: number, name: string, deadline: Date, employeeId: number, startDate: Date, endDate: Date, description: string, status: TaskStatus, tags: TaskTag[], urgency: TaskUrgency, projectId: number, groupOfTasksId: number) {
         this.id = id;
         this.name = name;
         this.deadline = deadline;
@@ -28,7 +27,6 @@ export class Task {
         this.endDate = endDate;
         this.description = description;
         this.urgency = urgency;
-        this.toDoList = toDoList.split(",");
         this.projectId = projectId;
         this.groupOfTasksId = groupOfTasksId;
     }
@@ -61,10 +59,6 @@ export class Task {
         return this.description;
     }
 
-    public getToDoList() {
-        return this.toDoList;
-    }
-
     public getProjectId() {
         return this.projectId;
     }
@@ -92,4 +86,14 @@ export class Task {
             icon: "pi pi-fw pi-file"
         }
     }
+
+
+    setStatus(status: TaskStatus) {
+        if (Object.values(TaskStatus).includes(status)) {
+            this.status = status;
+        } else {
+            throw new Error("Invalid task status");
+        }
+    }
 }
+

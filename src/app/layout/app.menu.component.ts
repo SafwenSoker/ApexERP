@@ -1,6 +1,12 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { Project } from '../models/project-management-portal/project.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
+import { loadProjects } from '../modules/project-management-portal/state/project.actions';
+import { getProjects } from '../modules/project-management-portal/state/project.selector';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-menu',
@@ -9,10 +15,19 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
-
-    constructor(public layoutService: LayoutService) { }
+    projects!: Project[];
+    projectsItemsMenu: any[] = [];
+    private ngUnsubscribe = new Subject<void>();
+    constructor(public layoutService: LayoutService, private store: Store<AppState>) { }
 
     ngOnInit() {
+        this.store.dispatch(loadProjects());
+        this.store.select(getProjects).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+            (projects) => {
+                // for each project add item menu with the name of the project as label, no icon and router link from the function getProjectRouter(project: Project)
+                projects.forEach((project) => this.projectsItemsMenu.push({ label: project.getName(), icon: '', routerLink: this.getProjectRoute(project) }));
+            }
+        );
         this.model = [
             {
                 label: 'Home',
@@ -23,7 +38,10 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Project Management Portal',
                 items: [
-                    { label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'] }
+                    {
+                        label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
+                        items: this.projectsItemsMenu
+                    }
                 ]
             },
             {
@@ -200,5 +218,9 @@ export class AppMenuComponent implements OnInit {
                 ]
             }
         ];
+    }
+    getProjectRoute(project: Project): string {
+        console.log(project.getName().split(" ").join("-"));
+        return "/project-management-portal/my-projects/" + project.getName().split(" ").join("-");
     }
 }
