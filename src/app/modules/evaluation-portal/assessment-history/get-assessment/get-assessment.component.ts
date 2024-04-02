@@ -21,7 +21,7 @@ export class GetAssessmentComponent implements OnInit, OnDestroy{
   }
 
   redirectToAssessmentDetails(){
-    this.router.navigate(["/project-management-portal/my-projects",this.getAssessmentRoute()])
+    this.router.navigate(["/evaluation-portal/assessment-history", this.assessment.id])
   }
 
   getAssessmentRoute(){

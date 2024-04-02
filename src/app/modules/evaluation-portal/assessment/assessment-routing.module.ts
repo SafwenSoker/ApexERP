@@ -4,8 +4,9 @@ import { SelfAssessmentComponent } from './self-assessment/self-assessment.compo
 
 const routes: Routes = [
   {
-    path: "", component: SelfAssessmentComponent
-  }
+    path: "", component: SelfAssessmentComponent,
+  },
+  
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

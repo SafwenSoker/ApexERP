@@ -15,10 +15,10 @@
     </div>
 </p-card>
 
-<div *ngIf="!hasSubmittedAssessment">
+<div *ngIf="hasSubmittedAssessment">
         <app-assessment-form></app-assessment-form>
   </div>
 
-<div *ngIf="hasSubmittedAssessment">
+<div *ngIf="!hasSubmittedAssessment">
     <app-assessment-submitted></app-assessment-submitted>
 </div>

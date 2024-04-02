@@ -1,0 +1,122 @@
+<p-card [style]="{ backgroundColor: 'black', marginBottom: '20px' }">
+    <div class="p-grid p-nogutter">
+        <div class="p-col-fixed">
+            <img
+                src="assets/layout/images/logo-white.png"
+                alt="Logo"
+                class="logo-img"
+            />
+        </div>
+        <div class="p-col">
+            <p class="banner-text">
+                You're currently viewing the assessment for fiscal year
+                {{ assessment.fiscalYear }} and cycle {{ assessment.cycleId }}.
+            </p>
+        </div>
+    </div>
+</p-card>
+
+<p-card [style]="{ marginBottom: '20px' }">
+
+    <form>
+        <p-card header="Technical Questions" [style]="{ marginBottom: '20px' }">
+            <div
+                *ngFor="let question of assessment.technicalQuestions"
+                class="question-container"
+            >
+                <p class="question">{{ question.text }}</p>
+                <div class="radio-buttons">
+                    <p-radioButton
+                        name="technicalQuestion{{ question.id }}"
+                        *ngFor="let option of radioOptions"
+                        [value]="option.value"
+                        [label]="option.label"
+                        [(ngModel)]="question.score"
+                        [disabled]="true"
+                    ></p-radioButton>
+                </div>
+
+                <!-- Displaying Manager Response -->
+                <p class="question">Manager Response</p>
+                <div
+                    *ngFor="
+                        let managerResponse of assessment.managerTechnicalResponses
+                    "
+                    class="radio-buttons"
+                >
+                    <!-- Check if the managerResponse corresponds to the current question -->
+                    <ng-container
+                        *ngIf="managerResponse.questionId === question.id"
+                    >
+                        <p-radioButton
+                            name="managerTechnicalResponse{{
+                                managerResponse.questionId
+                            }}"
+                            *ngFor="let option of radioOptions"
+                            [value]="option.value"
+                            [label]="option.label"
+                            [(ngModel)]="managerResponse.newScore"
+                            [disabled]="true"
+                        ></p-radioButton>
+                    </ng-container>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card
+            header="Observational Questions"
+            [style]="{ marginBottom: '20px' }"
+        >
+            <div
+                *ngFor="let question of assessment.observationalQuestions"
+                class="question-container"
+            >
+                <p class="question">{{ question.text }}</p>
+                <div class="radio-buttons">
+                    <p-radioButton
+                        name="observationalQuestion{{ question.id }}"
+                        *ngFor="let option of radioOptions"
+                        [value]="option.value"
+                        [label]="option.label"
+                        [(ngModel)]="question.score"
+                        [disabled]="true"
+                        [disabled]="true"
+                    ></p-radioButton>
+                </div>
+                <p class="question">Manager Response</p>
+                <div
+                    *ngFor="
+                        let managerResponse of assessment.managerObservationalResponses
+                    "
+                    class="radio-buttons"
+                >
+                    <!-- Check if the managerResponse corresponds to the current question -->
+                    <ng-container
+                        *ngIf="managerResponse.questionId === question.id"
+                    >
+                        <p-radioButton
+                            name="managerObservationalResponse{{
+                                managerResponse.questionId
+                            }}"
+                            *ngFor="let option of radioOptions"
+                            [value]="option.value"
+                            [label]="option.label"
+                            [(ngModel)]="managerResponse.newScore"
+                            [disabled]="true"
+                        ></p-radioButton>
+                    </ng-container>
+                </div>
+            </div>
+        </p-card>
+
+        <!-- <button type="button" class="p-button p-button-raised p-button-success" (click)="">Submit Assessment</button> -->
+        <!-- <button
+    class="min-w-full max-w-full p-3 flex align-items-center justify-content-center w-7 gap-2 border-round-sm bg-white-alpha-10 shadow-1 border-1 cursor-pointer hover:bg-white-alpha-20 transition-duration-200"
+    style="backdropFilter: blur(27px); borderColor: rgba(255, 255, 255, 0.2);" (click)="submitAssessment()">
+    <span class="font-medium text-white white-space-nowrap">Request Benefit</span>
+    <i class="pi pi-send text-white"></i>
+</button> -->
+    </form>
+    <button [style]="{ marginBottom: '20px' }" type="button" class="p-button p-button-info" (click)="redirectToAssessment()">Back</button>
+
+</p-card>

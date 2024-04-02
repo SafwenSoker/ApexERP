@@ -83,4 +83,42 @@ export class AssessmentService {
     //return this.http.get<Task[]>(${this.API_URL}/tasks);
 
   }
+
+  getAssessment(id: string): Observable<Assessment> {
+    
+    return new Observable<Assessment>(observer => {
+      
+      observer.next(new Assessment(
+        1,
+        2024,
+        1,
+        1,
+        new Date('2024-04-01'),
+        AssessmentStatus.PENDING,
+        new Date('2024-04-15'),
+        new Date('2024-04-30'),
+        [
+          { id: 1, text: 'Technical Question 1', score: 5 },
+          { id: 2, text: 'Technical Question 2', score: 4 },
+        ],
+        [
+          { id: 3, text: 'Observational Question 1', score: 3 },
+          { id: 4, text: 'Observational Question 2', score: 2 },
+        ],
+        10,
+        [
+          { questionId: 1, newScore: 4 },
+          { questionId: 2, newScore: 2 },
+        ],
+        [
+          { questionId: 3, newScore: 4 },
+          { questionId: 4, newScore: 2 },
+        ],
+        'Meeting notes for Assessment 1',
+        new Date(),
+        new Date()
+      ));
+      observer.complete();
+    })
+  }
 }
