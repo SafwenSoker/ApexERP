@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
@@ -6,10 +6,11 @@ import { Task } from 'src/app/models/project-management-portal/task.model';
 import { AppState } from 'src/app/store/app.state';
 import { getTask } from '../../state/project.selector';
 import { MenuItem } from 'primeng/api';
-import { loadProjects, loadTasks } from '../../state/project.actions';
+import { loadProjects, loadTasks, updateTask } from '../../state/project.actions';
 import * as FileSaver from 'file-saver';
 import { Inplace } from 'primeng/inplace';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TaskTag } from 'src/app/models/project-management-portal/task-tag.model';
 
 
 interface Tag {
@@ -43,15 +44,14 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
   cols!: Column[];
-  visible: boolean = false;
+  @Input() visible: boolean = false;
   taskName: string;
   exportColumns!: ExportColumn[];
-  text: string = '<div>Hello World!</div><div>PrimeNG <b>Editor</b> Rocks</div><div><br></div>';
+  updatedDescription: string;
   tags!: Tag[];
   selectedTags!: Tag[];
-
+  @Output() closedTaskDetailsDialogEvent: EventEmitter<boolean> = new EventEmitter();
   taskDescriptionEditorForm: FormGroup | undefined;
-
   private ngUnsubscribe = new Subject<void>();
 
 
@@ -63,17 +63,16 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
           this.task = task;
           this.taskName = this.task.getName();
           console.log(this.task.getDescription())
-          this.taskDescriptionEditorForm = new FormGroup({
-            text: new FormControl(this.task.getDescription())
-          });
+          this.updatedDescription = task.getDescription()
           console.log(this.task.getTags())
-          console.log("Selected tags:",this.tags.filter(tag => this.task.getTags().includes(tag.code)));
+          console.log("Selected tags:", this.tags.filter(tag => this.task.getTags().includes(tag.code)));
           this.selectedTags = this.tags.filter(tag => this.task.getTags().includes(tag.code));
         }
       );
-      this.visible = true;
     }
   }
+
+
 
   ngOnInit(): void {
     this.tags = [
@@ -82,7 +81,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
       { name: 'Improvement', code: 2 },
       { name: 'Documentation', code: 3 },
       { name: 'Refactoring', code: 4 }
-    ];    
+    ];
   }
 
   ngOnDestroy(): void {
@@ -167,8 +166,43 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
     this.descriptionInplace.deactivate();
   }
 
-  updateTaskTags(){
+  updateTaskTags() {
     this.tagsInplace.deactivate();
+    let task: Task = new Task(this.task.getId(), this.task.getName(), this.task.getDeadline(), this.task.getEmployeeId(), this.task.getStartDate(), this.task.getEndDate(), this.task.getDescription(), this.task.getStatus(), this.task.getTags(), this.task.getUrgency(), this.task.getProjectId(), this.task.getGroupOfTasksId());
+    console.log(task)
+    let newTags: TaskTag[] = [];
+    this.selectedTags.forEach((selectedTag) => {
+      switch (selectedTag.code) {
+        case 0:
+          newTags.push(TaskTag.BUG);
+          break;
+        case 1:
+          newTags.push(TaskTag.FEATURE);
+          break;
+        case 2:
+          newTags.push(TaskTag.IMPROVEMENT);
+          break;
+        case 3:
+          newTags.push(TaskTag.DOCUMENTATION);
+          break;
+        case 4:
+          newTags.push(TaskTag.REFACTORING);
+          break;
+      }
+    })
+    task.setTags(newTags);
+    this.store.dispatch(updateTask({ updatedTask: task }))
+  }
+
+  updateTaskDescription(){
+    this.descriptionInplace.deactivate();
+    let task: Task = new Task(this.task.getId(), this.task.getName(), this.task.getDeadline(), this.task.getEmployeeId(), this.task.getStartDate(), this.task.getEndDate(), this.updatedDescription, this.task.getStatus(), this.task.getTags(), this.task.getUrgency(), this.task.getProjectId(), this.task.getGroupOfTasksId());
+    this.store.dispatch(updateTask({ updatedTask: task }))
+  }
+
+  closeTaskDetailsDialog(){
+    this.visible = false;
+    this.closedTaskDetailsDialogEvent.emit(true)
   }
 
 

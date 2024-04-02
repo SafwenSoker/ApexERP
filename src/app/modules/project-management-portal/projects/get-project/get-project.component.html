@@ -1,2 +1,36 @@
-<app-project-details ></app-project-details> 
-<app-get-groups-of-tasks></app-get-groups-of-tasks>
+<div class="card mb-0 relative" [ngStyle]="{'background-color': project.color}">
+    <img src="https://workload.dexignlab.com/codeigniter/welcome/images/shape4.png" class="absolute dancing-image" style="width: 50px; right:30px; bottom: 100px">
+    <div class="employeeslist">
+
+        <div class="img" style="margin-left: 60px">
+        <img src="https://novo-admin-template.multipurposethemes.com/images/avatar/avatar-1.png">
+         </div>
+        <div class="img" style="margin-left: 40px">
+        <img src="https://novo-admin-template.multipurposethemes.com/images/avatar/avatar-2.png">
+        </div>
+            <div class="img" style="margin-left: 20px">
+            <img src="https://novo-admin-template.multipurposethemes.com/images/avatar/avatar-3.png">
+            </div>
+        <div class="img" style="background-color:black!important; width: 40px; height:40px ; display:flex; align-items: center; justify-content: center">
+            <p style="color:white">+7</p>
+        </div>
+
+    </div>
+<div class="flex justify-content-between mb-3">
+        <div>
+            <span class="block text-500 font-medium mb-3 project">{{project.name}}</span>
+            <div class="text-900 font-medium text-xl">{{project.description}}</div>
+        </div>
+        <div class="flex align-items-center justify-content-center border-round" [ngStyle]="{height: '2.5rem'}">
+            <p-button (click)="redirectToProjectDetails()" class="border-none" icon="pi pi-chevron-right"
+                [rounded]="true" [outlined]="true"></p-button>
+        </div>
+    </div>
+    <span class="text-green-500 font-medium">234</span>
+    <span class="text-500"> employees are part of this project</span>
+   <div class="progress">
+       <p style="color:whitesmoke ; font-weight:100; font-size: 16px">10 tasks | 80%</p>
+       <p-progressBar color="white" [style]="{ height: '6px' }" [value]="50">
+    </p-progressBar>
+   </div>
+</div>

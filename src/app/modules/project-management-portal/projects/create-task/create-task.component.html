@@ -1,1 +1,56 @@
-<p>create-task works!</p>
+<div class="addtask" (click)="showDialog()" class="card p-3 mt-2 mb-2 border-round"><span class="addtask"><i
+            class="pi pi-fw pi-plus"></i> Add TASK</span></div>
+<p-dialog header="Header" [(visible)]="visible" [style]="{width: '50vw', 'min-height': '60vh'}" [modal]="true">
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+            <i class="pi pi-fw pi-ticket"></i>
+            <span class="text-4xl font-bold white-space-nowrap">Create New Task</span>
+        </div>
+    </ng-template>
+    <div class="grid mt-6 mb-6">
+        <div class="taskname col text-3xl" id="taskname">Choose Task Name</div>
+        <input class="col" type="text" pInputText [(ngModel)]="taskName" />
+    </div>
+    <div class="grid mb-6 mt-6">
+        <div class="col text-3xl mb-3" id="taskname">Choose Start date and Deadline</div>
+        <p-calendar [style]="{width: '50vw'}" class="col flex justify-content-center max-w-full pl-2 pr-2" [(ngModel)]="rangeDates" selectionMode="range"
+            [inline]="true" [showWeek]="true"></p-calendar>
+    </div>
+    <div class="grid">
+        <div class="assignee col text-3xl mb-3"><i class="pi pi-fw pi-user"></i> Choose Assignee</div>
+        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee" optionLabel="name" [showClear]="true" placeholder="Select an employee"></p-dropdown>
+
+    </div>
+    <div class="grid mb-6 mt-6">
+        
+        <div class="text-3xl mb-3"><i class="pi pi-fw pi-align-left"></i> Description</div>
+        <p-editor [(ngModel)]="description" [style]="{ height: '200px', 'margin-bottom': '5px' }"></p-editor>
+    </div>
+
+    <div class="grid mb-6 mt-6">
+        <div class="tasktags col text-3xl" id="taskname">Choose Task Tags</div>
+        <p-multiSelect class="col flex justify-content-center align-items-center align-content-center" [options]="tags" [(ngModel)]="selectedTags" optionLabel="name"
+            placeholder="Select Tags"></p-multiSelect>
+    </div>
+    <div class="grid mb-6 mt-6 flex align-items-center align-content-center">
+        <div class="taguregency col text-3xl" id="taskname">Choose Task Urgency</div>
+        <div *ngFor="let urgency of urgencies" class=" field-checkbox">
+            <p-radioButton class="col flex justify-content-center align-items-center align-content-center" [inputId]="urgency.code" name="type" [value]="urgency"
+                [(ngModel)]="selectedStatus"></p-radioButton>
+            <label [for]="urgency.code" class="ml-0 mr-4">{{ urgency.type }}</label>
+        </div>
+
+    </div>
+    <div class="grid mb-6 mt-6">
+        <div class="taskstatus col text-3xl" id="taskname">Choose Task status</div>
+        <div *ngFor="let status of statuses" class=" field-checkbox">
+            <p-radioButton class="col flex justify-content-center align-items-center align-content-center" [inputId]="status.code" name="progress" [value]="status"
+                [(ngModel)]="selectedStatus"></p-radioButton>
+            <label [for]="status.code" class="ml-0 mr-4">{{ status.progress }}</label>
+        </div>
+
+    </div>
+    <div class="footer flex justify-content-end">
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addTask()" ></button>
+    </div>
+</p-dialog>

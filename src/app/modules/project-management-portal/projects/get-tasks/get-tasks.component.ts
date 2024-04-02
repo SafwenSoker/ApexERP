@@ -113,8 +113,12 @@ export class GetTasksComponent implements OnInit, OnDestroy, OnChanges {
     this.showTaskDetailsDialog = true;
   }
 
+  closeTaskDetailsDialog(){
+   this.showTaskDetailsDialog = false; 
+  }
   addTask(taskStatus: TaskStatus){
     this.showAddTaskDialog = true;
   }
+
 
 }

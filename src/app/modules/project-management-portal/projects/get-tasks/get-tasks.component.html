@@ -8,16 +8,18 @@
             </li>
         </ul>
         <div  (click)="addTask(taskStatus.NEW)" class="card p-3 mt-2 mb-2 border-round"><i class="pi pi-fw pi-plus"></i>Add TASK</div>
+        <app-create-task [taskStatus]="taskStatus.NEW" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
     <div class="card col p-2 w-15rem  drop-column m-2" pDroppable (onDrop)="drop(taskStatus.IN_PROGRESS)">
         <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-hourglass"></i> In Progress</p>
         <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="inProgressTasks">
             <li *ngFor="let task of inProgressTasks" class="p-4 border-round shadow-1" pDraggable
                 (onDragStart)="dragStart(task)" (onDragEnd)="dragEnd()">
-                <app-get-task [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
+                <app-get-task [taskDetailsDialog]="showTaskDetailsDialog" [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
             </li>
         </ul>
         <div  (click)="addTask(taskStatus.IN_PROGRESS)" class="card p-3 mt-2 mb-2 border-round"><i class="pi pi-fw pi-plus"></i>Add TASK</div>
+        <app-create-task [taskStatus]="taskStatus.IN_PROGRESS" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
 
     <div class="card col p-2 w-15rem drop-column m-2" pDroppable (onDrop)="drop(taskStatus.ON_HOLD)">
@@ -29,6 +31,7 @@
             </li>
         </ul>
         <div  (click)="addTask(taskStatus.ON_HOLD)" class="card p-3 mt-2 mb-2 border-round"><i class="pi pi-fw pi-plus"></i>Add TASK</div>
+        <app-create-task [taskStatus]="taskStatus.ON_HOLD" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
     <div class="card col p-2 w-15rem  drop-column m-2" pDroppable (onDrop)="drop(taskStatus.DONE)">
         <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-check-circle"></i> Done</p>
@@ -38,8 +41,8 @@
                 <app-get-task [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
             </li>
         </ul>
-        <div (click)="addTask(taskStatus.DONE)"class="card p-3 mt-2 mb-2 border-round"><i class="pi pi-fw pi-plus"></i>Add TASK</div>
+        <app-create-task [taskStatus]="taskStatus.DONE" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
 </div>
-{{selectedTaskId}}
-<app-task-details [taskId]="selectedTaskId"></app-task-details>
+<app-task-details (closedTaskDetailsDialogEvent)="closeTaskDetailsDialog()"[visible]="showTaskDetailsDialog" [taskId]="selectedTaskId"></app-task-details>
+<app-create-task ></app-create-task>

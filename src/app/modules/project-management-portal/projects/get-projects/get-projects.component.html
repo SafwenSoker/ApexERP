@@ -1,22 +1,44 @@
-<div *ngIf="projects">
-    <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
-    <div class="grid mt-6 mb-6 ml-1 mr-1">
-        <div class="col-12 card flex justify-content-between flex-wrap card-header">
-            <p class="flex align-items-center sample">Projects</p>
-            <div>
-                <lottie-player class="mr-6"src="https://lottie.host/07551cbf-0573-41f3-97a0-f741f5cf83f1/0EbP3U3KSi.json"
-                    background="transparent" speed="1" style="width: 200px; height: 200px" loop autoplay direction="1"
-                    mode="normal"></lottie-player>
+<div *ngIf="projects" class="row">
+    <div class="col"> <!-- Adjust the column size as per your requirement -->
+        <div class="flex">
+            <div class="col container">
+                <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+                <div class="grid mt-6 mb-6 ml-1 mr-1">
+                    <div class="col-12 card flex justify-content-between flex-wrap shadow-2 p-4">
+                        <p-selectButton [options]="projectStatuses" [(ngModel)]="selectedProjectStatus" [optionSeverity]="severity" optionLabel="label" optionValue="value"
+                                        optionDisabled="constant"></p-selectButton>
+                        <app-create-project></app-create-project>
+                    </div>
+                </div>
+                <div class="grid mt-2">
+                    <app-get-project *ngFor="let project of projects;" [project]="project" class="row col-4 relative"></app-get-project>
+                </div>
+            </div>
+            <div class="col-md-3 calender" id="calender-div">
+                <h2 class="title">Calender</h2>
+                <p class="date-text">Aug 20, 2023</p>
+
+                <p-timeline [value]="events">
+
+                    <ng-template pTemplate="content" let-event>
+                        <h5 class="p-text-secondary event">{{ event.hours }}</h5>
+                    </ng-template>
+                    <ng-template pTemplate="opposite" let-event>
+                        <h6 class="event"><span style="color:darkorange; font-weight: 200!important;">{{event.projectName}}</span><br>{{ event.status }}</h6>
+                    </ng-template>
+                </p-timeline>
+                <p class="date-text">Aug 21, 2023</p>
+
+                <p-timeline [value]="events2">
+
+                    <ng-template pTemplate="content" let-event>
+                        <h5 class="p-text-secondary event">{{ event.hours }}</h5>
+                    </ng-template>
+                    <ng-template pTemplate="opposite" let-event>
+                        <h6 class="event"><span style="color:darkorange; font-weight: 200!important;">{{event.projectName}}</span><br>{{ event.status }}</h6>
+                    </ng-template>
+                </p-timeline>
             </div>
         </div>
-        <div class="col-12 card flex justify-content-between flex-wrap shadow-2 p-4">
-            <p-selectButton [options]="projectStatuses" [(ngModel)]="selectedProjectStatus" [optionSeverity]="severity" optionLabel="label" optionValue="value"
-                optionDisabled="constant"></p-selectButton>
-            <app-create-project></app-create-project>
-        </div>
-    </div>
-    <div class="grid mt-2">
-        <app-get-project *ngFor="let project of projects;" [project]="project"
-            class="col-12 lg:col-12 xl:col-12"></app-get-project>
     </div>
 </div>

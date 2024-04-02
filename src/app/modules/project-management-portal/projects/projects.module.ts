@@ -52,6 +52,13 @@ import { DragDropModule } from 'primeng/dragdrop';
 import { InplaceModule } from 'primeng/inplace';
 import { EditorModule } from 'primeng/editor';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
+import { CalendarModule } from 'primeng/calendar';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { TimelineModule } from 'primeng/timeline';
 @NgModule({
   declarations: [
     CreateProjectComponent,
@@ -87,6 +94,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     TaskStatusValuePipe,
     TaskUrgencyValuePipe,
     TaskTagValuePipe,
+    SafeHtmlPipe,
     TableModule,
     ToastModule,
     ToolbarModule,
@@ -99,7 +107,14 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DragDropModule,
     InplaceModule,
     EditorModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CalendarModule,
+    RadioButtonModule,
+    DropdownModule,
+    ProgressBarModule,
+    TimelineModule
   ],
   providers :[
     MessageService, ConfirmationService

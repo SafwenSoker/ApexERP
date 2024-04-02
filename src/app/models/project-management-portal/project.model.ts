@@ -4,18 +4,21 @@ import { GroupOfTasks } from "./group-of-tasks";
 export class Project {
     private id?: number;
     private name: string;
-    private description: String;
+    private description: string;
     private groupsOfTasks?: GroupOfTasks[];
     private documents?: Document[];
-    private status?: String;
+    private status?: string;
+    private color?:string;
 
 
-    constructor(id: number, name: string, description: String, groupsOfTasks?: GroupOfTasks[], documents?: Document[]) {
+    constructor(id: number, name: string, description: string, groupsOfTasks?: GroupOfTasks[], documents?: Document[], color?: string) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.groupsOfTasks = groupsOfTasks ? groupsOfTasks : null;
         this.documents = documents ? documents : null;
+        this.color = color;
+
     }
 
     public getId(){
@@ -51,7 +54,12 @@ export class Project {
         return this.status;
     }
 
-    public setStatus(status: String){
+    public setStatus(status: string){
         this.status = status;
+    }
+
+    
+    getColor() {
+        return this.color;
     }
 }

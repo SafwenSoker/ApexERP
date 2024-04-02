@@ -1,19 +1,19 @@
 <p-dialog *ngIf="task" header="Header" [(visible)]="visible" [style]="{width: '50vw', 'min-height': '60vh'}"
-    [modal]="true">
+    [modal]="true"  (onHide)="closeTaskDetailsDialog()">
     <ng-template pTemplate="header">
         <div class="inline-flex align-items-center justify-content-center gap-2">
             <i class="pi pi-fw pi-ticket"></i>
             <span class="text-4xl font-bold white-space-nowrap">{{task.getName()}}</span>
         </div>
     </ng-template>
-    <div class="grid m-0">
-        <div class="col-8">
+    <div class="grid mt-2">
+        <div class="col-7">
             <div class="block mb-3">
-                <p-tag class="mr-1" [severity]="task.getStatus() | taskStatusSeverity"
+                <p-tag class="mr-1 mb-1" [severity]="task.getStatus() | taskStatusSeverity"
                     [icon]="task.getStatus() | taskStatusIcon" [value]="task.getStatus() | taskStatusValue"></p-tag>
-                <p-tag class="mr-1" [severity]="task.getUrgency() | taskUrgencySeverity"
+                <p-tag class="mr-1 mb-1" [severity]="task.getUrgency() | taskUrgencySeverity"
                     [icon]="task.getUrgency() | taskUrgencyIcon" [value]="task.getUrgency() | taskUrgencyValue"></p-tag>
-                <p-tag class="mr-1" *ngFor="let tag of task.getTags()" [severity]="tag | taskTagSeverity"
+                <p-tag class="mr-1 mb-1" *ngFor="let tag of task.getTags()" [severity]="tag | taskTagSeverity"
                     [icon]="tag | taskTagIcon" [value]="tag | taskTagValue"></p-tag>
             </div>
             <div class="text-3xl mb-3"><i class="pi pi-fw pi-user"></i> Assignee</div>
@@ -21,28 +21,30 @@
             <p-inplace #descriptionInplace>
                 <ng-template pTemplate="display">
                     <span *ngIf="task.getDescription() === '';else elseBlock">Add a detailed description</span>
-                    <ng-template #elseBlock>{{task.getDescription()}}</ng-template>
+                    <span #elseBlock [innerHtml]="task.getDescription() | safeHtml">{{task.getDescription() | safeHtml}}</span>
                 </ng-template>
                 <ng-template pTemplate="content">
-                    <p-editor [(ngModel)]="text" [readonly]="true" [style]="{ height: '200px' }"></p-editor>
+                    <p-editor [(ngModel)]="updatedDescription" [style]="{ height: '200px', 'margin-bottom': '5px' }"></p-editor>
+                    <p-button label="Save Description" icon="pi pi-fw pi-check" [outlined]="true" severity="primary"
+                                (click)="updateTaskDescription()"></p-button>
                 </ng-template>
             </p-inplace>
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <p-inplace #tagsInplace>
                 <ng-template pTemplate="display">
                     <span>Update Task Tags</span>
                 </ng-template>
                 <ng-template pTemplate="content">
                     <div class="grid">
-                        <div class="col-7">
-                            <p-multiSelect [options]="tags" [(ngModel)]="selectedTags" placeholder="Select a tag"
-                                optionLabel="name" >
-                                
-                            </p-multiSelect>
+                        <div class="col-10">
+                            <p-multiSelect [options]="tags" [(ngModel)]="selectedTags" optionLabel="name"
+                                placeholder="Select Tags"></p-multiSelect>
+
                         </div>
-                        <div class="col-5 flex justify-content-start">
-                            <p-button label="Save" icon="pi pi-fw pi-check"[outlined]="true" severity="success" (click)="updateTaskTags()"></p-button>
+                        <div class="col-2 flex justify-content-start">
+                            <p-button label="" icon="pi pi-fw pi-check" [outlined]="true" severity="primary"
+                                (click)="updateTaskTags()"></p-button>
                         </div>
                     </div>
                 </ng-template>

@@ -16,7 +16,7 @@ export class TaskTagIconPipe implements PipeTransform {
       case TaskTag.IMPROVEMENT:
         return 'pi pi-fw pi-arrow-circle-up';
       case TaskTag.DOCUMENTATION:
-        return 'pi pi-fw text-secondary';
+        return 'pi pi-fw pi-book';
       case TaskTag.REFACTORING:
         return 'pi pi-fw pi-replay';
       default:

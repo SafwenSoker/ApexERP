@@ -15,19 +15,9 @@ import { Subject, takeUntil } from 'rxjs';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
-    projects!: Project[];
-    projectsItemsMenu: any[] = [];
-    private ngUnsubscribe = new Subject<void>();
-    constructor(public layoutService: LayoutService, private store: Store<AppState>) { }
+    constructor(public layoutService: LayoutService) { }
 
     ngOnInit() {
-        this.store.dispatch(loadProjects());
-        this.store.select(getProjects).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-            (projects) => {
-                // for each project add item menu with the name of the project as label, no icon and router link from the function getProjectRouter(project: Project)
-                projects.forEach((project) => this.projectsItemsMenu.push({ label: project.getName(), icon: '', routerLink: this.getProjectRoute(project) }));
-            }
-        );
         this.model = [
             {
                 label: 'Home',
@@ -40,7 +30,6 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
-                        items: this.projectsItemsMenu
                     }
                 ]
             },

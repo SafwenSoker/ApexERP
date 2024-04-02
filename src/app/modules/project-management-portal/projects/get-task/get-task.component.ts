@@ -35,4 +35,8 @@ export class GetTaskComponent implements OnInit{
   getTaskRoute() {
     return this.task.getName().split(" ").join("-");
   }
+
+  closedDialogEvent(){
+    this.openTaskDetailsDialog = false;
+  }
 }
