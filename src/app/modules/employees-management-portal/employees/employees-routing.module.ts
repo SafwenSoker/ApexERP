@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GetEmployeesComponent } from './get-employees/get-employees.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "", component: GetEmployeesComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

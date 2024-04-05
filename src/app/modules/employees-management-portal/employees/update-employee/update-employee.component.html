@@ -1,1 +1,98 @@
-<p>update-employee works!</p>
+<p-dialog
+    [style]="{
+        width: '80vw',
+        height: '80vh',
+        'border-radius': '12px 12px 0 0',
+        'background-color': '#000000'
+    }"
+    header="Update Employee"
+    [(visible)]="updateEmployeeDialog"
+>
+    <form [formGroup]="updateUserForm" (ngSubmit)="onUpdateEmployee()">
+        <div class="grid m-2">
+            <div class="col-6 my-2 mt-5 pt-3">
+                <span class="p-float-label">
+                    <input
+                        pInputText
+                        id="username"
+                        [value]="employee.username"
+                        [disabled]="true"
+                    />
+                    <label htmlFor="username">Username</label>
+                </span>
+            </div>
+            <div class="col-6 my-2 mt-5 pt-3">
+                <span class="p-float-label">
+                    <input
+                        pInputText
+                        type="email"
+                        id="email"
+                        formControlName="email"
+                    />
+                    <label htmlFor="email">Email</label>
+                </span>
+            </div>
+            <div class="col-6 my-2 mt-5 pt-3">
+                <span class="p-float-label">
+                    <input
+                        pInputText
+                        id="firstName"
+                        formControlName="firstName"
+                    />
+                    <label htmlFor="firstName">Firstname</label>
+                </span>
+            </div>
+            <div class="col-6 my-2 mt-5 pt-3">
+                <span class="p-float-label">
+                    <input
+                        pInputText
+                        id="lastName"
+                        formControlName="lastName"
+                    />
+                    <label htmlFor="lastName">Lastname</label>
+                </span>
+            </div>
+        </div>
+        <ng-template pTemplate="header">
+            <span><i class="pi pi-shield"></i> Choose Roles</span>
+        </ng-template>
+        <p-pickList
+            [source]="availableRoles"
+            [target]="employee.roles"
+            sourceHeader="Available"
+            targetHeader="Selected"
+            [dragdrop]="true"
+            [responsive]="true"
+            [sourceStyle]="{ height: '50rem' }"
+            [targetStyle]="{ height: '50rem' }"
+            filterBy="name"
+            sourceFilterPlaceholder="Search by name"
+            targetFilterPlaceholder="Search by name"
+            breakpoint="1400px"
+        >
+            <ng-template let-role pTemplate="item">
+                <div class="flex flex-wrap p-2 align-items-center gap-3">
+                    <div class="flex-1 flex flex-column gap-2">
+                        <span class="font-bold">{{ role.name }}</span>
+                    </div>
+                    <div class="flex align-products-center gap-2">
+                        <i class="pi" [ngClass]="role.name"></i>
+                        <span>{{ role.name }}</span>
+                    </div>
+                </div>
+            </ng-template>
+        </p-pickList>
+
+        <!-- Put create button under dropdown to the right -->
+        <div class="flex justify-content-end">
+            <p-button
+                styleClass="p-button-text"
+                class="btn btn-block form-control btn-secondary"
+                data-bs-dismiss="modal"
+                type="submit"
+            >
+                <i class="fa-solid fa-folder-plus"></i> Update
+            </p-button>
+        </div>
+    </form>
+</p-dialog>

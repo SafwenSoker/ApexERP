@@ -1,15 +1,15 @@
 export class UserHRInfo {
     
-    private cin: String;
-    private numberOfHoursOff: Number;
-    private startDate: Date;
-    private endDate: Date;
-    private note: Number;
-    private managerId: String;
-    private userId: String;
-    private netSalary: Number;
-    private baseSalary: Number;
-    private cnssNumber: Number;
+    cin: String;
+    numberOfHoursOff: Number;
+    startDate: Date;
+    endDate: Date;
+    note: Number;
+    managerId: String;
+    userId: String;
+    netSalary: Number;
+    baseSalary: Number;
+    cnssNumber: Number;
 
     constructor(cin: String, numberOfHoursOff: Number, startDate: Date, endDate: Date, note: Number, managerId: String, userId: String, netSalary: Number, baseSalary: Number, cnssNumber: Number) {
         this.cin = cin;
@@ -22,5 +22,36 @@ export class UserHRInfo {
         this.netSalary = netSalary;
         this.baseSalary = baseSalary;
         this.cnssNumber = cnssNumber;
+    }
+
+    getCin(){
+        return this.cin;
+    }
+    getNumberOfHoursOff(){
+        return this.numberOfHoursOff;
+    }
+    getContractStartDate(){
+        return this.startDate;
+    }
+    getEndDate(){
+        return this.endDate;
+    }
+    getNote(){
+        return this.note;
+    }
+    getManagerId(){
+        return this.managerId;
+    }
+    getUserId(){
+        return this.userId;
+    }
+    getNetSalary(){
+        return this.netSalary;
+    }
+    getBaseSalary(){
+        return this.baseSalary;
+    }
+    getCnssNumber(){
+        return this.cnssNumber;
     }
 }

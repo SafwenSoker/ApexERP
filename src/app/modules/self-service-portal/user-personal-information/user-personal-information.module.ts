@@ -3,15 +3,27 @@ import { CommonModule } from '@angular/common';
 
 import { ViewPersonalInformationComponent } from './view-personal-information/view-personal-information.component';
 import { UserPersonalInformationRoutingModule } from './user-personal-information-routing.module';
-
+import { ViewEmployeesInformationsComponent } from './view-employees-informations/view-employees-informations.component';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
-    ViewPersonalInformationComponent
+    ViewPersonalInformationComponent,
+    ViewEmployeesInformationsComponent
   ],
   imports: [
     CommonModule,
-    UserPersonalInformationRoutingModule
+    UserPersonalInformationRoutingModule,
+    TabMenuModule,
+    TableModule,
+    ToastModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CalendarModule
   ]
 })
 export class UserPersonalInformationModule { }

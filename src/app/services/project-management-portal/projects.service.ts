@@ -20,9 +20,39 @@ export class ProjectsService {
     // return Observable.create();
     return new Observable<Project[]>(observer => {
       observer.next([
-        new Project(1, "Project 1", "Brief Description", []),
-        new Project(2, "Project 2", "Brief Description", []),
-        new Project(3, "Project 3", "Brief Description", [])
+        new Project(1, "Project 1", "Brief Description", [
+          new GroupOfTasks(0,"Group Of Tasks 1",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ]),
+          new GroupOfTasks(0,"Group Of Tasks 2",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ]),
+          new GroupOfTasks(0,"Group Of Tasks 3",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ])
+        ], [], "#6f42c1"),
+        new Project(2, "Project 2", "Brief Description", [
+          new GroupOfTasks(0,"Group Of Tasks 4",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ]),
+          new GroupOfTasks(0,"Group Of Tasks 5",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ])
+        ],[], "#00b8d4"),
+        new Project(3, "Project 3", "Brief Description", [
+          new GroupOfTasks(0,"Group Of Tasks 6",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ]),
+          new GroupOfTasks(0,"Group Of Tasks 7",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ]),
+          new GroupOfTasks(0,"Group Of Tasks 8",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ]),
+          new GroupOfTasks(0,"Group Of Tasks 9",new Date(), new Date(), new Date(), new Date(), [
+            new Task(1, "Task Name", new Date(), 2, new Date(), new Date(), "Task Description", TaskStatus.DONE, [TaskTag.BUG, TaskTag.IMPROVEMENT], TaskUrgency.HIGH,  1, 1)
+          ])
+        ],[], "#fd7e14")
       ])
       observer.complete()
     })
