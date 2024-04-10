@@ -21,8 +21,14 @@ export class GetGroupsOfTasksComponent implements OnInit, OnDestroy {
   activeGroupOfTasksId: number;
   activeItem: MenuItem | undefined;
   private ngUnsubscribe = new Subject<void>();
+  statuses: any[];
+  selectedStatus: string;
   constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
   ngOnInit() {
+    this.statuses = [
+      { label: 'Completed', value: 'completed', icon: "pi pi-fw pi-check", severity: "info" },
+      { label: 'In Progress', value: 'in_progress', icon: "pi pi-fw pi-hourglass", severity: "info" }
+    ];
     this.projectName = this.route.snapshot.params['project'];
     this.projectName = this.projectName.replace(/-/g, ' ');
     this.store.select(getProjectByName(this.projectName)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(

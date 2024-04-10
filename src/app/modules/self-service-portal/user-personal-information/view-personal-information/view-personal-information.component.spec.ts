@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+  import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewPersonalInformationComponent } from './view-personal-information.component';
 

@@ -10,8 +10,9 @@
                         <app-create-project></app-create-project>
                     </div>
                 </div>
+                {{selectedProjectStatus}}
                 <div class="grid mt-2">
-                    <app-get-project *ngFor="let project of projects;" [project]="project" class="row col-4 relative"></app-get-project>
+                    <app-get-project *ngFor="let project of projects;" [project]="project" [selectedStatus]="selectedProjectStatus" class="row col-4 relative"></app-get-project>
                 </div>
             </div>
             <div class="col-md-3 calender" id="calender-div">

@@ -1,3 +1,10 @@
+<div class="grid mt-6 mb-6 ml-1 mr-1">
+    <div class="col-12 card flex justify-content-between flex-wrap shadow-2 p-4">
+        <p-selectButton [options]="statuses" [(ngModel)]="selectedStatus" optionLabel="label" optionValue="value"
+                        optionDisabled="constant"></p-selectButton>
+        <app-create-group-of-tasks></app-create-group-of-tasks>
+    </div>
+</div>
 <p-tabMenu [scrollable]="true" [model]="groupsOfTasksItemsMenu" [activeItem]="activeItem"
     (activeItemChange)="onActiveGroupOfTasksItemChange($event)"></p-tabMenu>
 <app-group-of-tasks-details [groupOfTasksId]="activeGroupOfTasksId" class="col-12 lg:col-12 xl:col-12" ></app-group-of-tasks-details>

@@ -41,7 +41,7 @@ export class GetProjectsComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
 
   projectStatuses: any[];
-  selectedProjectStatus: string;
+  selectedProjectStatus: any = null;
 
   constructor(private store: Store<AppState>) {
     this.events = [
@@ -71,7 +71,6 @@ export class GetProjectsComponent implements OnInit, OnDestroy {
       { label: 'Completed', value: 'completed', icon: "pi pi-fw pi-check", severity: "info" },
       { label: 'In Progress', value: 'in_progress', icon: "pi pi-fw pi-hourglass", severity: "info" }
     ];
-    this.selectedProjectStatus = "None";
   }
 
   ngOnDestroy(): void {

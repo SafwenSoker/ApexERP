@@ -59,6 +59,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TimelineModule } from 'primeng/timeline';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [
     CreateProjectComponent,
@@ -114,7 +115,8 @@ import { TimelineModule } from 'primeng/timeline';
     RadioButtonModule,
     DropdownModule,
     ProgressBarModule,
-    TimelineModule
+    TimelineModule,
+    ConfirmDialogModule
   ],
   providers :[
     MessageService, ConfirmationService
