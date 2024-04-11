@@ -7,14 +7,14 @@ import { DaysOffRequest } from 'src/app/models/self-service-portal/days-off-requ
 })
 export class DayoffsService {
 
-  API_URL ="http://localhost:8080"
+  API_URL ="http://197.26.19.240:9092"
   constructor(private http: HttpClient) { }
 
   newDaysOffRequest(daysOffRequest: DaysOffRequest){
-    return this.http.post(`${this.API_URL}/daysoff/request`, daysOffRequest);
+    return this.http.post(`${this.API_URL}/self-service/daysoffrequest`, daysOffRequest);
   }
 
-  getDaysOffRequests(){
+    getDaysOffRequests(){
     return this.http.get(`${this.API_URL}/daysoff/requests`);
   }
 

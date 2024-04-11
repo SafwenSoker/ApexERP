@@ -1,44 +1,44 @@
 <div class="grid">
-    <div class="card col p-2 w-15rem drop-column m-2" pDroppable (onDrop)="drop(taskStatus.NEW)">
-        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-info-circle"></i> New Tasks</p>
-        <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="newTasks">
+    <div class="card col p-2 w-15rem drop-column m-2" pDroppable (onDrop)="drop(taskStatus.IN_PROGRESS)">
+        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-info-circle"></i> In Progress</p>
+        <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="inProgressTasks">
             <li *ngFor="let task of newTasks" class="p-4 border-round shadow-1" pDraggable
                 (onDragStart)="dragStart(task)" (onDragEnd)="dragEnd()">
                 <app-get-task [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
             </li>
         </ul>
-        <app-create-task [taskStatus]="taskStatus.NEW" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
+        <app-create-task [taskStatus]="taskStatus.IN_PROGRESS" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
-    <div class="card col p-2 w-15rem  drop-column m-2" pDroppable (onDrop)="drop(taskStatus.IN_PROGRESS)">
-        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-hourglass"></i> In Progress</p>
+    <div class="card col p-2 w-15rem  drop-column m-2" pDroppable (onDrop)="drop(taskStatus.ON_HOLD)">
+        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-hourglass"></i> On Hold</p>
         <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="inProgressTasks">
             <li *ngFor="let task of inProgressTasks" class="p-4 border-round shadow-1" pDraggable
                 (onDragStart)="dragStart(task)" (onDragEnd)="dragEnd()">
                 <app-get-task [taskDetailsDialog]="showTaskDetailsDialog" [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
             </li>
         </ul>
-        <app-create-task [taskStatus]="taskStatus.IN_PROGRESS" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
+        <app-create-task [taskStatus]="taskStatus.ON_HOLD" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
 
-    <div class="card col p-2 w-15rem drop-column m-2" pDroppable (onDrop)="drop(taskStatus.ON_HOLD)">
-        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-stop-circle"></i> On Hold</p>
+    <div class="card col p-2 w-15rem drop-column m-2" pDroppable (onDrop)="drop(taskStatus.TO_REVIEW)">
+        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-stop-circle"></i> To Review</p>
         <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="onHoldTasks">
             <li *ngFor="let task of onHoldTasks" class="p-4 border-round shadow-1" pDraggable
                 (onDragStart)="dragStart(task)" (onDragEnd)="dragEnd()">
                 <app-get-task [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
             </li>
         </ul>
-        <app-create-task [taskStatus]="taskStatus.ON_HOLD" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
+        <app-create-task [taskStatus]="taskStatus.TO_REVIEW" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
-    <div class="card col p-2 w-15rem  drop-column m-2" pDroppable (onDrop)="drop(taskStatus.DONE)">
-        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-check-circle"></i> Done</p>
-        <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="doneTasks">
+    <div class="card col p-2 w-15rem  drop-column m-2" pDroppable (onDrop)="drop(taskStatus.FINISHED)">
+        <p class="text-center surface-border border-bottom-1"><i class="pi pi-fw pi-check-circle"></i> Finished</p>
+        <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="finishedTasks">
             <li *ngFor="let task of doneTasks" class="p-4 border-round shadow-1" pDroppable pDraggable
                 (onDragStart)="dragStart(task)" (onDragEnd)="dragEnd()">
                 <app-get-task [taskId]="task.getId()" (changedSelectedTaskEvent)="openTaskDetailsDialog($event)"></app-get-task>
             </li>
         </ul>
-        <app-create-task [taskStatus]="taskStatus.DONE" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
+        <app-create-task [taskStatus]="taskStatus.FINISHED" [groupOfTasksId]="groupOfTasksId"></app-create-task>  
     </div>
 </div>
 <app-task-details (closedTaskDetailsDialogEvent)="closeTaskDetailsDialog()"[visible]="showTaskDetailsDialog" [taskId]="selectedTaskId"></app-task-details>

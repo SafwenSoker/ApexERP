@@ -20,13 +20,19 @@ export class CreateProjectComponent {
   ngOnInit() {
     this.projectFormGroup = new FormGroup({
       name: new FormControl(),
-      description: new FormControl()
+      description: new FormControl(),
+      color: new FormControl()
     });
   }
-  createNewProject() {
+  save() {
     var formData: any= new FormData();
     formData.set('name', this.projectFormGroup.value.name);
     formData.set('description', this.projectFormGroup.value.description);   
+    formData.set('color', this.projectFormGroup.value.color);
+    formData.set('documents', []);
+    formData.set('groupsOfTasks', []);
+    formData.set('developers', []);
+    console.log(formData)
     this.store.dispatch(createProject({newProject: formData}))
     this.visible = false;
   }

@@ -1,14 +1,14 @@
 import { Task } from "./task.model";
 
 export class GroupOfTasks {
-    private id: number;
-    private projectId: number;
-    private name: string;
-    private demoDate: Date;
-    private startDate: Date;
-    private estimatedEndDate: Date;
-    private deliveredDate: Date;
-    private tasks : Task[];
+    id: number;
+    projectId: number;
+    name: string;
+    demoDate: Date;
+    startDate: Date;
+    estimatedEndDate: Date;
+    deliveredDate: Date;
+    tasks : Task[];
 
     constructor(id: number, name: string, demoDate: Date, startDate: Date, estimatedEndDate: Date, deliveredDate: Date, tasks: Task[], projectId?: number) {
         this.id = id;

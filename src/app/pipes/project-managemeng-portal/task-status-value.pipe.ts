@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TaskStatus } from 'src/app/models/project-management-portal/task-status.model';
+import { Status } from 'src/app/models/project-management-portal/status.model';
 
 @Pipe({
   name: 'taskStatusValue',
@@ -7,16 +7,16 @@ import { TaskStatus } from 'src/app/models/project-management-portal/task-status
 })
 export class TaskStatusValuePipe implements PipeTransform {
 
-  transform(value: TaskStatus, ...args: unknown[]): String {
+  transform(value: Status, ...args: unknown[]): String {
     switch (value) {
-      case TaskStatus.NEW:
-        return 'New';
-      case TaskStatus.IN_PROGRESS:
+      case Status.IN_PROGRESS:
         return 'In Progress';
-      case TaskStatus.ON_HOLD:
+      case Status.TO_REVIEW:
+        return 'To REVIEW';
+      case Status.ON_HOLD:
         return 'On Hold';
-      case TaskStatus.DONE:
-        return 'Done';
+      case Status.FINISHED:
+        return 'Finished';
       default:
         return 'Unknown';
     }

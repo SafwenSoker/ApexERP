@@ -1,24 +1,27 @@
+import { Employee } from "../user-management-portal/employee.model";
 import { Document } from "../workstation-portal/document.model";
 import { GroupOfTasks } from "./group-of-tasks";
+import { Status } from "./status.model";
 
 export class Project {
-    private id?: number;
-    private name: string;
-    private description: string;
-    private groupsOfTasks?: GroupOfTasks[];
-    private documents?: Document[];
-    private status?: string;
-    private color?:string;
+    id?: number;
+    name: string;
+    description: string;
+    groupsOfTasks?: GroupOfTasks[];
+    documents?: Document[];
+    developers: Employee[];
+    status?: Status;
+    color?:string;
 
 
-    constructor(id: number, name: string, description: string, groupsOfTasks?: GroupOfTasks[], documents?: Document[], color?: string) {
+    constructor(id: number, name: string, description: string, groupsOfTasks?: GroupOfTasks[], documents?: Document[], color?: string, developers?: Employee[]) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.groupsOfTasks = groupsOfTasks ? groupsOfTasks : null;
         this.documents = documents ? documents : null;
         this.color = color;
-
+        this.developers = developers;
     }
 
     public getId(){
@@ -54,7 +57,7 @@ export class Project {
         return this.status;
     }
 
-    public setStatus(status: string){
+    public setStatus(status: Status){
         this.status = status;
     }
 

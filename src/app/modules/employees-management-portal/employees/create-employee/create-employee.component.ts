@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Employee } from 'src/app/models/user-management-portal/employee.model';
 import { Role } from 'src/app/models/user-management-portal/role.model';
@@ -20,15 +20,27 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
   employees!: Employee[];
   employeeForm!: FormGroup;
 
-  constructor(private employeesService: EmployeesService, private messageService: MessageService){}
+  constructor(private employeesService: EmployeesService, private messageService: MessageService,private fb: FormBuilder,
+
+  ){
+    this.employeeForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      enabled: [true, Validators.required],
+      email: [''],
+      firstName: [''],
+      lastName: ['']
+    });
+
+  }
 
   
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
   increment(): void {
     // this.visible = !visible;
@@ -37,19 +49,19 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
 
   onAddEmployee() {
     let employee: Employee = {};
-    employee.username = this.employeeForm.value.username;
+    employee.userName = this.employeeForm.value.username;
     employee.password = this.employeeForm.value.password;
     employee.firstName = this.employeeForm.value.firstName;
     employee.lastName = this.employeeForm.value.lastName;
     employee.email = this.employeeForm.value.email;
-    employee.enabled = this.employeeForm.value.enabled;
+    employee.active = this.employeeForm.value.enabled;
     employee.roles = this.employee.roles;
     this.employee.roles = [];
     this.employee.password = this.employeeForm.value.password;
 
     // check if user already exists
     this.employeesService.getEmployees().subscribe(employees => {
-      let userExists = employees.find(u => u.username === employee.username);
+      let userExists = employees.find(u => u.userName === employee.userName);
       if (!userExists) {
         console.log("User Does Not Exists");
         this.employeesService.addEmployee(employee).subscribe(e => {
@@ -62,7 +74,7 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
               this.employeesService.getEmployeeRoleMappings(employee.id).subscribe(roles => { employee.roles = roles });
             }
             this.employees = employees;
-            employee.id = this.employees.find(u => u.username === employee.username)?.id;
+            employee.id = this.employees.find(u => u.userName === employee.userName)?.id;
             console.log(employee.id)
             if (employee.roles.length > 0) {
                 this.employeesService.addEmployeeRoleMappings(employee.id, employee.roles).subscribe(e => console.log(e));

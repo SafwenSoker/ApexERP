@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Task } from 'src/app/models/project-management-portal/task.model';
 import { AppState } from 'src/app/store/app.state';
 import { getGroupOfTasks, getTasks } from '../../state/project.selector';
-import { TaskStatus } from 'src/app/models/project-management-portal/task-status.model';
+import { Status } from 'src/app/models/project-management-portal/status.model';
 import { loadTasks, updateTask } from '../../state/project.actions';
 
 @Component({
@@ -19,11 +19,11 @@ export class GetTasksComponent implements OnInit, OnDestroy, OnChanges {
 
   private ngUnsubscribe = new Subject<void>();
 
-  newTasks: Task[] | undefined;
+  toReviewTasks: Task[] | undefined;
   inProgressTasks: Task[] | undefined;
   onHoldTasks: Task[] | undefined;
-  doneTasks: Task[] | undefined;
-  taskStatus = TaskStatus;
+  finishedTasks: Task[] | undefined;
+  taskStatus = Status;
   selectedTasks: Task[] | undefined;
   selectedTaskId: number;
   draggedTask: Task | undefined | null;
@@ -36,11 +36,10 @@ export class GetTasksComponent implements OnInit, OnDestroy, OnChanges {
       this.store.select(getTasks(this.groupOfTasksId)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
         (tasks) => {
           this.tasks = tasks;
-          this.newTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.NEW);
-          this.inProgressTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.IN_PROGRESS);
-          this.onHoldTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.ON_HOLD);
-          this.doneTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.DONE);
-          console.log(this.newTasks, this.inProgressTasks, this.onHoldTasks, this.doneTasks)
+          this.inProgressTasks = this.tasks.filter(task => task.getStatus() === Status.IN_PROGRESS);
+          this.finishedTasks = this.tasks.filter(task => task.getStatus() === Status.FINISHED);
+          this.onHoldTasks = this.tasks.filter(task => task.getStatus() === Status.ON_HOLD);
+          this.toReviewTasks = this.tasks.filter(task => task.getStatus() === Status.TO_REVIEW);
         }
       );
     }
@@ -50,11 +49,10 @@ export class GetTasksComponent implements OnInit, OnDestroy, OnChanges {
     this.store.select(getTasks(this.groupOfTasksId)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (tasks) => {
         this.tasks = tasks;
-        this.newTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.NEW);
-        this.inProgressTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.IN_PROGRESS);
-        this.onHoldTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.ON_HOLD);
-        this.doneTasks = this.tasks.filter(task => task.getStatus() === TaskStatus.DONE);
-        console.log(this.newTasks, this.inProgressTasks, this.onHoldTasks, this.doneTasks)
+        this.inProgressTasks = this.tasks.filter(task => task.getStatus() === Status.IN_PROGRESS);
+        this.finishedTasks = this.tasks.filter(task => task.getStatus() === Status.FINISHED);
+        this.toReviewTasks = this.tasks.filter(task => task.getStatus() === Status.TO_REVIEW);
+        this.onHoldTasks = this.tasks.filter(task => task.getStatus() === Status.ON_HOLD);
       }
     );
   }
@@ -68,28 +66,19 @@ export class GetTasksComponent implements OnInit, OnDestroy, OnChanges {
     this.draggedTask = task;
   }
 
-  drop(newStatus: TaskStatus) {
+  drop(newStatus: Status) {
     console.log("Dropped To Task status: ", newStatus)
     if (this.draggedTask) {
       switch (this.draggedTask.getStatus()) {
-        case TaskStatus.NEW: this.newTasks = this.newTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
-        case TaskStatus.IN_PROGRESS: this.inProgressTasks = this.inProgressTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
-        case TaskStatus.ON_HOLD: this.onHoldTasks = this.onHoldTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
-        case TaskStatus.DONE: this.doneTasks = this.doneTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
+        case Status.IN_PROGRESS: this.inProgressTasks = this.inProgressTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
+        case Status.FINISHED: this.finishedTasks = this.finishedTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
+        case Status.TO_REVIEW: this.toReviewTasks = this.toReviewTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
+        case Status.ON_HOLD: this.onHoldTasks = this.onHoldTasks?.filter(task => task.getId() !== this.draggedTask?.getId()); break;
       }
       let task: Task = new Task(this.draggedTask.getId(), this.draggedTask.getName(), this.draggedTask.getDeadline(), this.draggedTask.getEmployeeId(), this.draggedTask.getStartDate(), this.draggedTask.getEndDate(), this.draggedTask.getDescription(), this.draggedTask.getStatus(), this.draggedTask.getTags(), this.draggedTask.getUrgency(), this.draggedTask.getProjectId(), this.draggedTask.getGroupOfTasksId());
       console.log(task)
       task.setStatus(newStatus)
       this.store.dispatch(updateTask({ updatedTask: task }))
-      // switch (newStatus) {
-      //   case TaskStatus.NEW: this.newTasks = [...(this.newTasks as Task[]), this.draggedTask]; break;
-      //   case TaskStatus.IN_PROGRESS: this.inProgressTasks = [...(this.inProgressTasks as Task[]), this.draggedTask]; break;
-      //   case TaskStatus.ON_HOLD: this.onHoldTasks = [...(this.onHoldTasks as Task[]), this.draggedTask]; break;
-      //   case TaskStatus.DONE: this.doneTasks = [...(this.doneTasks as Task[]), this.draggedTask]; break;
-      // }
-      // this.selectedProducts = [...(this.selectedProducts as Task[]), this.draggedProduct];
-      // this.availableProducts = this.availableProducts?.filter((val, i) => i != draggedProductIndex);
-      // this.draggedProduct = null;
     }
   }
 
@@ -116,7 +105,7 @@ export class GetTasksComponent implements OnInit, OnDestroy, OnChanges {
   closeTaskDetailsDialog(){
    this.showTaskDetailsDialog = false; 
   }
-  addTask(taskStatus: TaskStatus){
+  addTask(taskStatus: Status){
     this.showAddTaskDialog = true;
   }
 

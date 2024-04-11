@@ -4,8 +4,8 @@ export class Employee {
     access?: Access;
     createdTimestamp?: number;
     emailVerified?: boolean;
-    enabled?: boolean;
-    username?: string;
+    active?: boolean;
+    userName?: string;
     id?: string = '';
     notBefore?: number;
     password?: string;
@@ -16,12 +16,12 @@ export class Employee {
     lastName?: string;
     email?: string;
     roles?: Role[];
-    constructor(username?: string, id?: string, access?: Access, createdTimestamp?: number, emailVerfied?: boolean, enabled?: boolean, notBefore?: number, totp?: boolean, requiredActions?: string[], disableableCredentialTypes?: string[], firstName?: string, lastName?: string, email?: string, roles: Role[] = []) {
+    constructor(userName?: string, id?: string, access?: Access, createdTimestamp?: number, emailVerfied?: boolean, active?: boolean, notBefore?: number, totp?: boolean, requiredActions?: string[], disableableCredentialTypes?: string[], firstName?: string, lastName?: string, email?: string, roles: Role[] = []) {
         this.access = access;
         this.createdTimestamp = createdTimestamp;
         this.emailVerified = emailVerfied;
-        this.enabled = enabled;
-        this.username = username;
+        this.active = active;
+        this.userName = userName;
         this.id = id;
         this.notBefore = notBefore;
         this.totp = totp;

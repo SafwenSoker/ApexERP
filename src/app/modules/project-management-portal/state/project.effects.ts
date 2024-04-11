@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { Subject, catchError, map, mergeMap, of, switchMap, takeUntil } from 'rxjs';
 import { ProjectsService } from 'src/app/services/project-management-portal/projects.service';
 import { GroupsOfTasksService } from 'src/app/services/project-management-portal/groups-of-tasks.service';
 import { TasksService } from 'src/app/services/project-management-portal/tasks.service';
@@ -42,8 +42,9 @@ import {
 } from './project.actions';
 
 import { MessageService,ConfirmationService } from 'primeng/api';
+// import { getGroupsOfTasks } from './project.selector';
 @Injectable()
-export class ProjectsEffects {
+export class ProjectsEffects{
   constructor(
     private actions$: Actions,
     private projectsService: ProjectsService,
@@ -52,8 +53,15 @@ export class ProjectsEffects {
     private router: Router,
     private store: Store<AppState>,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
-  ) {}
+    private confirmationService: ConfirmationService,
+    
+  ) {
+
+  }
+  // ngOnDestroy(): void {
+  //   this.ngUnsubscribe.next();
+  //   this.ngUnsubscribe.complete();
+  // }
 
   getProject$ = createEffect(() => {
     return this.actions$.pipe(
@@ -166,18 +174,18 @@ export class ProjectsEffects {
     );
   });
 
-  getGroupOfTasks$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(getGroupOfTasks),
-      mergeMap((action) => {
-        return this.groupsOfTasksService.getGroupOfTasks(action.groupOfTasksId).pipe(
-          map((groupOfTasks) => {
-            return getGroupOfTasksSuccess({ groupOfTasks });
-          })
-        );
-      })
-    );
-  });
+  // getGroupOfTasks$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(getGroupOfTasks),
+  //     mergeMap((action) => {
+  //       return this.store.select(getGroupOfTasksSelector(action.groupOfTasksId)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+  //         (groupOfTasks) => {
+  //           return getGroupOfTasksSuccess({ groupOfTasks });
+  //         }
+  //       );
+  //     })
+  //   );
+  // });
 
   loadGroupsOfTasks$ = createEffect(() => {
     return this.actions$.pipe(

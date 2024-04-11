@@ -1,7 +1,7 @@
 import { BenefitType } from "./benefit-type";
 
 export class Benefit {
-    private id: Number;
+    id: Number;
     name: String;
     type: BenefitType;
     description: String;

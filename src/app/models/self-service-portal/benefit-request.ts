@@ -1,10 +1,10 @@
 import { Benefit } from "./benefit.class";
 
 export class BenefitRequest {
-    private id: Number;
-    private employeeId: Number;
-    private motivation: String;
-    private benefit: Benefit;
+    id: Number;
+    employeeId: Number;
+    motivation: String;
+    benefit: Benefit;
 
     constructor(id: Number, employeeId: Number, motivation: String, benefit: Benefit) {
         this.id = id;

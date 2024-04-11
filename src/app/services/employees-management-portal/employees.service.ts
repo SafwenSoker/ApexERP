@@ -12,29 +12,26 @@ export class EmployeesService {
 
   constructor(private http: HttpClient) { }
 
+  API_URL="http://197.26.19.240:9092"
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })
-  getEmployees(){
-    return new Observable<Employee[]>(observer => {
-      observer.next([new Employee("SafwenSoker","222",new Access(),12312311,false,false,1,false,[],[],"Safwen","Soker","safwensoker1@gmail.com",[])])
-      observer.complete()
-    })
-    return this.http.get<Employee[]>('http://localhost:5000/admin/realms/analytix/users').pipe(
+  getEmployees():Observable<Employee[]>{    
+    return this.http.get<Employee[]>(this.API_URL+'/admin/realms/analytix/users').pipe(
       map((result) => {console.log(result); return result;})
     );
   }
 
   getEmployee(id: string){
-    return this.http.get<Employee>('http://localhost:5000/admin/realms/analytix/users/'+id).pipe(
+    return this.http.get<Employee>(this.API_URL+'/admin/realms/analytix/users/'+id).pipe(
       map((result) => {console.log(result); return result;})
     );
   }
 
   addEmployee(user: Employee): Observable<Employee>{
     const userKeycloakRepresentation = {
-      username: user.username,
+      username: user.userName,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -43,7 +40,7 @@ export class EmployeesService {
       credentials: [{type: 'password', value: user.password, temporary: false}],
     }
 
-    return this.http.post<Employee>('http://localhost:5000/admin/realms/analytix/users',userKeycloakRepresentation,{headers:this.headers});
+    return this.http.post<Employee>(this.API_URL+'/admin/realms/analytix/users',userKeycloakRepresentation,{headers:this.headers});
   }
 
 
@@ -53,13 +50,13 @@ export class EmployeesService {
       lastName: user.lastName,
       email: user.email,
       emailVerified: user.emailVerified,
-      enabled: user.enabled   
+      active: user.active
     }
-    return this.http.put('http://localhost:5000/admin/realms/analytix/users/'+user.id,body, { headers: this.headers }).pipe(map((result) => {console.log(result);return result;}));
+    return this.http.put(this.API_URL+'/admin/realms/analytix/users/'+user.id,body, { headers: this.headers }).pipe(map((result) => {console.log(result);return result;}));
   }
 
   deleteEmployee(id: string){
-    return this.http.delete('http://localhost:5000/admin/realms/analytix/users/'+id);
+    return this.http.delete(this.API_URL+'/admin/realms/analytix/users/'+id);
   }
 
 

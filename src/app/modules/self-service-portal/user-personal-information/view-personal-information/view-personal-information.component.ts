@@ -18,7 +18,7 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
   constructor(private userHRInfoService: UserHrInformationService){}
   
   ngOnInit(): void {
-    this.userHRInfoService.getUserHRInfo(0).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+    this.userHRInfoService.getUserHRInfo().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (userHrInfo) => {
         this.userHrInfo = userHrInfo;
       }

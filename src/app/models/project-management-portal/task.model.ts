@@ -1,22 +1,22 @@
-import { TaskStatus } from "./task-status.model";
+import { Status } from "./status.model";
 import { TaskTag } from "./task-tag.model";
 import { TaskUrgency } from "./task-urgency.model";
 
 export class Task {
-    private id?: number;
+    id?: number;
     public name?: string;
-    private deadline?: Date;
-    private employeeId?: number;
-    private startDate?: Date;
-    private endDate?: Date;
+    deadline?: Date;
+    employeeId?: number;
+    startDate?: Date;
+    endDate?: Date;
     public description?: string;
-    private projectId?: number;
-    private groupOfTasksId?: number;
-    private status?: TaskStatus;
-    private tags?: TaskTag[];
-    private urgency?: TaskUrgency;
+    projectId?: number;
+    groupOfTasksId?: number;
+    status?:Status;
+    tags?: TaskTag[];
+    urgency?: TaskUrgency;
 
-    constructor(id?: number, name?: string, deadline?: Date, employeeId?: number, startDate?: Date, endDate?: Date, description?: string, status?: TaskStatus, tags?: TaskTag[], urgency?: TaskUrgency, projectId?: number, groupOfTasksId?: number) {
+    constructor(id?: number, name?: string, deadline?: Date, employeeId?: number, startDate?: Date, endDate?: Date, description?: string, status?: Status, tags?: TaskTag[], urgency?: TaskUrgency, projectId?: number, groupOfTasksId?: number) {
         this.id = id;
         this.name = name;
         this.deadline = deadline;
@@ -88,8 +88,8 @@ export class Task {
     }
 
 
-    setStatus(status: TaskStatus) {
-        if (Object.values(TaskStatus).includes(status)) {
+    setStatus(status: Status) {
+        if (Object.values(Status).includes(status)) {
             this.status = status;
         } else {
             throw new Error("Invalid task status");

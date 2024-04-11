@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TaskStatus } from 'src/app/models/project-management-portal/task-status.model';
+import { Status } from 'src/app/models/project-management-portal/status.model';
 import { TaskTag } from 'src/app/models/project-management-portal/task-tag.model';
 import { Task } from 'src/app/models/project-management-portal/task.model';
 import { UserHRInfo } from 'src/app/models/self-service-portal/user-hrinfo.model';
@@ -15,7 +15,7 @@ interface Urgency {
   code: number;
 }
 
-interface Status {
+interface IStatus {
   progress: string;
   code: number;
 }
@@ -27,7 +27,7 @@ interface Status {
 export class CreateTaskComponent implements OnInit {
 
   @Input() groupOfTasksId: number;
-  @Input() taskStatus: TaskStatus;
+  @Input() taskStatus: Status;
 
   tags!: Tag[];
   selectedTags!: Tag[];
@@ -37,8 +37,8 @@ export class CreateTaskComponent implements OnInit {
   taskName: string = "";
   urgencies: Urgency[];
   selectedUrgency: Urgency;
-  statuses: Status[];
-  selectedStatus: Status;
+  statuses: IStatus[];
+  selectedStatus: IStatus;
   employees: UserHRInfo[];
   selectedEmployee: UserHRInfo;
   constructor(private employeesService: EmployeesService) { }

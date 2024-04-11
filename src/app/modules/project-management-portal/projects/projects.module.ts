@@ -60,6 +60,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TimelineModule } from 'primeng/timeline';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
+
 @NgModule({
   declarations: [
     CreateProjectComponent,
@@ -116,7 +118,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DropdownModule,
     ProgressBarModule,
     TimelineModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ColorPickerModule
   ],
   providers :[
     MessageService, ConfirmationService

@@ -2,12 +2,12 @@ import { DaysOffStatus } from "./days-off-status.model";
 import { DaysOffType } from "./days-off-type.model";
 
 export class DaysOffRequest {
-    private startDate: Date;
-    private endDate: Date;
-    private daysoffType: DaysOffType;
-    private status: DaysOffStatus;
-    private reason: String;
-    private employeeId: String;
+    startDate: Date;
+    endDate: Date;
+    daysoffType: DaysOffType;
+    status: DaysOffStatus;
+    reason: String;
+    employeeId: String;
 
     constructor(startDate: Date, endDate: Date, daysoffType: DaysOffType, status: DaysOffStatus, reason: String, employeeId: String) {
         this.startDate = startDate;

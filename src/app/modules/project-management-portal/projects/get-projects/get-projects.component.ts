@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { GroupOfTasks } from 'src/app/models/project-management-portal/group-of-tasks';
 import { Project } from 'src/app/models/project-management-portal/project.model';
-import { TaskStatus } from 'src/app/models/project-management-portal/task-status.model';
+import { Status } from 'src/app/models/project-management-portal/status.model';
 import { TaskTag } from 'src/app/models/project-management-portal/task-tag.model';
 import { TaskUrgency } from 'src/app/models/project-management-portal/task-urgency.model';
 import { Task } from 'src/app/models/project-management-portal/task.model';
@@ -68,8 +68,9 @@ export class GetProjectsComponent implements OnInit, OnDestroy {
     this.items = [{ label: 'My Projects', routerLink: '/project-management-portal/my-projects' }];
     this.home = { icon: 'pi pi-home', routerLink: '/project-management-portal/my-projects' };
     this.projectStatuses = [
-      { label: 'Completed', value: 'completed', icon: "pi pi-fw pi-check", severity: "info" },
-      { label: 'In Progress', value: 'in_progress', icon: "pi pi-fw pi-hourglass", severity: "info" }
+      { label: 'In Progress', value: 'in_progress', icon: "pi pi-fw pi-hourglass", severity: "info" },
+      { label: 'Completed', value: 'completed', icon: "pi pi-fw pi-check", severity: "info" }
+      
     ];
   }
 

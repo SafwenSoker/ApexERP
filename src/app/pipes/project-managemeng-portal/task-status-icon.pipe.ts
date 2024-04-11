@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TaskStatus } from 'src/app/models/project-management-portal/task-status.model';
+import { Status } from 'src/app/models/project-management-portal/status.model';
 
 @Pipe({
   name: 'taskStatusIcon',
@@ -7,15 +7,15 @@ import { TaskStatus } from 'src/app/models/project-management-portal/task-status
 })
 export class TaskStatusIconPipe implements PipeTransform {
 
-  transform(value: TaskStatus, ...args: unknown[]): String {
+  transform(value: Status, ...args: unknown[]): String {
     switch (value) {
-      case TaskStatus.NEW:
-        return 'pi pi-fw ';
-      case TaskStatus.IN_PROGRESS:
+      case Status.TO_REVIEW:
+        return 'pi pi-fw pi-undo';
+      case Status.IN_PROGRESS:
         return 'pi pi-fw pi-hourglass';
-      case TaskStatus.ON_HOLD:
+      case Status.ON_HOLD:
         return 'pi pi-fw pi-stop-circle';
-      case TaskStatus.DONE:
+      case Status.FINISHED:
         return 'pi pi-fw pi-check-circle';
       default:
         return 'pi pi-fw pi-question-circle';

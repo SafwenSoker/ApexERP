@@ -111,10 +111,6 @@ export class GetEmployeesComponent {
       }
     ];
     this.employeesService.getEmployees().subscribe(employees => {
-      for (let employee of employees) {
-        //  Get each user and each user's groups and each user's role-mappings
-        this.employeesService.getEmployeeRoleMappings(employee.id).subscribe(roles => { employee.roles = roles });
-      }
       this.employees = employees;
       console.log(this.employees)
     }
@@ -126,7 +122,7 @@ export class GetEmployeesComponent {
   deleteEmployee(employee: Employee) {
     console.log("hh");
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + employee.username + '?',
+      message: 'Are you sure you want to delete ' + employee.userName + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -161,19 +157,19 @@ export class GetEmployeesComponent {
   }
   onAddEmployee() {
     let employee: Employee = {};
-    employee.username = this.employeeForm.value.username;
+    employee.userName = this.employeeForm.value.username;
     employee.password = this.employeeForm.value.password;
     employee.firstName = this.employeeForm.value.firstName;
     employee.lastName = this.employeeForm.value.lastName;
     employee.email = this.employeeForm.value.email;
-    employee.enabled = this.employeeForm.value.enabled;
+    employee.active = this.employeeForm.value.enabled;
     employee.roles = this.employee.roles;
     this.employee.roles = [];
     this.employee.password = this.employeeForm.value.password;
 
     // check if user already exists
     this.employeesService.getEmployees().subscribe(employees => {
-      let userExists = employees.find(u => u.username === employee.username);
+      let userExists = employees.find(u => u.userName === employee.userName);
       if (!userExists) {
         console.log("User Does Not Exists");
         this.employeesService.addEmployee(employee).subscribe(e => {
@@ -187,7 +183,7 @@ export class GetEmployeesComponent {
               
             }
             this.employees = employees;
-            employee.id = this.employees.find(u => u.username === employee.username)?.id;
+            employee.id = this.employees.find(u => u.userName === employee.userName)?.id;
             console.log(employee.id)
             if (employee.roles.length > 0) {
                 this.employeesService.addEmployeeRoleMappings(employee.id, employee.roles).subscribe(e => console.log(e));

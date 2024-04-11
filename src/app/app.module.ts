@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,8 @@ import { appReducer } from './store/app.state';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { initializeKeycloak } from './utility/app.init';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 
 
@@ -25,10 +27,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         AppLayoutModule,
         StoreDevtoolsModule.instrument({}),
         StoreModule.forRoot(appReducer),
-        EffectsModule.forRoot([])
-    
+        EffectsModule.forRoot([]),
+        KeycloakAngularModule
     ],
     providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeKeycloak,
+            multi: true,
+            deps: [KeycloakService]
+        },
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,
         CustomerService,
@@ -39,5 +47,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         ProductService,
     ],
     bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -47,8 +47,8 @@ export class UpdateEmployeeComponent implements OnInit {
     this.updateEmployeeDialog = true;
     console.log(this.employee);
     this.updateUserForm = this.fb.group({
-      username: [this.employee.username, Validators.required],
-      enabled: [this.employee.enabled, Validators.required],
+      username: [this.employee.userName, Validators.required],
+      enabled: [this.employee.active, Validators.required],
       email: [this.employee.email],
       firstName: [this.employee.firstName],
       lastName: [this.employee.lastName]
@@ -59,8 +59,8 @@ export class UpdateEmployeeComponent implements OnInit {
 
 
   onUpdateEmployee() {
-    this.employee.username = this.updateUserForm.get('username')?.value;
-    this.employee.enabled = this.updateUserForm.get('enabled')?.value;
+    this.employee.userName = this.updateUserForm.get('username')?.value;
+    this.employee.active = this.updateUserForm.get('enabled')?.value;
     this.employee.email = this.updateUserForm.get('email')?.value;
     this.employee.firstName = this.updateUserForm.get('firstName')?.value;
     this.employee.lastName = this.updateUserForm.get('lastName')?.value;

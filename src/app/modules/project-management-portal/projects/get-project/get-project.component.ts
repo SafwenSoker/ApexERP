@@ -84,7 +84,7 @@ export class GetProjectComponent implements OnInit,OnChanges, OnDestroy{
     // If changes have selectedStatus then check if this.project have the same status
     // if not then hide this project
     if(changes["selectedStatus"] && this.project){
-      console.log(changes)
+      console.log(changes, this.project)
       if(this.project.getStatus() !== this.selectedStatus){
         this.hide = true
       }else{
