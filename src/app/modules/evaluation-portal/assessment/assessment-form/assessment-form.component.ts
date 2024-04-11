@@ -1,5 +1,5 @@
  import { Component, OnInit } from '@angular/core';
-import { Assessment, Question, ManagerResponse } from '../../../../models/evaluation-portal/assessment';
+import { Assessment, Question } from '../../../../models/evaluation-portal/assessment';
 import { AssessmentStatus } from '../../../../models/evaluation-portal/assessment-status';
 
 @Component({
@@ -35,16 +35,10 @@ export class AssessmentFormComponent implements OnInit {
       status: AssessmentStatus.PENDING,
       deadlineSelfAssessment: new Date('2024-12-31'),
       deadlineManagerReview: new Date('2025-01-15'),
-      technicalQuestions: [
-        { id: 1, text: 'Technical Question 1', score: 0 },
-        { id: 2, text: 'Technical Question 2', score: 0 },
-      ],
-      observationalQuestions: [
-        { id: 3, text: 'Observational Question 1', score: 0 },
-        { id: 4, text: 'Observational Question 2', score: 0 },
-      ],
-      managerTechnicalResponses: [],
-      managerObservationalResponses: [],
+      questions: [{ id: 1, type: "technical", text: 'Technical Question 1', score: 1, managerScore: 2 },
+      { id: 2, type: "technical", text: 'Technical Question 2', score: 2, managerScore: 3 },
+      { id: 3, type: "observational", text: 'Observational Question 1', score: 3, managerScore: 4 },
+      { id: 4, type: "observational", text: 'Observational Question 1', score: 4, managerScore: 5 },],
       meetingNotes: '',
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -73,18 +67,21 @@ export class AssessmentFormComponent implements OnInit {
       getDeadlineManagerReview() {
         return this.deadlineManagerReview;
       },
-      getTechnicalQuestions() {
-        return this.technicalQuestions;
+      getQuestions() {
+        return this.questions;
       },
-      getObservationalQuestions() {
-        return this.observationalQuestions;
-      },
-      getManagerTechnicalResponses() {
-        return this.managerTechnicalResponses;
-      },
-      getManagerObservationalResponses() {
-        return this.managerObservationalResponses;
-      },
+      // getTechnicalQuestions() {
+      //   return this.technicalQuestions;
+      // },
+      // getObservationalQuestions() {
+      //   return this.observationalQuestions;
+      // },
+      // getManagerTechnicalResponses() {
+      //   return this.managerTechnicalResponses;
+      // },
+      // getManagerObservationalResponses() {
+      //   return this.managerObservationalResponses;
+      // },
       getMeetingNotes() {
         return this.meetingNotes;
       },

@@ -1,6 +1,6 @@
 <p-card [style]="{ marginBottom: '20px' }">
   <form>
-    <p-card header="Technical Questions" [style]="{ marginBottom: '20px' }">
+    <!-- <p-card header="Technical Questions" [style]="{ marginBottom: '20px' }">
       <div *ngFor="let question of assessment.technicalQuestions" class="question-container">
         <p class="question">{{ question.text }}</p>
         <div class="radio-buttons">
@@ -16,7 +16,30 @@
           <p-radioButton name="observationalQuestion{{ question.id }}" *ngFor="let option of radioOptions" [value]="option.value" [label]="option.label" [(ngModel)]="question.score"></p-radioButton>
         </div>
       </div>
+    </p-card> -->
+
+    <p-card header="Technical Questions" [style]="{ marginBottom: '20px' }">
+      <div *ngFor="let question of assessment.questions" class="question-container">
+        <ng-container *ngIf="question.type === 'technical'">
+          <p class="question">{{ question.text }}</p>
+          <div class="radio-buttons">
+            <p-radioButton name="technicalQuestion{{ question.id }}" *ngFor="let option of radioOptions" [value]="option.value" [label]="option.label" [(ngModel)]="question.score"></p-radioButton>
+          </div>
+        </ng-container>
+      </div>
     </p-card>
+    
+    <p-card header="Observational Questions" [style]="{ marginBottom: '20px' }">
+      <div *ngFor="let question of assessment.questions" class="question-container">
+        <ng-container *ngIf="question.type === 'observational'">
+          <p class="question">{{ question.text }}</p>
+          <div class="radio-buttons">
+            <p-radioButton name="observationalQuestion{{ question.id }}" *ngFor="let option of radioOptions" [value]="option.value" [label]="option.label" [(ngModel)]="question.score"></p-radioButton>
+          </div>
+        </ng-container>
+      </div>
+    </p-card>
+    
 
     <button type="button" class="p-button p-button-raised p-button-success" (click)="submitAssessment()">Submit Assessment</button>
     <!-- <button

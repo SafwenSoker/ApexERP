@@ -26,11 +26,14 @@
         <ng-template pTemplate="body" let-assessment>
             <tr>
                 <td style="width: 15%; min-width: 5rem">
-                    {{ assessment.name }}
+                    {{ assessment.id }}
                 </td>
-                <td style="width: 35%; min-width: 7rem">{{ assessment.Employee }}</td>
+                <td style="width: 35%; min-width: 7rem">{{ assessment.employeeId }}</td>
                 <td style="width: 35%; min-width: 8rem">
-                    {{ assessment.Employee.Team }}
+                    team
+                </td>
+                <td style="width: 35%; min-width: 8rem">
+                    {{assessment.status}}
                 </td>
                 <td style="width: 15%">
                     <button
@@ -39,7 +42,7 @@
                         type="button"
                         icon="pi pi-search"
                         class="p-button p-component p-button-text p-button-icon-only"
-                    ></button>
+                    >></button>
                 </td>
             </tr>
         </ng-template>

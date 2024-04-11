@@ -35,22 +35,13 @@ private ngUnsubscribe = new Subject<void>();
           new Date('2024-04-15'),
           new Date('2024-04-30'),
           [
-            { id: 1, text: 'Technical Question 1', score: 5 },
-            { id: 2, text: 'Technical Question 2', score: 4 },
-          ],
-          [
-            { id: 3, text: 'Observational Question 1', score: 3 },
-            { id: 4, text: 'Observational Question 2', score: 2 },
+            { id: 5, type: "technical", text: 'Technical Question 3', score: 4, managerScore: 3},
+            { id: 6, type: "technical", text: 'Technical Question 4', score: 3, managerScore: 1},
+            { id: 7, type: "observational", text: 'observational Question 3', score: 4, managerScore: 3},
+            { id: 8, type: "observational", text: 'observational Question 4', score: 3, managerScore: 1},
           ],
           10,
-          [
-            { questionId: 1, newScore: 4 },
-            { questionId: 2, newScore: 2 },
-          ],
-          [
-            { questionId: 3, newScore: 4 },
-            { questionId: 4, newScore: 2 },
-          ],
+          
           'Meeting notes for Assessment 1',
           new Date(),
           new Date()
@@ -65,22 +56,13 @@ private ngUnsubscribe = new Subject<void>();
           new Date('2024-04-16'),
           new Date('2024-05-01'),
           [
-            { id: 5, text: 'Technical Question 3', score: 4 },
-            { id: 6, text: 'Technical Question 4', score: 3 },
+            { id: 5, type: "technical", text: 'Technical Question 3', score: 4, managerScore: 3},
+            { id: 6, type: "technical", text: 'Technical Question 4', score: 3, managerScore: 1},
+            { id: 7, type: "observational", text: 'observational Question 3', score: 4, managerScore: 3},
+            { id: 8, type: "observational", text: 'observational Question 4', score: 3, managerScore: 1},
           ],
-          [
-            { id: 7, text: 'Observational Question 3', score: 2 },
-            { id: 8, text: 'Observational Question 4', score: 1 },
-          ],
+          
           11,
-          [
-            { questionId: 5, newScore: 3 },
-            { questionId: 6, newScore: 1 },
-          ],
-          [
-            { questionId: 7, newScore: 3 },
-            { questionId: 8, newScore: 1 },
-          ],
           'Meeting notes for Assessment 2',
           new Date(),
           new Date()

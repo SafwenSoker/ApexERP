@@ -11,11 +11,12 @@ export class Assessment {
     status: AssessmentStatus;
     deadlineSelfAssessment: Date;
     deadlineManagerReview: Date;
-    technicalQuestions: Question[];
-    observationalQuestions: Question[];
+    questions: Question[];
+    // technicalQuestions: Question[];
+    // observationalQuestions: Question[];
     relatedManager: number;
-    managerTechnicalResponses: ManagerResponse[];
-    managerObservationalResponses: ManagerResponse[];
+    // managerTechnicalResponses: ManagerResponse[];
+    // managerObservationalResponses: ManagerResponse[];
     meetingNotes: string;
     createdAt: Date;
     updatedAt: Date;
@@ -29,11 +30,12 @@ export class Assessment {
         status: AssessmentStatus,
         deadlineSelfAssessment: Date,
         deadlineManagerReview: Date,
-        technicalQuestions: Question[],
-        observationalQuestions: Question[],
+        questions: Question[],
+        // technicalQuestions: Question[],
+        // observationalQuestions: Question[],
         relatedManager: number,
-        managerTechnicalResponses: ManagerResponse[],
-        managerObservationalResponses: ManagerResponse[],
+        // managerTechnicalResponses: ManagerResponse[],
+        // managerObservationalResponses: ManagerResponse[],
         meetingNotes: string,
         createdAt: Date,
         updatedAt: Date
@@ -46,11 +48,12 @@ export class Assessment {
         this.status = status;
         this.deadlineSelfAssessment = deadlineSelfAssessment;
         this.deadlineManagerReview = deadlineManagerReview;
-        this.technicalQuestions = technicalQuestions;
-        this.observationalQuestions = observationalQuestions;
+        this.questions = questions;
+        // this.technicalQuestions = technicalQuestions;
+        // this.observationalQuestions = observationalQuestions;
         this.relatedManager = relatedManager;
-        this.managerTechnicalResponses = managerTechnicalResponses;
-        this.managerObservationalResponses = managerObservationalResponses;
+        // this.managerTechnicalResponses = managerTechnicalResponses;
+        // this.managerObservationalResponses = managerObservationalResponses;
         this.meetingNotes = meetingNotes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -88,24 +91,29 @@ export class Assessment {
         return this.deadlineManagerReview;
     }
 
-    getTechnicalQuestions(): Question[] {
-        return this.technicalQuestions;
+    getQuestions(): Question[] {
+        return this.questions;
+
     }
 
-    getObservationalQuestions(): Question[] {
-        return this.observationalQuestions;
-    }
+    // getTechnicalQuestions(): Question[] {
+    //     return this.technicalQuestions;
+    // }
+
+    // getObservationalQuestions(): Question[] {
+    //     return this.observationalQuestions;
+    // }
 
     getRelatedManager(): number {
         return this.relatedManager;
     }
 
-    getManagerTechnicalResponses(): ManagerResponse[] {
-        return this.managerTechnicalResponses;
-    }
-    getManagerObservationalResponses(): ManagerResponse[] {
-        return this.managerObservationalResponses;
-    }
+    // getManagerTechnicalResponses(): ManagerResponse[] {
+    //     return this.managerTechnicalResponses;
+    // }
+    // getManagerObservationalResponses(): ManagerResponse[] {
+    //     return this.managerObservationalResponses;
+    // }
 
     getMeetingNotes(): string {
         return this.meetingNotes;
@@ -122,11 +130,13 @@ export class Assessment {
 
 export interface Question {
     id: number;
+    type: string;
     text: string;
     score: number;
+    managerScore: number;
 }
 
-export interface ManagerResponse {
-    questionId: number;
-    newScore: number;
-}
+// export interface ManagerResponse {
+//     questionId: number;
+//     newScore: number;
+// }
