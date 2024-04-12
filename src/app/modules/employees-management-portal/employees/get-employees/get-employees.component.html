@@ -1,1 +1,148 @@
-<p>get-employees works!</p>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-table #dt2 [value]="employees" dataKey="id" [rows]="5" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5,10, 25,50]" editMode="row" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['userName','firstName','lastName','roles','createdAt','active']"
+    [tableStyle]="{ 'max-width': '100vw','boder-radius':'10px' }">
+    <ng-template pTemplate="caption">
+        <div class="flex justify-content-between flex-wrap">
+            <app-create-employee [(visible)]="createEmployeeDialog" ></app-create-employee>
+            
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+    <!-- <div class="flex flex-wrap"> -->
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="col-2 sm:col-2 lg:col-2 xl:col-2 md:col-2">Username</th>
+            <th class="col-2 sm:col-2 lg:col-2 xl:col-2 md:col-2">FirstName</th>
+            <th class="col-2 sm:col-2 lg:col-2 xl:col-2 md:col-2">LastName</th>
+            <th class="col-3 sm:col-3 lg:col-3 xl:col-3 md:col-3">Roles</th>
+            <th class="col-2 sm:col-2 lg:col-2 xl:col-2 md:col-2">Joined At</th>
+            <th class="col-1 sm:col-1 lg:col-1 xl:col-1 md:col-1">Active</th>
+            <th class="col-1 sm:col-1 lg:col-1 xl:col-1 md:col-1">Actions</th>
+        </tr>
+        <tr>
+            <th>
+                <p-columnFilter type="text" field="userName"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="firstName"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="lastName"></p-columnFilter>
+            </th>
+            <th></th>
+            <th>
+                <p-columnFilter type="date" field="createdAt"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="boolean" field="active"></p-columnFilter>
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <!-- </div> -->
+    <ng-template pTemplate="body" let-employee let-editing="editing" let-ri="rowIndex">
+
+        <tr [pEditableRow]="employee">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="employee.userName" required />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <a [routerLink]="[employee.id]">{{employee.userName }}</a>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="employee.firstName" required />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <a [routerLink]="[employee.id]">{{employee.firstName }}</a>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="employee.lastName" required />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <a [routerLink]="[employee.id]">{{employee.lastName }}</a>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+           
+            <td>
+                <p-dropdown [options]="employee.roles" optionLabel="name" [showClear]="true"
+                    placeholder="View roles">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex align-items-center gap-2" *ngIf="selectedRole">
+                            <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                    [class]="'flag flag-' + selectedGroup.code.toLowerCase()" style="width: 18px" /> -->
+                            <div>{{ selectedRole.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-role pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                    [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" /> -->
+                            <div *ngIf="role.fromGroup; else elseBlock">
+                                <span><i class="pi pi-building" [pTooltip]="role.fromGroup"></i> {{ role.name
+                                    }}</span>
+                            </div>
+                            <ng-template #elseBlock>
+                                {{ role.name }}
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </td>
+
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="employee.createdTimestamp" required />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ employee.createdTimestamp | date}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <i class="pi"
+                    [ngClass]="{ 'text-green-500 pi-check-circle': employee.active, 'text-red-500 pi-times-circle': !employee.active }"></i>
+            </td>
+            <td>
+                <!-- <p-toast></p-toast>
+                    <p-speedDial [model]="dials" direction="left" [radius]="80" type="semi-circle" pInitEditableRow (click)="onRowEditInit(user)"></p-speedDial> -->
+                <div class="flex align-items-center justify-content-start gap-2">
+                    <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-pencil"
+                        (click)="onRowEditInit(employee)" class="p-button-rounded p-button-text"></button>
+                    <!-- <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                        (click)="onRowEditSave(user)"
+                        class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                        (click)="onRowEditCancel(user,ri)"
+                        class="p-button-rounded p-button-text p-button-danger"></button> -->
+                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteEmployee(employee)"
+                        class="p-button-rounded p-button-text p-button-danger"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">No users found.</td>
+        </tr>
+    </ng-template>
+</p-table>

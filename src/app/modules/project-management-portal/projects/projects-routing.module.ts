@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GetProjectsComponent } from './get-projects/get-projects.component';
-import { GetProjectComponent } from './get-project/get-project.component';
-import { GetGroupOfTasksComponent } from './get-group-of-tasks/get-group-of-tasks.component';
-import { GetTaskComponent } from './get-task/get-task.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { GroupOfTasksDetailsComponent } from './group-of-tasks-details/group-of-tasks-details.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
 const routes: Routes = [
   {
     path: "", component: GetProjectsComponent
   },
   {
-    path: ":name",component: GetProjectComponent
+    path: ":project",component: ProjectDetailsComponent
   },
   {
-    path:":name/group/:name", component: GetGroupOfTasksComponent
+    path:":project/group/:groupOfTasks", component: GroupOfTasksDetailsComponent
   },
   {
-    path: ":name/group/:name/task/:name", component: GetTaskComponent
+    path: ":project/group/:groupOfTasks/task/:task", component: TaskDetailsComponent
   }
 ];
 

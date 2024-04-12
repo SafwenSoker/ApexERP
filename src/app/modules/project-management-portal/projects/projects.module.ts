@@ -12,12 +12,55 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 import { CreateGroupOfTasksComponent } from './create-group-of-tasks/create-group-of-tasks.component';
 import { GetGroupOfTasksComponent } from './get-group-of-tasks/get-group-of-tasks.component';
 import { GetGroupsOfTasksComponent } from './get-groups-of-tasks/get-groups-of-tasks.component';
-import { UpdateGroupOfTasksComponent } from '../update-group-of-tasks/update-group-of-tasks.component';
+import { UpdateGroupOfTasksComponent } from './update-group-of-tasks/update-group-of-tasks.component';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
 
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ProjectsEffects } from '../state/project.effects';
+import { PROJECT_STATE_NAME } from '../state/project.selector';
+import { projectsReducer } from '../state/project.reducer';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { GroupOfTasksDetailsComponent } from './group-of-tasks-details/group-of-tasks-details.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
+
+
+import { TagModule } from 'primeng/tag';
+import { TaskUrgencyIconPipe } from 'src/app/pipes/project-managemeng-portal/task-urgency-icon.pipe';
+import { TaskTagIconPipe } from 'src/app/pipes/project-managemeng-portal/task-tag-icon.pipe';
+import { TaskStatusIconPipe } from 'src/app/pipes/project-managemeng-portal/task-status-icon.pipe';
+import { TaskUrgencySeverityPipe } from 'src/app/pipes/project-managemeng-portal/task-urgency-severity.pipe';
+import { TaskTagSeverityPipe } from 'src/app/pipes/project-managemeng-portal/task-tag-severity.pipe';
+import { TaskStatusSeverityPipe } from 'src/app/pipes/project-managemeng-portal/task-status-severity.pipe';
+import { TaskUrgencyValuePipe } from 'src/app/pipes/project-managemeng-portal/task-urgency-value.pipe';
+import { TaskTagValuePipe } from 'src/app/pipes/project-managemeng-portal/task-tag-value.pipe';
+import { TaskStatusValuePipe } from 'src/app/pipes/project-managemeng-portal/task-status-value.pipe';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { DragDropModule } from 'primeng/dragdrop';
+import { InplaceModule } from 'primeng/inplace';
+import { EditorModule } from 'primeng/editor';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
+import { CalendarModule } from 'primeng/calendar';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { TimelineModule } from 'primeng/timeline';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 @NgModule({
   declarations: [
@@ -32,13 +75,55 @@ import { ButtonModule } from 'primeng/button';
     CreateGroupOfTasksComponent,
     GetGroupOfTasksComponent,
     GetGroupsOfTasksComponent,
-    UpdateGroupOfTasksComponent
+    UpdateGroupOfTasksComponent,
+    ProjectDetailsComponent,
+    GroupOfTasksDetailsComponent,
+    TaskDetailsComponent
   ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
     BreadcrumbModule,
-    ButtonModule
+    ButtonModule,
+    StoreModule.forFeature(PROJECT_STATE_NAME, projectsReducer),
+    EffectsModule.forFeature([ProjectsEffects]),
+    TagModule,
+    TaskUrgencyIconPipe,
+    TaskTagIconPipe,
+    TaskStatusIconPipe,
+    TaskUrgencySeverityPipe,
+    TaskTagSeverityPipe,
+    TaskStatusSeverityPipe,
+    TaskStatusValuePipe,
+    TaskUrgencyValuePipe,
+    TaskTagValuePipe,
+    SafeHtmlPipe,
+    TableModule,
+    ToastModule,
+    ToolbarModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    SelectButtonModule,
+    InputTextareaModule,
+    TabMenuModule,
+    DragDropModule,
+    InplaceModule,
+    EditorModule,
+    MultiSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CalendarModule,
+    RadioButtonModule,
+    DropdownModule,
+    ProgressBarModule,
+    TimelineModule,
+    ConfirmDialogModule,
+    ColorPickerModule,
+    ReactiveFormsModule
+  ],
+  providers :[
+    MessageService, ConfirmationService
   ]
-})
+})  
 export class ProjectsModule { }

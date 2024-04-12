@@ -1,1 +1,32 @@
-<p>get-task works!</p>
+<div class="block mb-2">
+    <p-tag class="mr-1" [severity]="task.getUrgency() | taskUrgencySeverity"
+        [icon]="task.getUrgency() | taskUrgencyIcon" [value]="task.getUrgency() | taskUrgencyValue"></p-tag>
+    <!-- <p-tag class="mr-1" [severity]="task.getStatus() | taskStatusSeverity"
+                [icon]="task.getStatus() | taskStatusIcon" [value]="task.getStatus() | taskStatusValue"></p-tag> -->
+    <p-tag class="mr-1" *ngFor="let tag of task.getTags()" [severity]="tag | taskTagSeverity" [icon]="tag | taskTagIcon"
+        [value]="tag | taskTagValue"></p-tag>
+</div>
+<div class="flex justify-content-between mb-3">
+    <div>
+        <div class="block">
+            <span class="text-900 font-medium text-xl">{{task.getName()}}</span>
+        </div>
+        <div class="block">
+            <span class="text-500 font-medium mb-3">Estimated End Date: </span><span
+                class="text-900 font-medium text-xl">{{task.getEndDate() |
+                date}}</span>
+        </div>
+    </div>
+</div>
+<span class="text-green-500 font-medium">Safwen Soker</span>
+<span class="text-500"> is currently working on this task</span>
+
+<div class="block mt-2">
+    <div class="flex justify-content-left border-round" [ngStyle]="{height: '2.5rem'}">
+        <p-button (click)="openTaskDetails(task.getId())" class="border-none" icon="pi pi-eye" [rounded]="true"
+            [outlined]="true"></p-button>
+            <div class="flex justify-content-left border-round" [ngStyle]="{height: '2.5rem'}">
+                <p-button severity="danger"(click)="deleteTask(task.getId())" class="ml-2 border-none" icon="pi pi-trash" [rounded]="true"
+                    [outlined]="true"></p-button>
+    </div>
+</div>

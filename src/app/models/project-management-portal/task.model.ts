@@ -1,23 +1,22 @@
-import { TaskStatus } from "./task-status.model";
+import { Status } from "./status.model";
 import { TaskTag } from "./task-tag.model";
 import { TaskUrgency } from "./task-urgency.model";
 
 export class Task {
-    private id: Number;
-    private name: String;
-    private deadline: Date;
-    private employeeId: Number;
-    private startDate: Date;
-    private endDate: Date;
-    private description: String;
-    private toDoList: String[];
-    private projectId: Number;
-    private groupOfTasksId: Number;
-    private status: TaskStatus;
-    private tags: TaskTag[];
-    private urgency: TaskUrgency;
+    id?: number;
+    public name?: string;
+    deadline?: Date;
+    employeeId?: number;
+    startDate?: Date;
+    endDate?: Date;
+    public description?: string;
+    projectId?: number;
+    groupOfTasksId?: number;
+    status?:Status;
+    tags?: TaskTag[];
+    urgency?: TaskUrgency;
 
-    constructor(id: Number, name: String, deadline: Date,employeeId: Number, startDate: Date, endDate: Date, description: String, status: TaskStatus, tags: TaskTag[], urgency: TaskUrgency, toDoList: String, projectId: Number, groupOfTasksId: Number) {
+    constructor(id?: number, name?: string, deadline?: Date, employeeId?: number, startDate?: Date, endDate?: Date, description?: string, status?: Status, tags?: TaskTag[], urgency?: TaskUrgency, projectId?: number, groupOfTasksId?: number) {
         this.id = id;
         this.name = name;
         this.deadline = deadline;
@@ -28,9 +27,56 @@ export class Task {
         this.endDate = endDate;
         this.description = description;
         this.urgency = urgency;
-        this.toDoList = toDoList.split(",");
         this.projectId = projectId;
         this.groupOfTasksId = groupOfTasksId;
+    }
+
+    public getId() {
+        return this.id;
+    }
+
+    public getName() {
+        return this.name;
+    }
+
+    public getDeadline() {
+        return this.deadline;
+    }
+
+    public getEmployeeId() {
+        return this.employeeId;
+    }
+
+    public getStartDate() {
+        return this.startDate;
+    }
+
+    public getEndDate() {
+        return this.endDate;
+    }
+
+    public getDescription() {
+        return this.description;
+    }
+
+    public getProjectId() {
+        return this.projectId;
+    }
+
+    public getGroupOfTasksId() {
+        return this.groupOfTasksId;
+    }
+
+    public getStatus() {
+        return this.status;
+    }
+
+    public getTags() {
+        return this.tags;
+    }
+
+    public getUrgency() {
+        return this.urgency;
     }
 
     getDocumentsTreeRepresentation() {
@@ -40,4 +86,18 @@ export class Task {
             icon: "pi pi-fw pi-file"
         }
     }
+
+
+    setStatus(status: Status) {
+        if (Object.values(Status).includes(status)) {
+            this.status = status;
+        } else {
+            throw new Error("Invalid task status");
+        }
+    }
+
+    setTags(tags : TaskTag[]){
+        this.tags = tags;
+    }
 }
+

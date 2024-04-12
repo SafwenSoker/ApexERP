@@ -1,1 +1,11 @@
-<p>group-of-tasks-details works!</p>
+<div *ngIf="groupOfTasks">
+    <div class="card mt-4 mb-4">
+        <div class="flex justify-content-between mb-3">
+            <div>
+                <span class="block text-3xl font-medium mb-3">{{groupOfTasks.getName()}}</span>
+            </div>
+        </div>
+        <span class="text-green-500 font-medium">234</span>
+        <span class="text-500"> employees are part of this phase</span>
+    </div>
+</div>

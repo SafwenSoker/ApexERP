@@ -1,1 +1,73 @@
-<p>get-roles works!</p>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-table #dt2 [value]="roles" dataKey="id" [rows]="5" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5,10, 25,40]" editMode="row" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['name']"
+    [tableStyle]="{ 'max-width': '100vw', 'background': '#ffffff', 'border-radius': '2px;'}">
+    <ng-template pTemplate="caption">
+        <div class="flex justify-content-between flex-wrap">
+            <app-create-role></app-create-role>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Search keyword" />
+            </span>
+
+        </div>
+    </ng-template>
+    <!-- <div class="flex flex-wrap"> -->
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="col-10 sm:col-10 lg:col-10 xl:col-10 md:col-10">Name</th>
+            <th class="col-2 sm:col-2 lg:col-2 xl:col-2 md:col-2">Actions</th>
+        </tr>
+        <tr>
+            <th>
+                <p-columnFilter type="text" field="name"></p-columnFilter>
+            </th>
+            
+            <th>
+
+            </th>
+        </tr>
+    </ng-template>
+    <!-- </div> -->
+    <ng-template pTemplate="body" let-role let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="role">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="role.name" required />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <a [routerLink]="[role.name]">{{role.name }}</a>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            
+            <td>
+                <div class="flex align-items-center justify-content-start gap-2">
+
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                        (click)="onRowEditInit(role)" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                        (click)="onRowEditSave(role)"
+                        class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                        (click)="onRowEditCancel(role,ri)"
+                        class="p-button-rounded p-button-text p-button-danger"></button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteRole(role)"
+                        class="p-button-rounded p-button-text p-button-danger"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">No groups found.</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+

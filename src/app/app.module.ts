@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,11 +14,27 @@ import { PhotoService } from './demo/service/photo.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { appReducer } from './store/app.state';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { initializeKeycloak } from './utility/app.init';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+
+
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule],
+    imports: [
+        AppRoutingModule,
+        AppLayoutModule,
+        StoreDevtoolsModule.instrument({}),
+        StoreModule.forRoot(appReducer),
+        EffectsModule.forRoot([]),
+        
+    ],
     providers: [
+        
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,
         CustomerService,
@@ -32,5 +48,6 @@ import { RadioButtonModule } from 'primeng/radiobutton';
         RadioButtonModule
     ],
     bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule {}
+export class AppModule { }

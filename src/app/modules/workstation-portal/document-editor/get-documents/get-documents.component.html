@@ -1,9 +1,28 @@
-<p-tree [value]="files" class="w-full md:w-30rem" selectionMode="single" [(selection)]="selectedDocument"></p-tree>
-<div *ngIf="selectedDocument; else elseBlock">
-    <app-get-document class="mt-2" [document]="selectedDocument" ></app-get-document>
-</div>
-<ng-template #elseBlock>
+<div *ngIf="noFiles;else filesBlock">
     <div class="card mt-2 flex justify-content-center">
-        <lottie-player src="https://lottie.host/6bca5a8f-b476-4b96-9e52-4460e5086db0/q5YNZlYgcz.json" background="##FFFFFF" speed="1" style="width: 40vw;height: 40vh;" loop autoplay direction="1" mode="normal"></lottie-player>
+        <lottie-player src="https://lottie.host/6bca5a8f-b476-4b96-9e52-4460e5086db0/q5YNZlYgcz.json"
+            background="##FFFFFF" speed="1" style="width: 40vw;height: 40vh;" loop autoplay direction="1"
+            mode="normal"></lottie-player>
+        <app-create-document class="col-12 flex-justify-content-center align-items-center"></app-create-document>
     </div>
+</div>
+<ng-template #filesBlock>
+    <div *ngIf="selectedDocument; else noSelectedDocumentBlock">
+        <p-tree [value]="files" class="w-full md:w-30rem" selectionMode="single"
+            [(selection)]="selectedDocument"></p-tree>
+        <div>
+            <app-get-document class="mt-2" [document]="selectedDocument"></app-get-document>
+        </div>
+    </div>
+    <ng-template #noSelectedDocumentBlock>
+        <p-tree [value]="files" class="w-full md:w-30rem" selectionMode="single"
+            [(selection)]="selectedDocument"></p-tree>
+        <div class="card mt-2 flex justify-content-center">
+            <lottie-player src="https://lottie.host/6bca5a8f-b476-4b96-9e52-4460e5086db0/q5YNZlYgcz.json"
+                background="##FFFFFF" speed="1" style="width: 40vw;height: 40vh;" loop autoplay direction="1"
+                mode="normal"></lottie-player>
+                <app-create-document class="col-12 flex-justify-content-center align-items-center"></app-create-document>
+        </div>
+        
+    </ng-template>
 </ng-template>

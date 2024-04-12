@@ -1,0 +1,54 @@
+<div class=" container">
+    <div class="grid nested-grid">
+        <div class="col-12">
+            <div class="grid">
+                <div class="col-4">
+                    <div class="flex justify-content-center align-items-center min-w-full	 max-w-screen">
+                        <img style="width:80%"
+                            src="https://novo-admin-template.multipurposethemes.com/images/avatar/avatar-3.png">
+                    </div>
+                </div>
+                <div class="col-4 mt-6">
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p>
+                    </div>
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
+                            date}}</p>
+                    </div>
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
+                    </div>
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">Score </span>: {{userHrInfo?.note}}</p>
+                    </div>
+                </div>
+                <div class="col-4 mt-6">
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">Manager </span>: {{userHrInfo?.managerId}}</p>
+                    </div>
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">Base Salary </span>: {{userHrInfo?.baseSalary}}</p>
+                    </div>
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">Net Salary </span>: {{userHrInfo?.netSalary}}</p>
+                    </div>
+                    <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
+                        <p><span class="text-primary">CNSS Number </span>: {{userHrInfo?.cnssNumber}}</p>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="grid card flex justify-content-between flex-wrap shadow-2 p-4">
+                        <div class="col-3 flex justify-content-center text-primary font-bold">3 Projects</div>
+                        <div class="col-3 flex justify-content-center text-primary font-bold">15 Tasks</div>
+                        <div class="col-3 flex justify-content-center text-primary font-bold">Something</div>
+                        <div class="col-3 flex justify-content-center text-primary font-bold">Something</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+    
+</div>

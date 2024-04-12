@@ -17,6 +17,12 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
+import { PROJECT_STATE_NAME } from '../modules/project-management-portal/state/project.selector';
+import { StoreModule } from '@ngrx/store';
+import { projectsReducer } from '../modules/project-management-portal/state/project.reducer';
+import { ProjectsEffects } from '../modules/project-management-portal/state/project.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -39,8 +45,13 @@ import { AppLayoutComponent } from "./app.layout.component";
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+        StoreModule.forFeature(PROJECT_STATE_NAME, projectsReducer),
+        EffectsModule.forFeature([ProjectsEffects]),
     ],
-    exports: [AppLayoutComponent]
+    exports: [AppLayoutComponent],
+    providers: [
+        MessageService, ConfirmationService
+    ]
 })
 export class AppLayoutModule { }

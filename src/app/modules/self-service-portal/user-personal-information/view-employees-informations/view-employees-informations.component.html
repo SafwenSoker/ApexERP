@@ -1,0 +1,92 @@
+<div *ngIf="manager;" class="grid flex justify-content-evenly flex-wrap card-container">
+    <p-tabMenu class="col-12 md:col-12 lg:col-12 xl-col-12" [scrollable]="true" [model]="items"
+        [style]="{'font-size': '11px'}"></p-tabMenu>
+</div>
+
+<div class="card">
+    <p-toast></p-toast>
+    <p-table [value]="employeesInfos" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%">CIN</th>
+                <th style="width:20%">Start Date</th>
+                <th style="width:20%">End Dates</th>
+                <th style="width:20%">Score</th>
+                <th style="width:20%">Base Salary</th>
+                <th style="width:20%">Net Salary</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-employee let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="employee">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="employee.cin">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{employee.cin}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <!-- <input pInputText type="text" [(ngModel)]="employee.startDate" required> -->
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{employee.startDate | date}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <!-- <p-calendar ></p-calendar>
+                            <p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="employee.endDate" [style]="{'width':'100%'}"></p-dropdown> -->
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{employee.endDate | date}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="employee.note">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{employee.note}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="employee.baseSalary">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{employee.baseSalary | currency: 'TND'}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="employee.netSalary">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{employee.netSalary | currency: 'TND'}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <div class="flex align-items-center justify-content-center gap-2">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(employee)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(employee)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(employee, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

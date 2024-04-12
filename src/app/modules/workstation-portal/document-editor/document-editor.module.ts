@@ -13,7 +13,10 @@ import { TreeModule } from 'primeng/tree';
 import { ButtonModule } from 'primeng/button';
 import { InplaceModule } from 'primeng/inplace';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     InputTextModule,
     InplaceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule,
+    ToastModule,
+    PdfViewerModule,
+    NgxExtendedPdfViewerModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

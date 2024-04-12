@@ -1,4 +1,45 @@
-<p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
-<div class="grid mt-2">
-    <app-get-project *ngFor="let project of projects;" [project]="project" class="col-12 lg:col-12 xl:col-12"></app-get-project>
+<div *ngIf="projects" class="row">
+    <div class="col"> <!-- Adjust the column size as per your requirement -->
+        <div class="flex">
+            <div class="col container">
+                <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+                <div class="grid mt-6 mb-6 ml-1 mr-1">
+                    <div class="col-12 card flex justify-content-between flex-wrap shadow-2 p-4">
+                        <p-selectButton [options]="projectStatuses" [(ngModel)]="selectedProjectStatus" [optionSeverity]="severity" optionLabel="label" optionValue="value"
+                                        optionDisabled="constant"></p-selectButton>
+                        <app-create-project></app-create-project>
+                    </div>
+                </div>
+                {{selectedProjectStatus}}
+                <div class="grid mt-2">
+                    <app-get-project *ngFor="let project of projects;" [project]="project" [selectedStatus]="selectedProjectStatus" class="row col-4 relative"></app-get-project>
+                </div>
+            </div>
+            <div class="col-md-3 calender" id="calender-div">
+                <h2 class="title">Calender</h2>
+                <p class="date-text">Aug 20, 2023</p>
+
+                <p-timeline [value]="events">
+
+                    <ng-template pTemplate="content" let-event>
+                        <h5 class="p-text-secondary event">{{ event.hours }}</h5>
+                    </ng-template>
+                    <ng-template pTemplate="opposite" let-event>
+                        <h6 class="event"><span style="color:darkorange; font-weight: 200!important;">{{event.projectName}}</span><br>{{ event.status }}</h6>
+                    </ng-template>
+                </p-timeline>
+                <p class="date-text">Aug 21, 2023</p>
+
+                <p-timeline [value]="events2">
+
+                    <ng-template pTemplate="content" let-event>
+                        <h5 class="p-text-secondary event">{{ event.hours }}</h5>
+                    </ng-template>
+                    <ng-template pTemplate="opposite" let-event>
+                        <h6 class="event"><span style="color:darkorange; font-weight: 200!important;">{{event.projectName}}</span><br>{{ event.status }}</h6>
+                    </ng-template>
+                </p-timeline>
+            </div>
+        </div>
+    </div>
 </div>

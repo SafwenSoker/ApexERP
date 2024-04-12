@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Benefit } from 'src/app/models/self-service-portal/benefit.class';
+import { BenefitsService } from 'src/app/services/self-service-portal/benefits.service';
 
 @Component({
   selector: 'app-request-benefit',
@@ -12,7 +13,7 @@ export class RequestBenefitComponent {
   requestBenefitFormGroup: FormGroup;
   visible: boolean = false;
 
-  constructor() { }
+  constructor(private benefitsService: BenefitsService) { }
 
   ngOnInit() {
     this.requestBenefitFormGroup = new FormGroup({
@@ -22,6 +23,11 @@ export class RequestBenefitComponent {
   sendBenefitRequest() {
     console.log("Benefit Request Sent");
     this.visible = false;
+    this.benefitsService.newBenefitRequest(this.benefit.id, this.requestBenefitFormGroup.value.motivation).subscribe(
+      (response) => {
+        console.log(response);
+      }
+    );
   }
   showDialog() {
     this.visible = true;

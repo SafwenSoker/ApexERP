@@ -1,1 +1,51 @@
-<p>create-project works!</p>
+<p-button class="mr-2" label="Create New Project" (click)="showDialog()" [outlined]="true" icon="pi pi-plus"
+    severity="primary"></p-button>
+<p-dialog [(visible)]="visible">
+    <ng-template pTemplate="headless" style="backdrop-filter: blur(2px);z-index: 1101;">
+        <div class="flex flex-column px-8 py-5 gap-4"
+            style="border-radius: 12px; background-color:#f8f8f8;backdrop-filter: blur(2px);z-index: 1101; ">
+            <div class="inline-flex flex-column gap-2">
+
+                <form [formGroup]="projectFormGroup">
+                    <div>
+                        <label class="block" for="username" style="color:black!important;"
+                            class="text-primary-50 font-semibold">Project
+                            Name</label>
+                        <input class="block" type="text" id="name" pInputText formControlName="title" />
+                    </div>
+                    <div class="mt-4">
+                        <label class="block" for="username" style="color:black!important;"
+                            class="text-primary-50 font-semibold">Project
+                            Description</label>
+                        <textarea class="block" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block" for="username" style="color:black!important;"
+                            class="text-primary-50 font-semibold">
+                            Project Background Color</label>
+                        <p-colorPicker formControlName="color"></p-colorPicker>
+                    </div>
+                    
+
+                </form>
+                <div class="mt-4">
+                    <p-multiSelect [options]="employeesMultiSelect" [(ngModel)]="selectedEmployees" display="chip"   defaultLabel="Select Developer(s)" optionLabel="name"></p-multiSelect>
+                </div>
+                
+            </div>
+            <div class="flex align-items-center gap-2">
+                <button (click)="save()"
+                    class="p-3 flex align-items-center justify-content-center w-7 gap-2 border-round-sm bg-white-alpha-10 shadow-1 border-1 cursor-pointer hover:bg-white-alpha-20 transition-duration-200"
+                    style="backdropFilter: blur(27px); borderColor: rgba(255, 255, 255, 0.2);">
+                    <span class="font-medium text-black white-space-nowrap">Create Project</span>
+                    <i class="pi pi-plus text-black"></i>
+                </button>
+                <button (click)="closeDialog()"
+                    class="p-3 flex align-items-center justify-content-center w-7 gap-2 border-round-sm bg-white-alpha-10 shadow-1 border-1 cursor-pointer hover:bg-white-alpha-20 transition-duration-200"
+                    style="backdropFilter: blur(27px); borderColor: rgba(255, 255, 255, 0.2);">
+                    <span class="font-medium text-black white-space-nowrap">Cancel</span>
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

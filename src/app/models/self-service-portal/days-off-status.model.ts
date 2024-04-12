@@ -1,5 +1,5 @@
 export enum DaysOffStatus {
-    ACCEPTED,
-    DECLINED,
-    PENDING
+    ACCEPTED = "ACCEPTED",
+    DECLINED = "DECLINED",
+    PENDING = "PENDING"
 }

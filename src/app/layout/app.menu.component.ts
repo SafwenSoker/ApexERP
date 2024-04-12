@@ -1,6 +1,12 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { Project } from '../models/project-management-portal/project.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
+import { loadProjects } from '../modules/project-management-portal/state/project.actions';
+import { getProjects } from '../modules/project-management-portal/state/project.selector';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-menu',
@@ -9,7 +15,6 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
-
     constructor(public layoutService: LayoutService) { }
 
     ngOnInit() {
@@ -23,7 +28,9 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Project Management Portal',
                 items: [
-                    { label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'] }
+                    {
+                        label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
+                    }
                 ]
             },
             {
@@ -36,7 +43,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Self Service Portal',
                 items: [
-                    { label: 'My Personal Information', icon: 'pi pi-fw pi-id-card', routerLink: ['/self-service-portal/my-personal-information'] },
+                    { label: 'My Personal Information', icon: 'pi pi-fw pi-id-card', routerLink: ['/self-service-portal/my-info'] },
                     { label: 'DaysOff', icon: 'pi pi-fw pi-home', routerLink: ['/self-service-portal/daysoff'] },
                     { label: 'Benefits', icon: 'pi pi-fw pi-gift', routerLink: ['/self-service-portal/benefits'] },
                 ]
@@ -56,7 +63,6 @@ export class AppMenuComponent implements OnInit {
                 label: 'Employees Management Portal',
                 items: [
                     { label: 'Employees', icon: 'pi pi-fw pi-users', routerLink: ['/employees-management-portal/employees'] },
-                    { label: 'Groups', icon: 'pi pi-fw pi-building', routerLink: ['/employees-management-portal/groups'] },
                     { label: 'Roles', icon: 'pi pi-fw pi-shield', routerLink: ['/employees-management-portal/roles'] }
                 ]
             },
@@ -201,5 +207,9 @@ export class AppMenuComponent implements OnInit {
                 ]
             }
         ];
+    }
+    getProjectRoute(project: Project): string {
+        console.log(project.title.split(" ").join("-"));
+        return "/project-management-portal/my-projects/" + project.title.split(" ").join("-");
     }
 }

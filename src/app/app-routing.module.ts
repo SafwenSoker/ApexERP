@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 
+
+
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -14,9 +16,9 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'project-management-portal/my-projects', loadChildren: () => import('./modules/project-management-portal/projects/projects.module').then(m => m.ProjectsModule)},
                     
                     { path: 'employees-management-portal/employees', loadChildren: () => import('./modules/employees-management-portal/employees/employees.module').then(m => m.EmployeesModule)},
-                    { path: 'employees-management-portal/groups', loadChildren: () => import('./modules/employees-management-portal/groups/groups.module').then(m => m.GroupsModule)},
                     { path: 'employees-management-portal/roles', loadChildren: () => import('./modules/employees-management-portal/roles/roles.module').then(m => m.RolesModule)},
                     
+                    { path: 'self-service-portal/my-info', loadChildren: () => import('./modules/self-service-portal/user-personal-information/user-personal-information.module').then(m => m.UserPersonalInformationModule)},
                     { path: 'self-service-portal/daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule)},
                     { path: 'self-service-portal/benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule)},
                     

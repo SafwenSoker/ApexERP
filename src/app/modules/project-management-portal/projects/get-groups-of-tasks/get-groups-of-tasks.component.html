@@ -1,1 +1,24 @@
-<p>get-groups-of-tasks works!</p>
+<div *ngIf="groupsOfTasks.length == 0; else elseBlock" class="flex justify-content-center align-items-center">
+    <div class="grid mt-6 mb-6 ml-1 mr-1">
+        <div class="col-12 card flex justify-content-between flex-wrap shadow-2 p-4">
+            <app-create-group-of-tasks [projectId]="projectId"></app-create-group-of-tasks>
+        </div>
+        <lottie-player class="col-12"src="https://lottie.host/32cffcca-ace8-42b7-adb5-46e329c9f1cc/QSBmIn0NFk.json" background="##ffffff"
+        speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+    </div>
+    
+</div>
+<ng-template #elseBlock>
+    <div class="grid mt-6 mb-6 ml-1 mr-1">
+        <div class="col-12 card flex justify-content-between flex-wrap shadow-2 p-4">
+            <p-selectButton [options]="statuses" [(ngModel)]="selectedStatus" optionLabel="label" optionValue="value"
+                optionDisabled="constant"></p-selectButton>
+            <app-create-group-of-tasks [projectId]="projectId"></app-create-group-of-tasks>
+        </div>
+    </div>
+    <p-tabMenu [scrollable]="true" [model]="groupsOfTasksItemsMenu" [activeItem]="activeItem"
+        (activeItemChange)="onActiveGroupOfTasksItemChange($event)"></p-tabMenu>
+    <app-group-of-tasks-details [groupOfTasksId]="activeGroupOfTasksId"
+        class="col-12 lg:col-12 xl:col-12"></app-group-of-tasks-details>
+    <app-get-tasks class="col-12 lg:col-12 xl:col-12" [groupOfTasksId]="activeGroupOfTasksId"></app-get-tasks>
+</ng-template>

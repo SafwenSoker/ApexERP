@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Grotesk:wght@300;400;600;700&display=swap');
+*{
+    color:white!important;
+}
+.card {
+    transition: transform 0.5s, box-shadow 1s;
+    height:300px;
+    color: white!important;
+}
+
+.card:hover {
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 2px 2px #e5f6ff;
+
+}
+
+.project{
+    font-family: "Rubik", sans-serif!important;
+    font-size : 30px!important;
+    font-weight:600!important;
+}
+.progress{
+    margin-top: 40px;
+    bottom:0;
+}
+.dancing-image{
+    -webkit-animation: dance 3s alternate infinite;
+    animation: dance 3s alternate infinite;
+}
+@keyframes dance {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(10px, -10px, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, -10px, 10px);
+    }
+}
+.employeeslist{
+    position:relative;
+    height: 50px
+}
+.img{
+    border-radius: 100%;
+    background-color: #f5f5f5;
+    width:fit-content;
+    position:absolute;
+}
+.img img{
+    height:40px;
+}

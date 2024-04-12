@@ -1,34 +1,68 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Project } from 'src/app/models/project-management-portal/project.model';
 
+
+interface IEmployee{
+  name: string,
+  userId: string
+}
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
 
-  API_URL = "http://localhost:8080"
+  API_URL = "http://197.26.19.240:10000/project-service/projects"
   constructor(private http: HttpClient) { }
 
-  getProjects(): Observable<Project[]>{
-    return this.http.get<Project[]>(`${this.API_URL}/projects`);
+  getProjects(): Observable<Project[]> {
+    // return Observable.create();
+   
+    return this.http.get<Project[]>(`${this.API_URL}`).pipe(
+      map((projects) => {
+        console.log(projects)
+        return projects;
+      }),
+      catchError((error) => {
+        throw error;
+      })
+      )
   }
 
-  getProject(id: string){
-    return this.http.get(`${this.API_URL}/project/${id}`);
+  getProject(id: number): Observable<Project> {
+    return this.http.get<Project>(`${this.API_URL}/${id}`);
   }
 
-  newProject(project: any){
-    return this.http.post(`${this.API_URL}/project`, project);
+  createProject(title: string, description: string, color: string, developers: IEmployee[]): Observable<Project> {
+    let developersDto = []
+    developers.forEach((developer) => {
+      developersDto.push(
+        {
+          "userDto" : developer
+        }
+      )
+    })
+    
+    let newProject = {
+      "title": title,
+      "description": description,
+      "developers": developersDto,
+      "groupsOfTasks": [],
+      "status": "IN_PROGRESS",
+      "color": color,
+      "documents": []
+    }
+    console.log(newProject)
+    return this.http.post<Project>(`${this.API_URL}`,  newProject);
   }
 
-  updateProject(id: string, project: any){
-    return this.http.put(`${this.API_URL}/project/${id}`, project);
+  updateProject(project: Project): Observable<Project> {
+    return this.http.put<Project>(`${this.API_URL}/${project.getId()}`, project);
   }
 
-  deleteProject(id: string){
-    return this.http.delete(`${this.API_URL}/project/${id}`);
+  deleteProject(id: number): Observable<Project> {
+    return this.http.delete<Project>(`${this.API_URL}/${id}`);
   }
 
 }
