@@ -9,15 +9,11 @@ import { Benefit } from 'src/app/models/self-service-portal/benefit.class';
 })
 export class BenefitsService {
 
-  API_URL = "http://localhost:8080"
+  API_URL = "http://197.26.19.240:10000/self-service"
   constructor(private http: HttpClient) { }
 
   getBenefits(): Observable<Benefit[]>{
-    return this.http.get<Benefit[]>(`${this.API_URL}/benefits`);
-  }
-
-  getBenefit(id: string){
-    return this.http.get(`${this.API_URL}/benefit/${id}`);
+    return this.http.get<Benefit[]>(`${this.API_URL}/benefit`);
   }
 
   newBenefit(benefit: any){
@@ -32,8 +28,24 @@ export class BenefitsService {
     return this.http.delete(`${this.API_URL}/benefit/${id}`);
   }
 
-  getBenefitsRequests():Observable<BenefitRequest[]>{
-    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefits-requests`);
+  newBenefitRequest(benefitId: number, motivation: string){
+    let request = {
+      "employee": {
+        "userId": "e105ed86-bb83-4efd-99b0-7532b40a3282"
+      },
+      "motivation": motivation,
+      "benefitDto": {
+        "id": benefitId
+      }
+    }
+    return this.http.post(`${this.API_URL}/benefitRequest`, request);
+  }
+  getBenefitsRequestsByEmployee():Observable<BenefitRequest[]>{
+    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefits-requests/benefitRequestByManager/e105ed86-bb83-4efd-99b0-7532b40a3282`);
+  }
+
+  getBenefitsRequestsByManager():Observable<BenefitRequest[]>{
+    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefits-requests/benefitRequestByEmployee/e105ed86-bb83-4efd-99b0-7532b40a3282`);
   }
 
   acceptBenefitRequest(id: string){

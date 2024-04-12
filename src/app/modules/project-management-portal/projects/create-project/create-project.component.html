@@ -7,17 +7,31 @@
             <div class="inline-flex flex-column gap-2">
 
                 <form [formGroup]="projectFormGroup">
-                    <label class="block" for="username" style="color:black!important;"
-                        class="text-primary-50 font-semibold">Project
-                        Name</label>
-                    <input class="block" type="text" id="name" pInputText formControlName="name" />
-                    <label class="block" for="username" style="color:black!important;"
-                        class="text-primary-50 font-semibold">Project
-                        Description</label>
-                    <textarea class="block" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
-                    <p-colorPicker formControlName="color"></p-colorPicker>
+                    <div>
+                        <label class="block" for="username" style="color:black!important;"
+                            class="text-primary-50 font-semibold">Project
+                            Name</label>
+                        <input class="block" type="text" id="name" pInputText formControlName="title" />
+                    </div>
+                    <div class="mt-4">
+                        <label class="block" for="username" style="color:black!important;"
+                            class="text-primary-50 font-semibold">Project
+                            Description</label>
+                        <textarea class="block" rows="5" cols="30" pInputTextarea [autoResize]="true"></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block" for="username" style="color:black!important;"
+                            class="text-primary-50 font-semibold">
+                            Project Background Color</label>
+                        <p-colorPicker formControlName="color"></p-colorPicker>
+                    </div>
+                    
 
                 </form>
+                <div class="mt-4">
+                    <p-multiSelect [options]="employeesMultiSelect" [(ngModel)]="selectedEmployees" display="chip"   defaultLabel="Select Developer(s)" optionLabel="name"></p-multiSelect>
+                </div>
+                
             </div>
             <div class="flex align-items-center gap-2">
                 <button (click)="save()"

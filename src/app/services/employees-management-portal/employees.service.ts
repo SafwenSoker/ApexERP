@@ -12,19 +12,19 @@ export class EmployeesService {
 
   constructor(private http: HttpClient) { }
 
-  API_URL="http://197.26.19.240:9092"
+  API_URL="http://197.26.19.240:10000/admin/realms/analytix/users"
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })
   getEmployees():Observable<Employee[]>{    
-    return this.http.get<Employee[]>(this.API_URL+'/admin/realms/analytix/users').pipe(
+    return this.http.get<Employee[]>(this.API_URL+'').pipe(
       map((result) => {console.log(result); return result;})
     );
   }
 
   getEmployee(id: string){
-    return this.http.get<Employee>(this.API_URL+'/admin/realms/analytix/users/'+id).pipe(
+    return this.http.get<Employee>(this.API_URL+'/'+id).pipe(
       map((result) => {console.log(result); return result;})
     );
   }
@@ -40,7 +40,7 @@ export class EmployeesService {
       credentials: [{type: 'password', value: user.password, temporary: false}],
     }
 
-    return this.http.post<Employee>(this.API_URL+'/admin/realms/analytix/users',userKeycloakRepresentation,{headers:this.headers});
+    return this.http.post<Employee>(this.API_URL+'/',userKeycloakRepresentation,{headers:this.headers});
   }
 
 
@@ -52,11 +52,12 @@ export class EmployeesService {
       emailVerified: user.emailVerified,
       active: user.active
     }
-    return this.http.put(this.API_URL+'/admin/realms/analytix/users/'+user.id,body, { headers: this.headers }).pipe(map((result) => {console.log(result);return result;}));
+    return this.http.put(this.API_URL+'/'+user.id,body, { headers: this.headers }).pipe(map((result) => {console.log(result);return result;}));
   }
 
-  deleteEmployee(id: string){
-    return this.http.delete(this.API_URL+'/admin/realms/analytix/users/'+id);
+  deleteEmployee(userId: string){
+    console.log(userId)
+    return this.http.delete(this.API_URL+'/'+userId);
   }
 
 

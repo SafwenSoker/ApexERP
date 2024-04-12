@@ -3,12 +3,12 @@
     <div class="card mt-4 mb-4">
         <div class="flex justify-content-between mb-3">
             <div>
-                <span class="block text-3xl font-medium mb-3">{{project.name}}</span>
+                <span class="block text-3xl font-medium mb-3">{{project.title}}</span>
                 <div class="text-900 font-medium text-xl">{{project.description}}</div>
             </div>
         </div>
         <span class="text-green-500 font-medium">234</span>
         <span class="text-500"> employees are part of this project</span>
     </div>
-    <app-get-groups-of-tasks [projectName]="project.getName()"></app-get-groups-of-tasks>
+    <app-get-groups-of-tasks [projectName]="project.title"></app-get-groups-of-tasks>
 </div>

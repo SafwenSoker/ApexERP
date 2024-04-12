@@ -119,7 +119,8 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     ProgressBarModule,
     TimelineModule,
     ConfirmDialogModule,
-    ColorPickerModule
+    ColorPickerModule,
+    ReactiveFormsModule
   ],
   providers :[
     MessageService, ConfirmationService

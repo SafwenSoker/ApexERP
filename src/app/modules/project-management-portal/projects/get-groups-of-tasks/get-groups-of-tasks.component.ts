@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { GroupOfTasks } from 'src/app/models/project-management-portal/group-of-tasks';
 import { AppState } from 'src/app/store/app.state';
-import { getGroupOfTasks, getGroupsOfTasks, getProjectByName } from '../../state/project.selector';
+import { getGroupOfTasks, getGroupsOfTasks, getProjectByName, getProjects } from '../../state/project.selector';
 import { MenuItem } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { loadGroupsOfTasks } from '../../state/project.actions';
@@ -25,6 +25,7 @@ export class GetGroupsOfTasksComponent implements OnInit, OnDestroy {
   selectedStatus: string;
   constructor(private route: ActivatedRoute, private store: Store<AppState>) { }
   ngOnInit() {
+    console.log("here")
     this.statuses = [
       { label: 'Completed', value: 'completed', icon: "pi pi-fw pi-check", severity: "info" },
       { label: 'In Progress', value: 'in_progress', icon: "pi pi-fw pi-hourglass", severity: "info" }
@@ -33,24 +34,25 @@ export class GetGroupsOfTasksComponent implements OnInit, OnDestroy {
     this.projectName = this.projectName.replace(/-/g, ' ');
     this.store.select(getProjectByName(this.projectName)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (project) => {
-        this.projectId = project.getId();
+        this.projectId = project.id;
         this.store.dispatch(loadGroupsOfTasks({projectId:this.projectId}));
         this.store.select(getGroupsOfTasks(this.projectId)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
           (groupsOfTasks) => {
             this.groupsOfTasks = groupsOfTasks;
+            console.log(this.groupsOfTasks)
             this.groupsOfTasks.forEach((groupOfTasks) => {
-              this.groupsOfTasksItemsMenu.push({ label: groupOfTasks.getName() })
+              this.groupsOfTasksItemsMenu.push({ label: groupOfTasks.name })
             })
+            console.log(this.groupsOfTasksItemsMenu)
             this.activeItem = this.groupsOfTasksItemsMenu[0];
-            this.activeGroupOfTasksId = this.groupsOfTasks[0].getId();
+            this.activeGroupOfTasksId = this.groupsOfTasks[0]?.id;
           });
       });
-    console.log(this.projectId);
     
   }
 
   onActiveGroupOfTasksItemChange(event: MenuItem) {
-    this.activeGroupOfTasksId = this.groupsOfTasks.find(groupOfTasks => groupOfTasks.getName() === event.label)?.getId() as number;
+    this.activeGroupOfTasksId = this.groupsOfTasks.find(groupOfTasks => groupOfTasks.getName() === event.label)?.id as number;
   }
 
   ngOnDestroy(): void {

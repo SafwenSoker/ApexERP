@@ -119,8 +119,8 @@ export class GetEmployeesComponent {
       });
   }
 
+
   deleteEmployee(employee: Employee) {
-    console.log("hh");
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + employee.userName + '?',
       header: 'Confirm',
@@ -148,13 +148,7 @@ export class GetEmployeesComponent {
     }
     return "danger";
   }
-  showAddEmployee() {
-    this.visible = true;
-    this.rolesService.getRoles().subscribe(roles => {
-      this.roles = roles;
-    });
-
-  }
+  
   onAddEmployee() {
     let employee: Employee = {};
     employee.userName = this.employeeForm.value.username;

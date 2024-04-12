@@ -28,15 +28,10 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
         StoreDevtoolsModule.instrument({}),
         StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([]),
-        KeycloakAngularModule
+        
     ],
     providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeKeycloak,
-            multi: true,
-            deps: [KeycloakService]
-        },
+        
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,
         CustomerService,

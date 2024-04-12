@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Role } from 'src/app/models/user-management-portal/role.model';
 import { RolesService } from 'src/app/services/employees-management-portal/roles.service';
 import { UpdateRoleService } from '../update-role/update-role.service';
 import { Table } from 'primeng/table';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-get-roles',
   templateUrl: './get-roles.component.html',
   styleUrl: './get-roles.component.scss'
 })
-export class GetRolesComponent implements OnInit {
+export class GetRolesComponent implements OnInit, OnDestroy {
 
 
   roleDialog: boolean = false;
@@ -22,12 +23,12 @@ export class GetRolesComponent implements OnInit {
   checked: boolean = false;
   roles!: Role[];
   availableRoles!: Role[];
-  roleForm!: FormGroup;
+
   visible: boolean = false;
   clonedRoles: { [s: string]: Role } = {};
   loading: boolean = true;
-
   activityValues: number[] = [0, 100];
+  private ngUnsubscribe = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -36,13 +37,30 @@ export class GetRolesComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private updateRoleService: UpdateRoleService,
     private viewContainerRef: ViewContainerRef
-    ) {
+  ) {
 
   }
 
   onRowEditInit(role: Role) {
-    this.updateRoleService.setRootViewContainerRef(this.viewContainerRef);
-    this.updateRoleService.addDynamicComponent(role);
+    this.clonedRoles[role.id as string] = { ...role };
+  }
+
+  onRowEditSave(role: Role) {
+    if (role.name != "") {
+      delete this.clonedRoles[role.id as string];
+      this.rolesService.updateRole(role).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+        (role) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role is updated' });
+        }
+      );
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid Role Name' });
+    }
+  }
+
+  onRowEditCancel(role: Role, index: number) {
+    this.roles[index] = this.clonedRoles[role.id as string];
+    delete this.clonedRoles[role.id as string];
   }
 
 
@@ -64,6 +82,7 @@ export class GetRolesComponent implements OnInit {
     ];
     this.rolesService.getRoles().subscribe(roles => {
       this.availableRoles = roles;
+      console.log(this.availableRoles)
       for (let role of roles) {
         this.rolesService.getRoleUsers(role.name).subscribe(users => {
           role.users = users;
@@ -84,7 +103,7 @@ export class GetRolesComponent implements OnInit {
       accept: () => {
         console.log(role)
         this.roles = this.roles.filter((val) => val.id !== role.id);
-        this.rolesService.deleteRole(role.id).subscribe(e => console.log(e));
+        this.rolesService.deleteRole(role.name).subscribe(e => console.log(e));
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Role Deleted', life: 3000 });
       }
     });
@@ -105,52 +124,15 @@ export class GetRolesComponent implements OnInit {
     return "danger";
   }
 
-  showAddRole() {
-    this.role = {};
-    this.submitted = false;
-    this.roleDialog = true;
-  }
+
   hideDialog() {
     this.roleDialog = false;
     this.submitted = false;
   }
-  onAddRole() {
-    this.submitted = true;
 
-    // check if user already exists
-    this.rolesService.getRoles().subscribe(roles => {
-      let roleExists = false;
-      for (let role of roles) {
-        if (role.name == this.roleToBeCreated.name) {
-          roleExists = true;
-        }
-        break;
-      }
-      if (!roleExists) {
-        this.rolesService.
-          addRole(this.roleToBeCreated).subscribe(r => {
-            if (this.roleToBeCreated.composite) {
-              this.rolesService.addCompositesToRole(this.roleToBeCreated).subscribe(e => {
-                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Composite Role is added successfully' });
-              },
-                err => {
-                  this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error.error });
-                });
-            }else {
-              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role is added successfully' });
-            }
-
-            this.roles.push(r);
-            this.visible = false;
-          },
-            err => {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured, try again later!' });
-            });
-      } else {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Role already exists!' });
-      }
-    });
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
-
 
 }

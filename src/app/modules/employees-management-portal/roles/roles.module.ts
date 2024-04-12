@@ -17,6 +17,7 @@ import { PasswordModule } from 'primeng/password';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { InputTextModule } from 'primeng/inputtext';
     DialogModule,
     ConfirmDialogModule,
     InputTextModule
-  ]
+  ],
+  providers: [MessageService, ConfirmationService]
 })
 export class RolesModule { }

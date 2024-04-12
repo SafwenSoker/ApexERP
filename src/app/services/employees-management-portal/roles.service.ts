@@ -9,45 +9,38 @@ import { Employee } from 'src/app/models/user-management-portal/employee.model';
 })
 export class RolesService {
 
-  API_URL="http://197.26.19.240:9092"
+  API_URL="http://197.26.19.240:10000/admin/realms/analytix/roles"
   constructor(private http: HttpClient) { }
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   })
   getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>(this.API_URL+'/admin/realms/analytix/roles').pipe(map((roles) => { console.log(roles); return roles; }));
+    return this.http.get<Role[]>(this.API_URL).pipe(map((roles) => { console.log(roles); return roles; }));
   }
 
   getRole(id: string | undefined) {
-    return this.http.get<Role>(this.API_URL+'/admin/realms/analytix/roles/' + id);
+    return this.http.get<Role>(this.API_URL+ '/' + id);
   }
 
   getRoleByName(name: string):Observable<Role> {
-    return this.http.get<Role>(this.API_URL+'/admin/realms/analytix/roles/' + name);
+    return this.http.get<Role>(this.API_URL+'/' + name);
   }
 
-  addRole(role: Role): Observable<Role> {
-    console.log("Role to be created: ", role)
-    let roleRepresentation = {
-      name: role.name,
-      composite: role.composite,
-      clientRole: false,
-      containerId: "analytix"
-    }
-
-    return this.http.post<Role>(this.API_URL+'/admin/realms/analytix/roles', roleRepresentation, { headers: this.headers });
+  addRole(role: FormData): Observable<Role> {
+    console.log(role.get('name'))
+    return this.http.post<Role>(this.API_URL+"/"+role.get('name'),{});
   }
   updateRole(role: Role) {
     let roleRepresentation = {
-      name: role.name,
-
+      "id": role.id,
+      "name": role.name
     }
-    return this.http.put(this.API_URL+'/admin/realms/analytix/roles/' + role.id, role);
+    return this.http.put(this.API_URL, role);
   }
 
-  deleteRole(id: string | undefined) {
-    return this.http.delete(this.API_URL+'/admin/realms/analytix/roles/' + id);
+  deleteRole(name: string | undefined) {
+    return this.http.delete(this.API_URL+'/'+ name);
   }
 
   getRoleUsers(name: string | undefined): Observable<Employee[]> {

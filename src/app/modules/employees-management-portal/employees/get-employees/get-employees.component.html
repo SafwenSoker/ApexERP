@@ -7,8 +7,8 @@
     [tableStyle]="{ 'max-width': '100vw','boder-radius':'10px' }">
     <ng-template pTemplate="caption">
         <div class="flex justify-content-between flex-wrap">
-            <p-button (click)="showAddEmployee()" icon="pi pi-user-plus"
-                label="Create" class="mb-2" severity="primary" [outlined]="true"></p-button>
+            <app-create-employee [(visible)]="createEmployeeDialog" ></app-create-employee>
+            
             <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
@@ -83,7 +83,7 @@
             </td>
            
             <td>
-                <p-dropdown [options]="employee.roles" [(ngModel)]="selectedRole" optionLabel="name" [showClear]="true"
+                <p-dropdown [options]="employee.roles" optionLabel="name" [showClear]="true"
                     placeholder="View roles">
                     <ng-template pTemplate="selectedItem">
                         <div class="flex align-items-center gap-2" *ngIf="selectedRole">
@@ -134,7 +134,7 @@
                     <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
                         (click)="onRowEditCancel(user,ri)"
                         class="p-button-rounded p-button-text p-button-danger"></button> -->
-                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteUser(employee)"
+                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteEmployee(employee)"
                         class="p-button-rounded p-button-text p-button-danger"></button>
                 </div>
             </td>
@@ -146,4 +146,3 @@
         </tr>
     </ng-template>
 </p-table>
-<app-create-employee [(visible)]="createEmployeeDialog" ></app-create-employee>

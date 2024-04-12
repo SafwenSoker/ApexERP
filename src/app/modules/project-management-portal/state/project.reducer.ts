@@ -21,7 +21,7 @@ const _projectsReducer = createReducer(
     };
   }),
   on(deleteProjectSuccess, (state, action) => {
-    const updatedProjects = state.projects.filter(project => {return project.getName() !== action.project.getName();});
+    const updatedProjects = state.projects.filter(project => {return project.title !== action.project.title;});
     return {
       ...state,
       projects: updatedProjects,
@@ -42,6 +42,7 @@ const _projectsReducer = createReducer(
   }),
   
   on(createGroupOfTasksSuccess, (state, action) => {
+    console.log(action.groupOfTasks)
     return {
       ...state,
       groupsOfTasks: [action.groupOfTasks,...state.groupsOfTasks],
@@ -64,6 +65,7 @@ const _projectsReducer = createReducer(
     };
   }),
   on(loadGroupsOfTasksSuccess, (state, action) => {
+    console.log(action.groupsOfTasks)
     return {
       ...state,
       groupsOfTasks: action.groupsOfTasks

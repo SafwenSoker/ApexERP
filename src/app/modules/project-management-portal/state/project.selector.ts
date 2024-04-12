@@ -12,7 +12,7 @@ export const getProjects = createSelector(getProjectsState, (state) => {
 export const getGroupsOfTasks = (projectId: number) =>
     createSelector(getProjectsState, (state) => {
         console.log("Groups of tasks: ",state.groupsOfTasks)
-        const groupsOfTasks = state.groupsOfTasks.filter((groupOfTasks) => groupOfTasks.getProjectId() === projectId);
+        const groupsOfTasks = state.groupsOfTasks.filter((groupOfTasks) => groupOfTasks.project.id === projectId);
         return groupsOfTasks;
     });
 
@@ -25,14 +25,15 @@ export const getTasks = (groupOfTasksId: number) =>
 
 export const getProjectById = (projectId: number) =>
     createSelector(getProjectsState, (state) => {
-        const project = state.projects.find((project) => project.getId() === projectId);
+        const project = state.projects.find((project) => project.id === projectId);
         return project;
     });
 
     
 export const getProjectByName = (projectName: string) =>
 createSelector(getProjectsState, (state) => {
-    const project = state.projects.find((project) => project.getName() === projectName);
+    const project = state.projects.find((project) => project.title === projectName);
+    console.log(project)
     return project;
 });
 

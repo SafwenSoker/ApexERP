@@ -98,7 +98,7 @@ export class ProjectsEffects{
       mergeMap((action) => {
         let timerInterval;
         this.messageService.add({severity:'info', summary: 'Info', detail: 'Creating Project'});
-        return this.projectsService.createProject(action.newProject).pipe(
+        return this.projectsService.createProject(action.title, action.description, action.color, action.developers).pipe(
           map((project) => {
             
             return createProjectSuccess({ project });
@@ -139,8 +139,9 @@ export class ProjectsEffects{
     return this.actions$.pipe(
       ofType(createGroupOfTasks),
       mergeMap((action) => {
-        return this.groupsOfTasksService.createGroupOfTasks(action.newGroupOfTasks).pipe(
+        return this.groupsOfTasksService.createGroupOfTasks(action.name, action.startDate, action.estimatedEndDate, action.demoDate, action.deliveredDate, action.project, action.developers).pipe(
           map((groupOfTasks) => {
+            console.log(groupOfTasks)
             return createGroupOfTasksSuccess({ groupOfTasks });
           })
         );
@@ -232,7 +233,7 @@ export class ProjectsEffects{
     return this.actions$.pipe(
       ofType(createTask),
       mergeMap((action) => {
-        return this.tasksService.createTask(action.newTask).pipe(
+        return this.tasksService.createTask(action.name, action.deadline, action.startDate, action.endDate, action.description, action.projectId, action.groupOfTaskId, action.taskStatus, action.taskTags, action.taskUrgency, action.employeeId).pipe(
           map((task) => {
             return createTaskSuccess({ task });
           })

@@ -16,6 +16,7 @@ export class Employee {
     lastName?: string;
     email?: string;
     roles?: Role[];
+    userDto?: any;
     constructor(userName?: string, id?: string, access?: Access, createdTimestamp?: number, emailVerfied?: boolean, active?: boolean, notBefore?: number, totp?: boolean, requiredActions?: string[], disableableCredentialTypes?: string[], firstName?: string, lastName?: string, email?: string, roles: Role[] = []) {
         this.access = access;
         this.createdTimestamp = createdTimestamp;

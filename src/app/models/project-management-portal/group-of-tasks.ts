@@ -9,7 +9,7 @@ export class GroupOfTasks {
     estimatedEndDate: Date;
     deliveredDate: Date;
     tasks : Task[];
-
+    project?: any;
     constructor(id: number, name: string, demoDate: Date, startDate: Date, estimatedEndDate: Date, deliveredDate: Date, tasks: Task[], projectId?: number) {
         this.id = id;
         this.name = name;

@@ -52,7 +52,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Evaluation Portal',
                 items: [
                     { label: 'Assessment', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/assessment'] },
-                    { label: 'Self Assessment', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/self-assessment'] },
+                    { label: 'Assessment History', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/assessment-history'] },
                     { label: 'Manager Evaluation', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/manager-evaluation'] },
                     { label: 'Development Plan', icon: 'pi pi-fw pi-chart-line', routerLink: ['/evaluation-portal/development-plan'] },
                     { label: 'Follow-Up Meetings', icon: 'pi pi-fw pi-play', routerLink: ['/evaluation-portal/follow-up-meetings'] },
@@ -208,7 +208,7 @@ export class AppMenuComponent implements OnInit {
         ];
     }
     getProjectRoute(project: Project): string {
-        console.log(project.getName().split(" ").join("-"));
-        return "/project-management-portal/my-projects/" + project.getName().split(" ").join("-");
+        console.log(project.title.split(" ").join("-"));
+        return "/project-management-portal/my-projects/" + project.title.split(" ").join("-");
     }
 }

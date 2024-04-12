@@ -26,7 +26,7 @@ export class GetBenefitsRequestsComponent implements OnInit, OnDestroy {
   constructor(private benefitsService: BenefitsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.benefitsService.getBenefitsRequests().subscribe((benefitsRequests) => {
+    this.benefitsService.getBenefitsRequestsByManager().subscribe((benefitsRequests) => {
       this.benefitsRequests = benefitsRequests;
     } );
 

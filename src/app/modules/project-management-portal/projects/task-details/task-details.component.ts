@@ -15,7 +15,7 @@ import { TaskTag } from 'src/app/models/project-management-portal/task-tag.model
 
 interface Tag {
   name: string;
-  code: number;
+  code: TaskTag;
 }
 
 interface Column {
@@ -50,6 +50,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
   updatedDescription: string;
   tags!: Tag[];
   selectedTags!: Tag[];
+  taskTag: TaskTag;
   @Output() closedTaskDetailsDialogEvent: EventEmitter<boolean> = new EventEmitter();
   taskDescriptionEditorForm: FormGroup | undefined;
   private ngUnsubscribe = new Subject<void>();
@@ -76,11 +77,11 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.tags = [
-      { name: 'Bug', code: 0 },
-      { name: 'Feature', code: 1 },
-      { name: 'Improvement', code: 2 },
-      { name: 'Documentation', code: 3 },
-      { name: 'Refactoring', code: 4 }
+      { name: 'Bug', code: TaskTag.BUG },
+      { name: 'Feature', code: TaskTag.FEATURE },
+      { name: 'Improvement', code: TaskTag.IMPROVEMENT },
+      { name: 'Documentation', code: TaskTag.DOCUMENTATION },
+      { name: 'Refactoring', code: TaskTag.REFACTORING }
     ];
   }
 
@@ -173,19 +174,19 @@ export class TaskDetailsComponent implements OnInit, OnDestroy, OnChanges {
     let newTags: TaskTag[] = [];
     this.selectedTags.forEach((selectedTag) => {
       switch (selectedTag.code) {
-        case 0:
+        case "BUG":
           newTags.push(TaskTag.BUG);
           break;
-        case 1:
+        case "FEATURE":
           newTags.push(TaskTag.FEATURE);
           break;
-        case 2:
+        case "IMPROVEMENT":
           newTags.push(TaskTag.IMPROVEMENT);
           break;
-        case 3:
+        case "DOCUMENTATION":
           newTags.push(TaskTag.DOCUMENTATION);
           break;
-        case 4:
+        case "REFACTORING":
           newTags.push(TaskTag.REFACTORING);
           break;
       }

@@ -1,1 +1,21 @@
-<p>create-role works!</p>
+<p-button (click)="showAddRole()" icon="pi pi-plus" label="Create" class="mb-2" [outlined]="true"></p-button>
+
+<p-dialog [(visible)]="roleDialog"
+    [style]="{ width: '40vw', height: '35vh','border-radius': '12px 12px 0 0', 'background-color': '#000000'}"
+    header="Role Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <form [formGroup]="roleForm" (ngSubmit)="onAddRole()">
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" pInputText id="name" formControlName="name" required autofocus />
+                <small class="p-error" *ngIf="submitted && !roleToBeCreated.name">Name is required.</small>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

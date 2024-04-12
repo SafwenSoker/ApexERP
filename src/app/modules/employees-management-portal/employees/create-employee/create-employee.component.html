@@ -1,5 +1,5 @@
-
-
+<p-button (click)="showAddEmployee()" icon="pi pi-user-plus"
+                label="Create" class="mb-2" severity="primary" [outlined]="true"></p-button>
 <p-dialog [style]="{ width: '80vw', height: '80vh','border-radius': '12px 12px 0 0', 'background-color': '#000000'}"
     header="Create Employee" [(visible)]="visible">
     <form [formGroup]="employeeForm" (ngSubmit)="onAddEmployee()">

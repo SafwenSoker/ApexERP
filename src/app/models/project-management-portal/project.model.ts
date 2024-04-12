@@ -5,18 +5,19 @@ import { Status } from "./status.model";
 
 export class Project {
     id?: number;
-    name: string;
+    title: string;
     description: string;
     groupsOfTasks?: GroupOfTasks[];
     documents?: Document[];
     developers: Employee[];
     status?: Status;
     color?:string;
+    
 
 
-    constructor(id: number, name: string, description: string, groupsOfTasks?: GroupOfTasks[], documents?: Document[], color?: string, developers?: Employee[]) {
+    constructor(id: number, title: string, description: string, groupsOfTasks?: GroupOfTasks[], documents?: Document[], color?: string, developers?: Employee[]) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.groupsOfTasks = groupsOfTasks ? groupsOfTasks : null;
         this.documents = documents ? documents : null;
@@ -28,8 +29,8 @@ export class Project {
         return this.id;
     }
 
-    public getName(){
-        return this.name;
+    public getTile(){
+        return this.title;
     }
 
     public getDescription(){
@@ -47,7 +48,7 @@ export class Project {
     public getDocumentsTreeRepresentation(){
         return {
             key: this.id,
-            label: this.name,
+            label: this.title,
             icon: "pi pi-fw pi-folder",
             // children: [this.documents.map(document => document.getDocumentsTreeRepresentation()),this.groupsOfTasks.map(groupOfTasks => groupOfTasks.getDocumentsTreeRepresentation())]
         }

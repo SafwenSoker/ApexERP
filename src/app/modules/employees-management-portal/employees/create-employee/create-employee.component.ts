@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Employee } from 'src/app/models/user-management-portal/employee.model';
 import { Role } from 'src/app/models/user-management-portal/role.model';
 import { EmployeesService } from 'src/app/services/employees-management-portal/employees.service';
+import { RolesService } from 'src/app/services/employees-management-portal/roles.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -21,7 +22,7 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
   employeeForm!: FormGroup;
 
   constructor(private employeesService: EmployeesService, private messageService: MessageService,private fb: FormBuilder,
-
+    private rolesService: RolesService
   ){
     this.employeeForm = this.fb.group({
       username: ['', Validators.required],
@@ -45,6 +46,14 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
   increment(): void {
     // this.visible = !visible;
     this.visibleChange.emit(this.visible);
+  }
+
+  showAddEmployee() {
+    this.visible = true;
+    this.rolesService.getRoles().subscribe(roles => {
+      this.roles = roles;
+    });
+
   }
 
   onAddEmployee() {

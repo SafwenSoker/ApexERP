@@ -7,7 +7,7 @@
                     <div class="flex flex-wrap justify-content-start align-items-center gap-2">
                         <div class="flex justify-content-center flex-column">
                             <h3 class="flex justify-content-center">From</h3>
-                            <p-calendar [showTime]="true" [showSeconds]="true" [inline]="true"
+                            <p-calendar [(ngModel)]="startDate" [showTime]="true" [showSeconds]="true" [inline]="true"
                                 ></p-calendar>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                     <div class="flex flex-wrap justify-content-start align-items-center gap-2">
                         <div class="flex justify-content-center flex-column">
                             <h3 class="flex justify-content-center">To</h3>
-                            <p-calendar [showTime]="true" [showSeconds]="true" [inline]="true"
+                            <p-calendar [(ngModel)]="endDate" [showTime]="true" [showSeconds]="true" [inline]="true"
                                 ></p-calendar>
                         </div>
                     </div>

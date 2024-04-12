@@ -1,7 +1,15 @@
 import {createAction, props} from '@ngrx/store';
 import { GroupOfTasks } from 'src/app/models/project-management-portal/group-of-tasks';
 import { Project } from 'src/app/models/project-management-portal/project.model';
+import { Status } from 'src/app/models/project-management-portal/status.model';
+import { TaskTag } from 'src/app/models/project-management-portal/task-tag.model';
+import { TaskUrgency } from 'src/app/models/project-management-portal/task-urgency.model';
 import { Task } from 'src/app/models/project-management-portal/task.model';
+
+interface IEmployee{
+    name: string,
+    userId: string
+}
 
 export const ADD_PROJECT_ACTION = '[projects page] add project';
 export const ADD_PROJECT_SUCCESS = '[projects page] add project success';
@@ -37,7 +45,7 @@ export const LOAD_TASKS = '[projects page] load tasks';
 export const LOAD_TASKS_SUCCESS = '[projects page] load tasks success';
 
 
-export const createProject = createAction(ADD_PROJECT_ACTION,props<{newProject: FormData}>());
+export const createProject = createAction(ADD_PROJECT_ACTION,props<{title: string, description : string, color: string,developers: IEmployee[]}>());
 export const createProjectSuccess = createAction(ADD_PROJECT_SUCCESS,props<{project: Project}>());
 export const updateProject = createAction(UPDATE_PROJECT_ACTION, props<{updatedProject: Project}>())
 export const updateProjectSuccess = createAction(UPDATE_PROJECT_SUCCESS, props<{project: Project}>())
@@ -49,7 +57,7 @@ export const loadProjects = createAction(LOAD_PROJECTS);
 export const loadProjectsSuccess = createAction(LOAD_PROJECTS_SUCCESS, props<{projects: Project[]}>());
 
 
-export const createGroupOfTasks = createAction(ADD_GROUP_OF_TASKS_ACTION,props<{newGroupOfTasks: FormData}>());
+export const createGroupOfTasks = createAction(ADD_GROUP_OF_TASKS_ACTION,props<{name: string, startDate: Date, estimatedEndDate: Date, demoDate: Date, deliveredDate: Date, project: number, developers: IEmployee[]}>());
 export const createGroupOfTasksSuccess = createAction(ADD_GROUP_OF_TASKS_SUCCESS,props<{groupOfTasks: GroupOfTasks}>());
 export const updateGroupOfTasks = createAction(UPDATE_GROUP_OF_TASK_ACTION, props<{updatedGroupOfTasks: GroupOfTasks}>())
 export const updateGroupOfTasksSuccess = createAction(UPDATE_GROUP_OF_TASK_SUCCESS, props<{groupOfTasks: GroupOfTasks}>())
@@ -61,7 +69,7 @@ export const loadGroupsOfTasks = createAction(LOAD_GROUP_OF_TASKS, props<{projec
 export const loadGroupsOfTasksSuccess = createAction(LOAD_GROUP_OF_TASKS_SUCCESS, props<{groupsOfTasks: GroupOfTasks[]}>());
 
 
-export const createTask = createAction(ADD_TASK_ACTION,props<{newTask: FormData}>());
+export const createTask = createAction(ADD_TASK_ACTION,props<{name: string, deadline: Date, startDate: Date, endDate: Date, description: string, projectId: number, groupOfTaskId: number, taskStatus: Status, taskTags: TaskTag[], taskUrgency: TaskUrgency, employeeId: string}>());
 export const createTaskSuccess = createAction(ADD_TASK_SUCCESS,props<{task: Task}>());
 export const updateTask = createAction(UPDATE_TASK_ACTION, props<{updatedTask: Task}>())
 export const updateTaskSuccess = createAction(UPDATE_TASK_SUCCESS, props<{task: Task}>())

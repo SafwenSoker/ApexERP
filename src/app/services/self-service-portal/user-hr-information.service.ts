@@ -8,8 +8,8 @@ import { UserHRInfo } from 'src/app/models/self-service-portal/user-hrinfo.model
   providedIn: 'root'
 })
 export class UserHrInformationService {
-  API_URL = "http://197.26.19.240:9091"
-  constructor(private http: HttpClient, private keycloakService: KeycloakService) { }
+  API_URL = "http://197.26.19.240:10000"
+  constructor(private http: HttpClient) { }
 
   getUserHRinfos(managerId: number): Observable<UserHRInfo[]> {
     return this.http.get<UserHRInfo[]>(`${this.API_URL}/self-service/userhrinfo`).pipe(
@@ -23,9 +23,9 @@ export class UserHrInformationService {
   }
 
   getUserHRInfo(): Observable<UserHRInfo> {
-    let userId = this.keycloakService.getKeycloakInstance().subject;
+    
 
-    return this.http.get<UserHRInfo>(`${this.API_URL}/self-service/userhrinfo/${userId}`);
+    return this.http.get<UserHRInfo>(`${this.API_URL}/self-service/userhrinfo/e105ed86-bb83-4efd-99b0-7532b40a3282`);
   }
 
   updateUserHRInfo(user: UserHRInfo): Observable<UserHRInfo> {
