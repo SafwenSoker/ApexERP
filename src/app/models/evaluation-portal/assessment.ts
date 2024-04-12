@@ -1,4 +1,3 @@
-import { Employees } from '../user-management-portal/employees.model';
 import { AssessmentStatus } from './assessment-status';
 
 export class Assessment {

@@ -8,7 +8,7 @@ import { AssessmentStatus } from '../../models/evaluation-portal/assessment-stat
   providedIn: 'root'
 })
 export class AssessmentService {
-  API_URL = "http://localhost:9096/evaluation-portal"
+  API_URL = "http://197.26.19.240:9096/evaluation-portal"
 
   constructor(private http: HttpClient) { }
 
