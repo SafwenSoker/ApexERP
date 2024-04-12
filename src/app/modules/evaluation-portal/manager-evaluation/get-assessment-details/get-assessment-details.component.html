@@ -20,7 +20,10 @@
     <form>
         <!-- Technical Questions Section -->
         <p-card header="Technical Questions" [style]="{ marginBottom: '20px' }">
-            <div *ngFor="let question of assessment.questions" class="question-container">
+            <div
+                *ngFor="let question of assessment.questions"
+                class="question-container"
+            >
                 <ng-container *ngIf="question.questionType === 'TECHNICAL'">
                     <p class="question">{{ question.text }}</p>
                     <div class="radio-buttons">
@@ -33,7 +36,7 @@
                             disabled="true"
                         ></p-radioButton>
                     </div>
-    
+
                     <!-- Displaying Manager Response -->
                     <p class="question">Manager Response</p>
                     <div class="radio-buttons">
@@ -43,18 +46,22 @@
                             [value]="option.value"
                             [label]="option.label"
                             [(ngModel)]="question.managerScore"
-                            disabled="true"
                         ></p-radioButton>
                     </div>
-                    <hr>
+                    <hr />
                 </ng-container>
-                
             </div>
         </p-card>
-    
+
         <!-- Observational Questions Section -->
-        <p-card header="Observational Questions" [style]="{ marginBottom: '20px' }">
-            <div *ngFor="let question of assessment.questions" class="question-container">
+        <p-card
+            header="Observational Questions"
+            [style]="{ marginBottom: '20px' }"
+        >
+            <div
+                *ngFor="let question of assessment.questions"
+                class="question-container"
+            >
                 <ng-container *ngIf="question.questionType === 'OBSERVATIONAL'">
                     <p class="question">{{ question.text }}</p>
                     <div class="radio-buttons">
@@ -75,16 +82,14 @@
                             [value]="option.value"
                             [label]="option.label"
                             [(ngModel)]="question.managerScore"
-                            disabled="true"
                         ></p-radioButton>
-                        
                     </div>
-                    <hr> 
+                    <hr />
                 </ng-container>
             </div>
         </p-card>
     </form>
-    
+
     <!-- <form>
         <p-card header="Technical Questions" [style]="{ marginBottom: '20px' }">
             <div
@@ -103,16 +108,16 @@
                     ></p-radioButton>
                 </div> -->
 
-                <!-- Displaying Manager Response -->
-                <!-- <p class="question">Manager Response</p>
+    <!-- Displaying Manager Response -->
+    <!-- <p class="question">Manager Response</p>
                 <div
                     *ngFor="
                         let managerResponse of assessment.managerTechnicalResponses
                     "
                     class="radio-buttons"
                 > -->
-                    <!-- Check if the managerResponse corresponds to the current question -->
-                    <!-- <ng-container
+    <!-- Check if the managerResponse corresponds to the current question -->
+    <!-- <ng-container
                         *ngIf="managerResponse.questionId === question.id"
                     >
                         <p-radioButton
@@ -157,8 +162,8 @@
                     "
                     class="radio-buttons"
                 > -->
-                    <!-- Check if the managerResponse corresponds to the current question -->
-                    <!-- <ng-container
+    <!-- Check if the managerResponse corresponds to the current question -->
+    <!-- <ng-container
                         *ngIf="managerResponse.questionId === question.id"
                     >
                         <p-radioButton
@@ -176,14 +181,29 @@
             </div>
         </p-card> -->
 
-        <!-- <button type="button" class="p-button p-button-raised p-button-success" (click)="">Submit Assessment</button> -->
-        <!-- <button
+    <!-- <button type="button" class="p-button p-button-raised p-button-success" (click)="">Submit Assessment</button> -->
+    <!-- <button
     class="min-w-full max-w-full p-3 flex align-items-center justify-content-center w-7 gap-2 border-round-sm bg-white-alpha-10 shadow-1 border-1 cursor-pointer hover:bg-white-alpha-20 transition-duration-200"
     style="backdropFilter: blur(27px); borderColor: rgba(255, 255, 255, 0.2);" (click)="submitAssessment()">
     <span class="font-medium text-white white-space-nowrap">Request Benefit</span>
     <i class="pi pi-send text-white"></i>
 </button> -->
     <!-- </form> -->
-    <button [style]="{ marginBottom: '20px' }" type="button" class="p-button p-button-info" (click)="redirectToAssessment()">Back</button>
-
+    <div style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+        <button
+            [style]="{ marginBottom: '20px' }"
+            type="button"
+            class="p-button p-button-info"
+            (click)="redirectToAssessment()"
+        >
+            Back
+        </button>
+        <button
+            type="button"
+            class="p-button p-button-raised p-button-success"
+            (click)="updateAssessment()"
+        >
+            Submit Assessment
+        </button>
+    </div>
 </p-card>

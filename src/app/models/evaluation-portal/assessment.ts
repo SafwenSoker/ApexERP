@@ -6,7 +6,7 @@ export class Assessment {
     id: number;
     fiscalYear: number;
     cycleId: number;
-    employeeId: number;
+    employeeId: string;
     submissionDate: Date;
     status: AssessmentStatus;
     deadlineSelfAssessment: Date;
@@ -25,7 +25,7 @@ export class Assessment {
         id: number,
         fiscalYear: number,
         cycleId: number,
-        employeeId: number,
+        employeeId: string,
         submissionDate: Date,
         status: AssessmentStatus,
         deadlineSelfAssessment: Date,
@@ -71,7 +71,7 @@ export class Assessment {
         return this.cycleId;
     }
 
-    getEmployeeId(): number {
+    getEmployeeId(): string {
         return this.employeeId;
     }
 

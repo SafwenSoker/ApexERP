@@ -20,7 +20,15 @@ export class AssessmentService {
     return this.http.get<Assessment>(`${this.API_URL}/${id}`).pipe(map((assessment) => { console.log(assessment); return assessment; }));
   }
 
-  createAssessment(): Observable<Assessment> {
-    return this.http.get<Assessment>(this.API_URL).pipe(map((assessment) => { console.log(assessment); return assessment; }));
+  createAssessment(assessment: Assessment): Observable<Assessment> {
+    return this.http.post<Assessment>(this.API_URL, assessment).pipe(map((createdAssessment) => { console.log(createdAssessment); return createdAssessment; }));
+  }
+
+  getAssessmentByEmployee(employeeId: string): Observable<Assessment[]> {
+    return this.http.get<Assessment[]>(`${this.API_URL}/employee/${employeeId}`).pipe(map((assessments) => { console.log(assessments); return assessments; }));
+  }
+
+  deleteAssessment(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.API_URL}/${id}`).pipe(map((response) => { console.log(response); return response; }));
   }
 }

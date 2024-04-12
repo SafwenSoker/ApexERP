@@ -21,53 +21,54 @@ private ngUnsubscribe = new Subject<void>();
     this.assessmentService.getAssessments().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (assessments) => {
         this.assessments = assessments;
+        console.log(assessments);
       }
     );
 
-    this.assessments = [
-        new Assessment(
-          1,
-          2024,
-          1,
-          1,
-          new Date('2024-04-01'),
-          AssessmentStatus.PENDING,
-          new Date('2024-04-15'),
-          new Date('2024-04-30'),
-          [
-            { id: 5, type: "technical", text: 'Technical Question 3', score: 4, managerScore: 3},
-            { id: 6, type: "technical", text: 'Technical Question 4', score: 3, managerScore: 1},
-            { id: 7, type: "observational", text: 'observational Question 3', score: 4, managerScore: 3},
-            { id: 8, type: "observational", text: 'observational Question 4', score: 3, managerScore: 1},
-          ],
-          10,
+    // this.assessments = [
+    //     new Assessment(
+    //       1,
+    //       2024,
+    //       1,
+    //       1,
+    //       new Date('2024-04-01'),
+    //       AssessmentStatus.PENDING,
+    //       new Date('2024-04-15'),
+    //       new Date('2024-04-30'),
+    //       [
+    //         { id: 5, type: "technical", text: 'Technical Question 3', score: 4, managerScore: 3},
+    //         { id: 6, type: "technical", text: 'Technical Question 4', score: 3, managerScore: 1},
+    //         { id: 7, type: "observational", text: 'observational Question 3', score: 4, managerScore: 3},
+    //         { id: 8, type: "observational", text: 'observational Question 4', score: 3, managerScore: 1},
+    //       ],
+    //       10,
           
-          'Meeting notes for Assessment 1',
-          new Date(),
-          new Date()
-        ),
-        new Assessment(
-          2,
-          2024,
-          1,
-          2,
-          new Date('2024-04-02'),
-          AssessmentStatus.IN_PROGRESS,
-          new Date('2024-04-16'),
-          new Date('2024-05-01'),
-          [
-            { id: 5, type: "technical", text: 'Technical Question 3', score: 4, managerScore: 3},
-            { id: 6, type: "technical", text: 'Technical Question 4', score: 3, managerScore: 1},
-            { id: 7, type: "observational", text: 'observational Question 3', score: 4, managerScore: 3},
-            { id: 8, type: "observational", text: 'observational Question 4', score: 3, managerScore: 1},
-          ],
+    //       'Meeting notes for Assessment 1',
+    //       new Date(),
+    //       new Date()
+    //     ),
+    //     new Assessment(
+    //       2,
+    //       2024,
+    //       1,
+    //       2,
+    //       new Date('2024-04-02'),
+    //       AssessmentStatus.IN_PROGRESS,
+    //       new Date('2024-04-16'),
+    //       new Date('2024-05-01'),
+    //       [
+    //         { id: 5, type: "technical", text: 'Technical Question 3', score: 4, managerScore: 3},
+    //         { id: 6, type: "technical", text: 'Technical Question 4', score: 3, managerScore: 1},
+    //         { id: 7, type: "observational", text: 'observational Question 3', score: 4, managerScore: 3},
+    //         { id: 8, type: "observational", text: 'observational Question 4', score: 3, managerScore: 1},
+    //       ],
           
-          11,
-          'Meeting notes for Assessment 2',
-          new Date(),
-          new Date()
-        ),
-      ];
+    //       11,
+    //       'Meeting notes for Assessment 2',
+    //       new Date(),
+    //       new Date()
+    //     ),
+    //   ];
 console.log(this.assessments);
   }
 

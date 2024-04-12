@@ -1,6 +1,7 @@
  import { Component, OnInit } from '@angular/core';
 import { Assessment, Question } from '../../../../models/evaluation-portal/assessment';
 import { AssessmentStatus } from '../../../../models/evaluation-portal/assessment-status';
+import { AssessmentService } from 'src/app/services/evaluation-portal/assessment.service';
 
 @Component({
   selector: 'app-assessment-form',
@@ -19,29 +20,33 @@ export class AssessmentFormComponent implements OnInit {
   ];
   
 
-  constructor() { }
+  constructor(private assessmentService: AssessmentService) { }
 
   ngOnInit(): void {
     this.initializeAssessment();
   }
-
+  private getTrimesterId(month: number): number {
+    return Math.floor((month + 3) / 3);
+  }
   initializeAssessment() {
+    const currentDate = new Date();
+
     this.assessment = {
-      id: 1,
-      fiscalYear: 2023,
-      cycleId: 1,
-      employeeId: 123,
-      submissionDate: new Date(),
+      fiscalYear: new Date().getFullYear(),
+      cycleId: this.getTrimesterId(currentDate.getMonth()),
+      employeeId: "e105ed86-bb83-4efd-99b0-7532b40a3282",
+      submissionDate: currentDate,
       status: AssessmentStatus.PENDING,
-      deadlineSelfAssessment: new Date('2024-12-31'),
-      deadlineManagerReview: new Date('2025-01-15'),
-      questions: [{ id: 1, type: "technical", text: 'Technical Question 1', score: 1, managerScore: 2 },
-      { id: 2, type: "technical", text: 'Technical Question 2', score: 2, managerScore: 3 },
-      { id: 3, type: "observational", text: 'Observational Question 1', score: 3, managerScore: 4 },
-      { id: 4, type: "observational", text: 'Observational Question 1', score: 4, managerScore: 5 },],
+      deadlineSelfAssessment:  new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000),
+      deadlineManagerReview: new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000),
+      questions: [{ id: 1, type: "technical", text: 'Technical Question 1' },
+      { id: 2, type: "technical", text: 'Technical Question 2'},
+      { id: 3, type: "observational", text: 'Observational Question 1'},
+      { id: 4, type: "observational", text: 'Observational Question 1'},],
+      relatedManager: 1,
       meetingNotes: '',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: currentDate,
+      updatedAt: currentDate,
 
       getId() {
         return this.id;
@@ -70,18 +75,9 @@ export class AssessmentFormComponent implements OnInit {
       getQuestions() {
         return this.questions;
       },
-      // getTechnicalQuestions() {
-      //   return this.technicalQuestions;
-      // },
-      // getObservationalQuestions() {
-      //   return this.observationalQuestions;
-      // },
-      // getManagerTechnicalResponses() {
-      //   return this.managerTechnicalResponses;
-      // },
-      // getManagerObservationalResponses() {
-      //   return this.managerObservationalResponses;
-      // },
+      getRelatedManager() {
+        return this.relatedManager;
+      },
       getMeetingNotes() {
         return this.meetingNotes;
       },
@@ -94,8 +90,17 @@ export class AssessmentFormComponent implements OnInit {
     } as Assessment;
   }
   
+  
   submitAssessment() {
-    // Add logic to handle form submission (e.g., send data to backend)
-    console.log('Assessment Submitted:', this.assessment);
+
+    this.assessmentService.createAssessment(this.assessment).subscribe((createdAssessment) => {
+      console.log('Assessment created:', createdAssessment);
+      // Handle success or any other logic
+    }, (error) => {
+      console.error('Error creating assessment:', error);
+      // Handle error
+    });
   }
+
+  
 }

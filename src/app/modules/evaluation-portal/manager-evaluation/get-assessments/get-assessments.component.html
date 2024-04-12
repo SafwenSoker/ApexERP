@@ -9,18 +9,18 @@
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="name">
-                    Name <p-sortIcon field="name"></p-sortIcon>
+                    ID <p-sortIcon field="name"></p-sortIcon>
                 </th>
                 <th pSortableColumn="Employee">
-                    Employee Name <p-sortIcon field="Employee"></p-sortIcon>
+                    Employee <p-sortIcon field="Employee"></p-sortIcon>
                 </th>
                 <th pSortableColumn="Team">
-                    Team <p-sortIcon field="Team"></p-sortIcon>
+                    Fiscal Year <p-sortIcon field="Team"></p-sortIcon>
                 </th>
                 <th pSortableColumn="Status">
                     Status <p-sortIcon field="status"></p-sortIcon>
                 </th>
-                <th>View</th>
+                <th>Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-assessment>
@@ -28,9 +28,9 @@
                 <td style="width: 15%; min-width: 5rem">
                     {{ assessment.id }}
                 </td>
-                <td style="width: 35%; min-width: 7rem">{{ assessment.employeeId }}</td>
+                <td style="width: 35%; min-width: 7rem">{{ assessment.userDto.userName }}</td>
                 <td style="width: 35%; min-width: 8rem">
-                    team
+                    {{assessment.fiscalYear}}
                 </td>
                 <td style="width: 35%; min-width: 8rem">
                     {{assessment.status}}
@@ -42,7 +42,8 @@
                         type="button"
                         icon="pi pi-search"
                         class="p-button p-component p-button-text p-button-icon-only"
-                    >></button>
+                        (click)="viewAssessment(assessment.id)"
+                    >View</button>
                 </td>
             </tr>
         </ng-template>

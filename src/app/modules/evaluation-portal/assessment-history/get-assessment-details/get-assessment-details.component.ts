@@ -42,6 +42,9 @@ export class GetAssessmentDetailsComponent implements OnInit {
                 .pipe(takeUntil(this.ngUnsubscribe))
                 .subscribe((assessment) => {
                     this.assessment = assessment;
+                    this.assessment.questions.forEach(question => {
+                        question.managerScore = question.score + 1;
+                    });
                 });
         });
 
