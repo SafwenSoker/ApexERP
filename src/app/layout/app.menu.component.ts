@@ -36,8 +36,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Workstation Portal',
                 items: [
-                    { label: 'My Timesheet', icon: 'pi pi-fw pi-calendar', routerLink: ['/workstation-portal/my-timesheet'] },
-                    { label: 'Document Editor', icon: 'pi pi-fw pi-file-edit', routerLink: ['/workstation-portal/document-editor'] },
+                    { label: 'Documents Explorer', icon: 'pi pi-fw pi-file-edit', routerLink: ['/workstation-portal/document-editor'] },
                 ]
             },
             {
@@ -53,10 +52,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Assessment', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/assessment'] },
                     { label: 'Assessment History', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/assessment-history'] },
-                    // { label: 'Self Assessment', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/self-assessment'] },
-                    { label: 'Manager Evaluation', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/manager-evaluation'] },
-                    { label: 'Development Plan', icon: 'pi pi-fw pi-chart-line', routerLink: ['/evaluation-portal/development-plan'] },
-                    { label: 'Follow-Up Meetings', icon: 'pi pi-fw pi-play', routerLink: ['/evaluation-portal/follow-up-meetings'] },
+                    { label: 'Manager Evaluation', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/manager-evaluation'] }
                 ]
             },
             {
