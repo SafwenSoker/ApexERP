@@ -11,16 +11,16 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+                    { path: '', loadChildren: () => import('./modules/self-service-portal/user-personal-information/user-personal-information.module').then(m => m.UserPersonalInformationModule)},
                     
                     { path: 'project-management-portal/my-projects', loadChildren: () => import('./modules/project-management-portal/projects/projects.module').then(m => m.ProjectsModule)},
                     
                     { path: 'employees-management-portal/employees', loadChildren: () => import('./modules/employees-management-portal/employees/employees.module').then(m => m.EmployeesModule)},
                     { path: 'employees-management-portal/roles', loadChildren: () => import('./modules/employees-management-portal/roles/roles.module').then(m => m.RolesModule)},
                     
-                    { path: 'self-service-portal/my-info', loadChildren: () => import('./modules/self-service-portal/user-personal-information/user-personal-information.module').then(m => m.UserPersonalInformationModule)},
-                    { path: 'self-service-portal/daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule)},
-                    { path: 'self-service-portal/benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule)},
+                    
+                    { path: 'daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule)},
+                    { path: 'benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule)},
                     
                     { path: 'workstation-portal/my-timesheet', loadChildren: () => import('./modules/workstation-portal/timesheet/timesheet.module').then(m => m.TimesheetModule)},
                     { path: 'workstation-portal/document-editor', loadChildren: () => import('./modules/workstation-portal/document-editor/document-editor.module').then(m => m.DocumentEditorModule)},
