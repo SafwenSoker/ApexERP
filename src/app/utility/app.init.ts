@@ -6,7 +6,7 @@ export function initializeKeycloak (keycloak: KeycloakService): () => Promise<bo
   return () =>
     keycloak.init({
       config: {
-        url: 'http://197.26.19.240:8180',
+        url: 'http://localhost:8180',
         realm: 'esprit',
         clientId: 'erp'
       },

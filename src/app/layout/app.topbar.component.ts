@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
+import { KeycloakService } from 'keycloak-angular';
 
 
 @Component({
@@ -21,5 +22,12 @@ export class AppTopBarComponent {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService,) { }
+    constructor(public layoutService: LayoutService,private keycloakService: KeycloakService) { }
+
+    logout(): void {
+        this.keycloakService.logout();
+    }
+    redirectToProfile() {
+        this.keycloakService.getKeycloakInstance().accountManagement();
+    }
 }
