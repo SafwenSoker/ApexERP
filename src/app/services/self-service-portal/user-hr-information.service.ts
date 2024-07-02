@@ -8,7 +8,7 @@ import { UserHRInfo } from 'src/app/models/self-service-portal/user-hrinfo.model
   providedIn: 'root'
 })
 export class UserHrInformationService {
-  API_URL = "http://197.26.19.240:10000"
+  API_URL = "http://localhost:10000"
   constructor(private http: HttpClient) { }
 
   getUserHRinfos(managerId: number): Observable<UserHRInfo[]> {

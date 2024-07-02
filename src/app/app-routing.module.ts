@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
+import { AuthGuard } from './utility/app.guard';
 
 
 
@@ -11,7 +12,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./modules/self-service-portal/user-personal-information/user-personal-information.module').then(m => m.UserPersonalInformationModule)},
+                    { path: '', loadChildren: () => import('./modules/self-service-portal/user-personal-information/user-personal-information.module').then(m => m.UserPersonalInformationModule), canActivate: [AuthGuard]},
                     
                     { path: 'project-management-portal/my-projects', loadChildren: () => import('./modules/project-management-portal/projects/projects.module').then(m => m.ProjectsModule)},
                     
@@ -19,8 +20,8 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     { path: 'employees-management-portal/roles', loadChildren: () => import('./modules/employees-management-portal/roles/roles.module').then(m => m.RolesModule)},
                     
                     
-                    { path: 'daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule)},
-                    { path: 'benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule)},
+                    { path: 'daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule), canActivate: [AuthGuard]},
+                    { path: 'benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule), canActivate: [AuthGuard]},
                     
                     { path: 'workstation-portal/my-timesheet', loadChildren: () => import('./modules/workstation-portal/timesheet/timesheet.module').then(m => m.TimesheetModule)},
                     { path: 'workstation-portal/document-editor', loadChildren: () => import('./modules/workstation-portal/document-editor/document-editor.module').then(m => m.DocumentEditorModule)},
