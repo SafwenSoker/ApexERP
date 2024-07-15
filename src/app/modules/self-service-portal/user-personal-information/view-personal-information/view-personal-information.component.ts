@@ -20,7 +20,7 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.userHRInfoService.getUserHRInfo().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (userHrInfo) => {
-        console.log(this.userHrInfo)
+        console.log(userHrInfo)
         this.userHrInfo = userHrInfo;
       }
     );

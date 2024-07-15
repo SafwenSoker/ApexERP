@@ -1,3 +1,5 @@
+import { Manager } from "./manager";
+
 export class UserHRInfo {
     
     cin: String;
@@ -5,19 +7,19 @@ export class UserHRInfo {
     startDate: Date;
     endDate: Date;
     note: Number;
-    managerId: String;
+    manager: Manager;
     userId: String;
     netSalary: Number;
     baseSalary: Number;
     cnssNumber: Number;
 
-    constructor(cin: String, numberOfHoursOff: Number, startDate: Date, endDate: Date, note: Number, managerId: String, userId: String, netSalary: Number, baseSalary: Number, cnssNumber: Number) {
+    constructor(cin: String, numberOfHoursOff: Number, startDate: Date, endDate: Date, note: Number, manager: Manager, userId: String, netSalary: Number, baseSalary: Number, cnssNumber: Number) {
         this.cin = cin;
         this.numberOfHoursOff = numberOfHoursOff;
         this.startDate = startDate;
         this.endDate = endDate;
         this.note = note;
-        this.managerId = managerId;
+        this.manager = manager;
         this.userId = userId;
         this.netSalary = netSalary;
         this.baseSalary = baseSalary;
@@ -39,8 +41,8 @@ export class UserHRInfo {
     getNote(){
         return this.note;
     }
-    getManagerId(){
-        return this.managerId;
+    getManager(){
+        return this.manager;
     }
     getUserId(){
         return this.userId;
