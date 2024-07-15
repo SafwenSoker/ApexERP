@@ -78,7 +78,7 @@
                         }
                     },
                     "options": {
-                        "browserTarget": "ApexERP:build",
+                        "browserTarget": "sakai-ng:build",
                         "proxyConfig": "src/proxy.conf.json"
                     },
                     "defaultConfiguration": "development"
