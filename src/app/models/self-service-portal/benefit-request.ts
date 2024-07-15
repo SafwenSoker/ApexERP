@@ -31,34 +31,3 @@ export class BenefitRequest {
     }
 }
 
-
-
-[
-    {
-        "id": 1,
-        "employee": {
-            "userId": null,
-            "firstName": "",
-            "lastName": "",
-            "userName": "admin",
-            "email": null,
-            "password": null,
-            "roles": [
-                {
-                    "id": "5c1dd980-6629-49fe-9d25-1e9b3057fdf9",
-                    "name": "default-roles-esprit",
-                    "permissions": null
-                }
-            ],
-            "active": true
-        },
-        "motivation": null,
-        "benefitDto": {
-            "id": 2,
-            "type": "MONEY",
-            "name": "Augmentation",
-            "backgroundImageUri": "https://media.istockphoto.com/id/1490133656/photo/young-woman-using-a-laptop-while-working-from-home.webp?s=1024x1024&w=is&k=20&c=mg4cZuZQfZcBi6KBU_JyNGSFzA2ZSCOexOjep4TazLc=",
-            "description": "string"
-        }
-    }
-]
