@@ -25,14 +25,14 @@ export class AppMenuComponent implements OnInit {
             //         { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/'] }
             //     ]
             // },
-            // {
-            //     label: 'Project Management Portal',
-            //     items: [
-            //         {
-            //             label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
-            //         }
-            //     ]
-            // },
+            {
+                label: 'Project Management Portal',
+                items: [
+                    {
+                        label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
+                    }
+                ]
+            },
             // {
             //     label: 'Workstation Portal',
             //     items: [
@@ -55,13 +55,13 @@ export class AppMenuComponent implements OnInit {
             //         { label: 'Manager Evaluation', icon: 'pi pi-fw pi-home', routerLink: ['/evaluation-portal/manager-evaluation'] }
             //     ]
             // },
-            // {
-            //     label: 'Employees Management Portal',
-            //     items: [
-            //         { label: 'Employees', icon: 'pi pi-fw pi-users', routerLink: ['/employees-management-portal/employees'] },
-            //         { label: 'Roles', icon: 'pi pi-fw pi-shield', routerLink: ['/employees-management-portal/roles'] }
-            //     ]
-            // },
+            {
+                label: 'Employees Management Portal',
+                items: [
+                    { label: 'Employees', icon: 'pi pi-fw pi-users', routerLink: ['/employees-management-portal/employees'] },
+                    { label: 'Roles', icon: 'pi pi-fw pi-shield', routerLink: ['/employees-management-portal/roles'] }
+                ]
+            },
             // {
             //     label: 'UI Components',
             //     items: [
