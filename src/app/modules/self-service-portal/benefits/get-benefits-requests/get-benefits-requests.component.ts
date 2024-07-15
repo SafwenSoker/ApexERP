@@ -27,7 +27,7 @@ export class GetBenefitsRequestsComponent implements OnInit, OnDestroy {
   constructor(private benefitsService: BenefitsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.reportsSkeleton = Array.from({ length: 5 }).map((_, i) => `Item #${i}`);
+    this.benefitsRequestsSkeleton = Array.from({ length: 5 }).map((_, i) => `Item #${i}`);
     this.benefitsService.getBenefitsRequestsByEmployee().subscribe((benefitsRequests) => {
       console.log("benefitsRequests", benefitsRequests);
       this.benefitsRequests = benefitsRequests;
