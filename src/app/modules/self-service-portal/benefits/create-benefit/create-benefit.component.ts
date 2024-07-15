@@ -10,7 +10,7 @@ import { BenefitsService } from 'src/app/services/self-service-portal/benefits.s
 })
 export class CreateBenefitComponent implements OnInit {
   @Input() createBenefitDialog: boolean = false;
-  @Output() created = new EventEmitter<boolean>();
+  @Output() newBenefitCreated = new EventEmitter<boolean>();
 
   submitted: boolean = false;
   benefitTypes: any[] = [];
@@ -49,11 +49,11 @@ export class CreateBenefitComponent implements OnInit {
         response => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Benefit created successfully' });
           this.hideDialog();
-          this.created.emit(true);
+          this.newBenefitCreated.emit(true);
         },
         error => {
           this.hideDialog();
-          this.created.emit(false);
+          this.newBenefitCreated.emit(false);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to create benefit' });
         }
       );
