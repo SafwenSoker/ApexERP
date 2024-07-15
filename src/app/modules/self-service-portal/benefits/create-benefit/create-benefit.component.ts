@@ -44,7 +44,7 @@ export class CreateBenefitComponent implements OnInit {
     this.submitted = true;
 
     if (this.benefit.name && this.benefit.description && this.benefit.type && this.benefit.imageBackgroundURI) {
-      this.benefitsService.createBenefit(this.benefit).subscribe(
+      this.benefitsService.newBenefit(this.benefit).subscribe(
         response => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Benefit created successfully' });
           this.hideDialog();
