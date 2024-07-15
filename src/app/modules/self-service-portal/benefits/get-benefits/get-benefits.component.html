@@ -1,4 +1,5 @@
 <div *ngIf="manager;" class="grid flex justify-content-evenly flex-wrap card-container">
+    <button pButton pRipple label="Create Benefit" icon="pi pi-plus" (click)="createBenefitDialog = true"></button>
     <p-tabMenu class="col-12 md:col-12 lg:col-12 xl-col-12" [scrollable]="true" [model]="items"
         [style]="{'font-size': '11px'}"></p-tabMenu>
 </div>
@@ -6,3 +7,4 @@
     <app-get-benefit class="col-3 p-2 border-round-xl benefit" [benefit]="benefit"
         *ngFor="let benefit of benefits"></app-get-benefit>
 </div>
+<app-create-benefit [createBenefitDialog]="createBenefitDialog"></app-create-benefit>
