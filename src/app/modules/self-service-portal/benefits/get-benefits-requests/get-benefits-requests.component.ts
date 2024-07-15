@@ -27,6 +27,7 @@ export class GetBenefitsRequestsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.benefitsService.getBenefitsRequestsByEmployee().subscribe((benefitsRequests) => {
+      console.log("benefitsRequests", benefitsRequests);
       this.benefitsRequests = benefitsRequests;
     } );
 
