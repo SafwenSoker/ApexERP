@@ -33,6 +33,17 @@ export class GetBenefitsComponent implements OnInit, OnDestroy {
     ];
   }
 
+  newBenefitCreated(event: boolean) {
+    if (event) {
+      this.benefitsService.getBenefits().pipe(
+        takeUntil(this.ngUnsubscribe)).subscribe(
+          (benefits) => {
+            this.benefits = benefits;
+          }
+        );
+    }
+  }
+
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();

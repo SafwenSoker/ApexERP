@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { BenefitType } from 'src/app/models/self-service-portal/benefit-type';
 import { BenefitsService } from 'src/app/services/self-service-portal/benefits.service';
@@ -10,6 +10,8 @@ import { BenefitsService } from 'src/app/services/self-service-portal/benefits.s
 })
 export class CreateBenefitComponent implements OnInit {
   @Input() createBenefitDialog: boolean = false;
+  @Output() created = new EventEmitter<boolean>();
+
   submitted: boolean = false;
   benefitTypes: any[] = [];
 
@@ -42,15 +44,16 @@ export class CreateBenefitComponent implements OnInit {
 
   onAddBenefit() {
     this.submitted = true;
-    console.log(this.benefit)
     if (this.benefit.name && this.benefit.description && this.benefit.type && this.benefit.backgroundImageUri) {
       this.benefitsService.newBenefit(this.benefit).subscribe(
         response => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Benefit created successfully' });
           this.hideDialog();
+          this.created.emit(true);
         },
         error => {
           this.hideDialog();
+          this.created.emit(false);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to create benefit' });
         }
       );

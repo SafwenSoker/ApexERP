@@ -7,4 +7,4 @@
     <app-get-benefit class="col-3 p-2 border-round-xl benefit" [benefit]="benefit"
         *ngFor="let benefit of benefits"></app-get-benefit>
 </div>
-<app-create-benefit [createBenefitDialog]="createBenefitDialog"></app-create-benefit>
+<app-create-benefit [createBenefitDialog]="createBenefitDialog"  (newBenefitCreated)="newBenefitCreated($event)></app-create-benefit>
