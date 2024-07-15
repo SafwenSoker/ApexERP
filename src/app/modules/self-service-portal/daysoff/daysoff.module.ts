@@ -16,6 +16,9 @@ import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     GetDaysoffComponent,
@@ -31,7 +34,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FormsModule,
     DividerModule,
     DropdownModule,
-    InputTextareaModule
-  ]
+    InputTextareaModule,
+    ConfirmDialogModule
+  ],
+  providers: [MessageService, ConfirmationService],
+
+
 })
 export class DaysoffModule { }
