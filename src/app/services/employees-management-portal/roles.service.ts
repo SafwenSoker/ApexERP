@@ -9,7 +9,7 @@ import { Employee } from 'src/app/models/user-management-portal/employee.model';
 })
 export class RolesService {
 
-  API_URL="http://197.26.19.240:10000/admin/realms/analytix/roles"
+  API_URL="http://localhost:9095/admin/realms/analytix/roles"
   constructor(private http: HttpClient) { }
 
   headers = new HttpHeaders({
