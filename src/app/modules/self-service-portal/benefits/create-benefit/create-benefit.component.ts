@@ -42,7 +42,7 @@ export class CreateBenefitComponent implements OnInit {
 
   onAddBenefit() {
     this.submitted = true;
-
+    console.log(this.benefit)
     if (this.benefit.name && this.benefit.description && this.benefit.type && this.benefit.imageBackgroundURI) {
       this.benefitsService.newBenefit(this.benefit).subscribe(
         response => {
@@ -50,6 +50,7 @@ export class CreateBenefitComponent implements OnInit {
           this.hideDialog();
         },
         error => {
+          this.hideDialog();
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to create benefit' });
         }
       );
