@@ -15,7 +15,7 @@
             <span class="text-500">since last visit</span>
         </div>
     </div>
-    <div class="col-12 lg:col-6 xl:col">
+    <div *ngIf="daysOffTaken" class="col-12 lg:col-6 xl:col">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
@@ -31,7 +31,7 @@
             <span class="text-500">in the last month</span>
         </div>
     </div>
-    <div class="col-12 lg:col-6 xl:col">
+    <div *ngIf="lastDayOff" class="col-12 lg:col-6 xl:col">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
@@ -48,7 +48,7 @@
             <span class="text-900 font-medium text-xl">{{lastDayOff.reason}}</span>
         </div>
     </div>
-    <div class="col-12 lg:col-6 xl:col">
+    <div *ngIf="lastDayOffRequest" class="col-12 lg:col-6 xl:col">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
