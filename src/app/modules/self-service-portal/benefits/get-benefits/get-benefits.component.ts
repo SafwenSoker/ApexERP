@@ -15,6 +15,7 @@ export class GetBenefitsComponent implements OnInit, OnDestroy {
   items!: MenuItem[];
   manager: boolean = true;
   private ngUnsubscribe = new Subject<void>();
+  createBenefitDialog: boolean = false;
 
   constructor(private benefitsService: BenefitsService) { }
 

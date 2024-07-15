@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { BenefitType } from 'src/app/models/self-service-portal/benefit-type';
 import { BenefitsService } from 'src/app/services/self-service-portal/benefits.service';
 
 @Component({
