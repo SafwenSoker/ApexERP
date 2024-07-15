@@ -12,13 +12,13 @@ export class EmployeesService {
 
   constructor(private http: HttpClient) { }
 
-  API_URL="http:/localhost:9095/admin/realms/analytix/users"
+  API_URL="http://localhost:9095/admin/realms/analytix/users"
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })
   getEmployees():Observable<Employee[]>{    
-    return this.http.get<Employee[]>(this.API_URL+'').pipe(
+    return this.http.get<Employee[]>(this.API_URL).pipe(
       map((result) => {console.log(result); return result;})
     );
   }
