@@ -8,7 +8,7 @@ import { UserHRInfo } from 'src/app/models/self-service-portal/user-hrinfo.model
   providedIn: 'root'
 })
 export class UserHrInformationService {
-  API_URL = "http://localhost:9090";
+  API_URL = "http://localhost:8080";
   corsHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
