@@ -21,6 +21,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { initializeKeycloak } from './utility/app.init';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
+import { CorsInterceptor } from './utility/intercepter';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
         StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([]),
         KeycloakAngularModule
-        
+
     ],
     providers: [
         {
@@ -40,6 +42,11 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
             useFactory: initializeKeycloak,
             multi: true,
             deps: [KeycloakService]
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CorsInterceptor,
+            multi: true
         },
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,
