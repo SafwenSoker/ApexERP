@@ -33,7 +33,7 @@ export class GetDaysoffComponent implements OnInit, OnDestroy {
         this.daysOffTakenLastMonth = this.calculateTotalHours(this.lastMonthRequests);
         this.lastDayOff = this.getLastDayOff();
         this.lastDayOffRequest = this.getLastDayOffRequest();
-        console.log(this.lastDayOff)
+        console.log("last dayoff: ",this.lastDayOff)
       }
     );  
   }
