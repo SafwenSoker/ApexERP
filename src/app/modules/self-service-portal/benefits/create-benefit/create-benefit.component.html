@@ -1,3 +1,6 @@
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"
+    [showTransformOptions]="'translateX(100%)'"></p-toast>
+
 <p-dialog [(visible)]="createBenefitDialog"
     [style]="{ width: '50vw', height: '30vh','border-radius': '12px 12px 0 0', 'background-color': '#000000'}"
     header="Create Benefit" [modal]="true" styleClass="p-fluid">
@@ -18,7 +21,7 @@
         </div>
         <div class="field">
             <label for="imageBackgroundURI">Image Background URI</label>
-            <textarea id="imageBackgroundURI" pInputTextarea [(ngModel)]="benefit.imageBackgroundURI" required rows="3"
+            <textarea id="imageBackgroundURI" pInputTextarea [(ngModel)]="benefit.imageBackgroundUri" required rows="3"
                 cols="20"></textarea>
         </div>
     </ng-template>
