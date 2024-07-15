@@ -42,7 +42,7 @@ export class BenefitsService {
     return this.http.post(`${this.API_URL}/benefitRequest`, request);
   }
   getBenefitsRequestsByEmployee():Observable<BenefitRequest[]>{
-    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefits-requests/benefitRequestbyManager/e105ed86-bb83-4efd-99b0-7532b40a3282`);
+    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefitRequestByEmployee/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}a3282`);
   }
 
   getBenefitsRequestsByManager():Observable<BenefitRequest[]>{

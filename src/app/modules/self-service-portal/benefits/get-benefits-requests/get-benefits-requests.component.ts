@@ -26,14 +26,13 @@ export class GetBenefitsRequestsComponent implements OnInit, OnDestroy {
   constructor(private benefitsService: BenefitsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.benefitsService.getBenefitsRequestsByManager().subscribe((benefitsRequests) => {
-      console.log("benefitsRequests", benefitsRequests);
+    this.benefitsService.getBenefitsRequestsByEmployee().subscribe((benefitsRequests) => {
       this.benefitsRequests = benefitsRequests;
     } );
 
     this.items = [
       { label: 'Benefits', routerLink: '/self-service-portal/benefits', styleClass: "flex-1 align-items-center justify-content-center text-center" },
-      { label: 'Benefits Requests', routerLink: '/self-service-portal/benefits/requests', styleClass: "flex-1 align-items-center justify-content-center text-center" },
+      { label: 'My Benefits Requests', routerLink: '/self-service-portal/benefits/requests', styleClass: "flex-1 align-items-center justify-content-center text-center" },
     ];
   }
 
