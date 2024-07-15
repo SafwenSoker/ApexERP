@@ -3,7 +3,7 @@
         [style]="{'font-size': '11px'}"></p-tabMenu>
 </div>
 
-<div *ngIf="(benefitsRequests | async) as reports; else loadingSkeletonBlock" class="card">
+<div *ngIf="benefitsRequests; else loadingSkeletonBlock" class="card">
     <p-toast></p-toast>
     <p-table #dt [value]="benefitsRequests" [rows]="10" [paginator]="true"
         [globalFilterFields]="['id', 'employee.name', 'benefit.name']" [tableStyle]="{ 'min-width': '75rem' }"
