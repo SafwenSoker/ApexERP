@@ -9,7 +9,7 @@ import { Benefit } from 'src/app/models/self-service-portal/benefit.class';
 })
 export class BenefitsService {
 
-  API_URL = "http://localhost:10000/self-service"
+  API_URL = "http://localhost:8080/self-service"
   constructor(private http: HttpClient) { }
 
   getBenefits(): Observable<Benefit[]>{

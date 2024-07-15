@@ -8,7 +8,7 @@ import { DaysOffRequest } from 'src/app/models/self-service-portal/days-off-requ
 })
 export class DayoffsService {
 
-  API_URL ="http://localhost:9090/self-service/dayoffrequest"
+  API_URL ="http://localhost:8080/self-service/dayoffrequest"
   constructor(private http: HttpClient) { }
 
   newDaysOffRequest(daysOffRequest: DaysOffRequest){
