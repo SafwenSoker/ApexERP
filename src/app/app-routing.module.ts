@@ -20,8 +20,8 @@ import { AuthGuard } from './utility/app.guard';
                     { path: 'employees-management-portal/roles', loadChildren: () => import('./modules/employees-management-portal/roles/roles.module').then(m => m.RolesModule)},
                     
                     
-                    { path: 'daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule), canActivate: [AuthGuard]},
-                    { path: 'benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule), canActivate: [AuthGuard]},
+                    { path: 'self-service-portal/daysoff', loadChildren: () => import('./modules/self-service-portal/daysoff/daysoff.module').then(m => m.DaysoffModule), canActivate: [AuthGuard]},
+                    { path: 'self-service-portal/benefits', loadChildren: () => import('./modules/self-service-portal/benefits/benefits.module').then(m => m.BenefitsModule), canActivate: [AuthGuard]},
                     
                     { path: 'workstation-portal/my-timesheet', loadChildren: () => import('./modules/workstation-portal/timesheet/timesheet.module').then(m => m.TimesheetModule)},
                     { path: 'workstation-portal/document-editor', loadChildren: () => import('./modules/workstation-portal/document-editor/document-editor.module').then(m => m.DocumentEditorModule)},
