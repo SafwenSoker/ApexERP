@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { GetBenefitsComponent } from './get-benefits/get-benefits.component';
 import { GetBenefitComponent } from './get-benefit/get-benefit.component';
@@ -37,6 +37,7 @@ import { DropdownModule } from 'primeng/dropdown';
     BenefitsRoutingModule,
     DialogModule,
     ButtonModule,
+    FormsModule,
     ReactiveFormsModule,
     EditorModule,
     TabMenuModule,
