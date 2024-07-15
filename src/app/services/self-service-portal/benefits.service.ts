@@ -46,7 +46,7 @@ export class BenefitsService {
   }
 
   getBenefitsRequestsByManager():Observable<BenefitRequest[]>{
-    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefitRequestByManager/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}`);
+    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefitRequestByEmployee/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}`);
   }
 
   acceptBenefitRequest(id: string){
