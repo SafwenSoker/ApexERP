@@ -27,15 +27,10 @@ export class GetBenefitsRequestsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.benefitsService.getBenefitsRequestsByManager().subscribe((benefitsRequests) => {
+      console.log("benefitsRequests", benefitsRequests);
       this.benefitsRequests = benefitsRequests;
     } );
 
-    // this.benefitsRequests = [
-    //   new BenefitRequest(1,212,"LKSDJFLSKDJF",new Benefit(1,"Money",BenefitType.MONEY, "description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg")),
-    //   new BenefitRequest(2,212,"LKSDJFLSKD",new Benefit(1,"Money",BenefitType.MONEY, "description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg")),
-    //   new BenefitRequest(3,212,"LKSDJFLJF",new Benefit(1,"Money",BenefitType.MONEY, "description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg")),
-    //   new BenefitRequest(4,212,"LKSSKDJF",new Benefit(1,"Money",BenefitType.MONEY, "description","https://www.primefaces.org/cdn/primeflex/images/landing/style-cards/glassmorphic-bg.jpeg")),
-    // ];
     this.items = [
       { label: 'Benefits', routerLink: '/self-service-portal/benefits', styleClass: "flex-1 align-items-center justify-content-center text-center" },
       { label: 'Benefits Requests', routerLink: '/self-service-portal/benefits/requests', styleClass: "flex-1 align-items-center justify-content-center text-center" },
