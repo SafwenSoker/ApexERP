@@ -1,25 +1,6 @@
 <p-dialog [(visible)]="createBenefitDialog"
     [style]="{ width: '50vw', height: '30vh','border-radius': '12px 12px 0 0', 'background-color': '#000000'}"
     header="Create Benefit" [modal]="true" styleClass="p-fluid">
-    <div class="field">
-        <label for="name">Name</label>
-        <input type="text" pInputText id="name" [(ngModel)]="benefit.name" required autofocus />
-        <small class="p-error" *ngIf="submitted && !benefit.name">Name is required.</small>
-    </div>
-    <div class="field">
-        <label for="description">Description</label>
-        <textarea id="description" pInputTextarea [(ngModel)]="benefit.description" required rows="3"
-            cols="20"></textarea>
-    </div>
-    <div class="field">
-        <label for="type">Type</label>
-        <p-dropdown [options]="benefitTypes" [(ngModel)]="benefit.type" placeholder="Select a Type"></p-dropdown>
-    </div>
-    <div class="field">
-        <label for="imageBackgroundURI">Image Background URI</label>
-        <textarea id="imageBackgroundURI" pInputTextarea [(ngModel)]="benefit.imageBackgroundURI" required rows="3"
-            cols="20"></textarea>
-    </div>
     <ng-template pTemplate="content">
         <div class="field">
             <label for="name">Name</label>
