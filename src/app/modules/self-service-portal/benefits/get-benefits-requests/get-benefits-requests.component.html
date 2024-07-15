@@ -35,20 +35,20 @@
             <tr>
                 <td>{{ benefitRequest.id }}</td>
 
-                <td>{{ benefitRequest.employeeId}}</td>
-                <td>{{ benefitRequest.benefit.name }}</td>
+                <td>{{ benefitRequest.employee.username}}</td>
+                <td>{{ benefitRequest.benefitDto.name }}</td>
                 <td>
-                    <div *ngIf="benefitRequest.benefit.type === benefitType.MONEY">
+                    <div *ngIf="benefitRequest.benefitDto.type === benefitType.MONEY">
                         <i class="pi pi-money-bill"></i>
                     </div>
-                    <div *ngIf="benefitRequest.benefit.type === benefitType.TROPHY">
+                    <div *ngIf="benefitRequest.benefitDto.type === benefitType.TROPHY">
                         <i class="pi pi-fw pi-filter-fill"></i>
                     </div>
-                    <div *ngIf="benefitRequest.benefit.type === benefitType.PROMOTION">
+                    <div *ngIf="benefitRequest.benefitDto.type === benefitType.PROMOTION">
                         <i class="pi pi-angle-double-up"></i>
                     </div>
                 </td>
-                <td><img [src]=benefitRequest.benefit.backgroundImage [alt]="benefitRequest.name" width="50"
+                <td><img [src]=benefitRequest.benefitDto.backgroundImageUri [alt]="benefitRequest.benefitDto.name" width="50"
                         class="shadow-4" /></td>
                 <td>
                     <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary mr-2"
