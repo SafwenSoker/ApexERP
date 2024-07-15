@@ -21,11 +21,13 @@ export class GetBenefitsRequestsComponent implements OnInit, OnDestroy {
   manager: boolean = true;
   showMotivationDialogVisible: boolean=false;
   selectedBenefitRequestMotivation: String="";
+  benefitsRequestsSkeleton: any[] | undefined;
   private ngUnsubscribe = new Subject<void>();
 
   constructor(private benefitsService: BenefitsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.reportsSkeleton = Array.from({ length: 5 }).map((_, i) => `Item #${i}`);
     this.benefitsService.getBenefitsRequestsByEmployee().subscribe((benefitsRequests) => {
       console.log("benefitsRequests", benefitsRequests);
       this.benefitsRequests = benefitsRequests;

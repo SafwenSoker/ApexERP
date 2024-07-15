@@ -23,6 +23,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InplaceModule } from 'primeng/inplace';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputTextModule,
     InplaceModule,
     DropdownModule,
-    InputTextareaModule
+    InputTextareaModule,
+    SkeletonModule
   ],
   providers:[
     ConfirmationService,

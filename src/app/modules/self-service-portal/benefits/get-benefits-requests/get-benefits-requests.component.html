@@ -3,7 +3,7 @@
         [style]="{'font-size': '11px'}"></p-tabMenu>
 </div>
 
-<div class="card">
+<div *ngIf="(benefitsRequests | async) as reports; else loadingSkeletonBlock" class="card">
     <p-toast></p-toast>
     <p-table #dt [value]="benefitsRequests" [rows]="10" [paginator]="true"
         [globalFilterFields]="['id', 'employee.name', 'benefit.name']" [tableStyle]="{ 'min-width': '75rem' }"
@@ -68,6 +68,31 @@
         </ng-template>
     </p-table>
 </div>
+<ng-template #loadingSkeletonBlock>
+    <div class="card">
+        <p-table [value]="benefitsRequestsSkeleton" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                    <th pSortableColumn="employeeName">Employee Name <p-sortIcon field="employeeName"></p-sortIcon></th>
+                    <th pSortableColumn="benefitName">Benefit Name <p-sortIcon field="benefitName"></p-sortIcon></th>
+                    <th pSortableColumn="benefitType">Benefit Type <p-sortIcon field="generatibenefitType"></p-sortIcon></th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                    <td><p-skeleton /></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</ng-template> 
+
+
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 <p-dialog [(visible)]="showMotivationDialogVisible">
 
