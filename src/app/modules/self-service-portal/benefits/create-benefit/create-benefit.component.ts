@@ -17,7 +17,7 @@ export class CreateBenefitComponent implements OnInit {
     name: '',
     description: '',
     type: '',
-    imageBackgroundUri: ''
+    backgroundImageUri: ''
   };
 
   constructor(private benefitsService: BenefitsService, private messageService: MessageService) { }
@@ -36,14 +36,14 @@ export class CreateBenefitComponent implements OnInit {
       name: '',
       description: '',
       type: '',
-      imageBackgroundUri: ''
+      backgroundImageUri: ''
     };
   }
 
   onAddBenefit() {
     this.submitted = true;
     console.log(this.benefit)
-    if (this.benefit.name && this.benefit.description && this.benefit.type && this.benefit.imageBackgroundUri) {
+    if (this.benefit.name && this.benefit.description && this.benefit.type && this.benefit.backgroundImageUri) {
       this.benefitsService.newBenefit(this.benefit).subscribe(
         response => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Benefit created successfully' });
