@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { Observable } from 'rxjs';
 import { BenefitRequest } from 'src/app/models/self-service-portal/benefit-request';
 import { Benefit } from 'src/app/models/self-service-portal/benefit.class';
@@ -10,7 +11,7 @@ import { Benefit } from 'src/app/models/self-service-portal/benefit.class';
 export class BenefitsService {
 
   API_URL = "http://localhost:8080/self-service"
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private keycloakService: KeycloakService) { }
 
   getBenefits(): Observable<Benefit[]>{
     return this.http.get<Benefit[]>(`${this.API_URL}/benefit`);
@@ -45,7 +46,7 @@ export class BenefitsService {
   }
 
   getBenefitsRequestsByManager():Observable<BenefitRequest[]>{
-    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefits-requests/benefitRequestByEmployee/e105ed86-bb83-4efd-99b0-7532b40a3282`);
+    return this.http.get<BenefitRequest[]>(`${this.API_URL}/benefitRequestByManager/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}`);
   }
 
   acceptBenefitRequest(id: string){
