@@ -18,19 +18,21 @@ export class EmployeesService {
     'Content-Type': 'application/json',
   })
   getEmployees():Observable<Employee[]>{    
+    console.log("getEmployees")
     return this.http.get<Employee[]>(this.API_URL).pipe(
       map((result) => {console.log(result); return result;})
     );
   }
 
   getEmployee(id: string){
+    console.log("getEmployee")
     return this.http.get<Employee>(this.API_URL+'/'+id).pipe(
       map((result) => {console.log(result); return result;})
     );
   }
 
   addEmployee(user: Employee): Observable<Employee>{
-    
+    console.log("addEmployee")
     const userKeycloakRepresentation = {
       userName: user.userName,
       firstName: user.firstName,
@@ -45,6 +47,7 @@ export class EmployeesService {
 
 
   updateEmployee(user: Employee): Observable<any>{
+    console.log("updateEmployee")
     let body = {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -56,19 +59,21 @@ export class EmployeesService {
   }
 
   deleteEmployee(userId: string){
-    console.log(userId)
+    console.log("deleteEmployee")
     return this.http.delete(this.API_URL+'/'+userId);
   }
 
 
   
   getEmployeeRoleMappings(id: string): Observable<Role[]>{
+    console.log("getEmployeeRoleMappings")
     return this.http.get<{clientMappings: Role[], realmMappings: Role[]}>(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/role-mappings`).pipe(
       map((result) => {return result.realmMappings;})
     );
   }
 
   addEmployeeRoleMappings(id: string,roles: Role[]){
+    console.log("addEmployeeRoleMappings")
     let rolesRepresentation = [];
     for(let role of roles) {
       rolesRepresentation.push({id: role.id, name: role.name, composite: role.composite, containerId: role.containerId, description: role.description, clientRole: role.clientRole})
@@ -77,6 +82,7 @@ export class EmployeesService {
   }
 
   deleteEmployeeRoleMappings(id: string, roles: Role[]){
+    console.log("deleteEmployeeRoleMappings")
     let rolesRepresentation = [];
     for(let role of roles) {
       rolesRepresentation.push({id: role.id, name: role.name, composite: role.composite, containerId: role.containerId, description: role.description, clientRole: role.clientRole})
@@ -85,10 +91,12 @@ export class EmployeesService {
   
   }
   addEmployeeToGroup(id: string,groupId: string){
+    console.log("addEmployeeToGroup")
     return this.http.put(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/groups/${groupId}`,null,{headers: this.headers});
   }
 
   deleteEmployeeFromGroup(id: string,groupId: string){
+    console.log("deleteEmployeeFromGroup")
     return this.http.delete(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/groups/${groupId}`,{headers: this.headers});
   }
 
