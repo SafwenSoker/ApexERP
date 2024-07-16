@@ -1,5 +1,5 @@
-<p-toast></p-toast>
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"
+    [showTransformOptions]="'translateX(100%)'"></p-toast><p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 <p-table #dt2 [value]="employees" dataKey="id" [rows]="5" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="[5,10, 25,50]" editMode="row" [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
