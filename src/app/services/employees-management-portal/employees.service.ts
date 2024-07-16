@@ -12,7 +12,7 @@ export class EmployeesService {
 
   constructor(private http: HttpClient) { }
 
-  API_URL="http://localhost:9095/admin/realms/analytix/users"
+  API_URL="http://localhost:8080/user-mgmt/admin/realms/analytix/users"
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
