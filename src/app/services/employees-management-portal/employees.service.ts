@@ -40,7 +40,7 @@ export class EmployeesService {
       credentials: [{type: 'password', value: user.password, temporary: false}],
     }
 
-    return this.http.post<Employee>(this.API_URL+'/',userKeycloakRepresentation,{headers:this.headers});
+    return this.http.post<Employee>(this.API_URL,userKeycloakRepresentation,{headers:this.headers});
   }
 
 
