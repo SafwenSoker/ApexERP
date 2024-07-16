@@ -19,10 +19,8 @@ export class CreateRoleComponent implements OnInit,OnDestroy{
     });
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
   submitted: boolean = false;
   roleDialog: boolean = false;
