@@ -25,14 +25,13 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
     private rolesService: RolesService
   ){
     this.employeeForm = this.fb.group({
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required],
-      enabled: [true, Validators.required],
+      active: [true, Validators.required],
       email: [''],
       firstName: [''],
       lastName: ['']
     });
-
   }
 
   
@@ -58,12 +57,12 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
 
   onAddEmployee() {
     let employee: Employee = {};
-    employee.userName = this.employeeForm.value.username;
+    employee.userName = this.employeeForm.value.userName;
     employee.password = this.employeeForm.value.password;
     employee.firstName = this.employeeForm.value.firstName;
     employee.lastName = this.employeeForm.value.lastName;
     employee.email = this.employeeForm.value.email;
-    employee.active = this.employeeForm.value.enabled;
+    employee.active = this.employeeForm.value.active;
     employee.roles = this.employee.roles;
     this.employee.roles = [];
     this.employee.password = this.employeeForm.value.password;
@@ -71,6 +70,7 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
     // check if user already exists
     this.employeesService.getEmployees().subscribe(employees => {
       let userExists = employees.find(u => u.userName === employee.userName);
+      console.log("User exists:",userExists)
       if (!userExists) {
         console.log("User Does Not Exists");
         this.employeesService.addEmployee(employee).subscribe(e => {
