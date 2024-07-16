@@ -4,7 +4,8 @@
 </div>
 
 <div *ngIf="benefitsRequests; else loadingSkeletonBlock" class="card">
-    <p-toast></p-toast>
+    <p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"
+    [showTransformOptions]="'translateX(100%)'"></p-toast>
     <p-table #dt [value]="benefitsRequests" [rows]="10" [paginator]="true"
         [globalFilterFields]="['id', 'employee.name', 'benefit.name']" [tableStyle]="{ 'min-width': '75rem' }"
         [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

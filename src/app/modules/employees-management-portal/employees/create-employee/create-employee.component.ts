@@ -50,7 +50,17 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
   showAddEmployee() {
     this.visible = true;
     this.rolesService.getRoles().subscribe(roles => {
-      this.roles = roles;
+      this.roles = roles.map(role => {
+        if (role.name.endsWith("esprit")) {
+          // Remove the suffix from the name and return the updated role object
+          return {
+            ...role,
+            name: role.name.slice(0, -"esprit".length)
+          };
+        }
+        // Return the role object as is if the name does not have the suffix
+        return role;
+      });
     });
 
   }
@@ -70,7 +80,6 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
     // check if user already exists
     this.employeesService.getEmployees().subscribe(employees => {
       let userExists = employees.find(u => u.userName === employee.userName);
-      console.log("User exists:",userExists)
       if (!userExists) {
         console.log("User Does Not Exists");
         this.employeesService.addEmployee(employee).subscribe(e => {
