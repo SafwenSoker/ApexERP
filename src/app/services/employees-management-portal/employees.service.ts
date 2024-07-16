@@ -36,7 +36,7 @@ export class EmployeesService {
       lastName: user.lastName,
       email: user.email,
       emailVerified: true,
-      enabled: true,
+      isActive: true,
       credentials: [{type: 'password', value: user.password, temporary: false}],
     }
 
