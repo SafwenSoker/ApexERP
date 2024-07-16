@@ -13,7 +13,7 @@ interface IEmployee{
 })
 export class ProjectsService {
 
-  API_URL = "http://197.26.19.240:10000/project-service/projects"
+  API_URL = "http://localhost:9091/project-service/projects"
   constructor(private http: HttpClient) { }
 
   getProjects(): Observable<Project[]> {

@@ -12,7 +12,7 @@ interface UserDto{
 })
 export class GroupsOfTasksService {
 
-  API_URL = "http://197.26.19.240:10000/project-service/task-groups"
+  API_URL = "http://localhost:9091/project-service/task-groups"
   constructor(private http: HttpClient) { }
 
   getGroupsOfTasks(projectId: number): Observable<GroupOfTasks[]> {

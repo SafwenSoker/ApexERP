@@ -17,7 +17,7 @@ interface IEmployee{
 })
 export class TasksService {
 
-  API_URL = "http://197.26.19.240:10000/project-service/tasks"
+  API_URL = "http://localhost:9091/project-service/tasks"
   constructor(private http: HttpClient) { }
 
   getTasks(groupOfTasksId: number): Observable<Task[]> {
