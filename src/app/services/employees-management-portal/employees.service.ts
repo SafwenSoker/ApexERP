@@ -36,9 +36,8 @@ export class EmployeesService {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      emailVerified: true,
       isActive: true,
-      credentials: user.password,
+      password: user.password,
     }
     console.log(userKeycloakRepresentation)
     return this.http.post<Employee>(this.API_URL,userKeycloakRepresentation,{headers:this.headers});
