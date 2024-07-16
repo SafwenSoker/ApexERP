@@ -7,7 +7,7 @@
     [tableStyle]="{ 'max-width': '100vw','boder-radius':'10px' }">
     <ng-template pTemplate="caption">
         <div class="flex justify-content-between flex-wrap">
-            <app-create-employee [(visible)]="createEmployeeDialog" ></app-create-employee>
+            <app-create-employee [(visible)]="createEmployeeDialog" (newEmployeeCreated)="onNewEmployeeCreated($event)" ></app-create-employee>
             
             <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>

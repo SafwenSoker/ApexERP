@@ -16,6 +16,7 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
 
   @Input() visible: boolean;
   @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() newEmployeeCreated = new EventEmitter<boolean>();
   employee: Employee = { roles: [] };
   roles: Role[];
   employees!: Employee[];
@@ -84,7 +85,7 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
         console.log("User Does Not Exists");
         this.employeesService.addEmployee(employee).subscribe(e => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is added' });
-          this.employees.push(e);
+          this.newEmployeeCreated.emit(true)
           this.visible = false;
           this.employeesService.getEmployees().subscribe(employes => {
             for (let employee of employees) {

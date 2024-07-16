@@ -148,59 +148,18 @@ export class GetEmployeesComponent {
     }
     return "danger";
   }
-  
-  onAddEmployee() {
-    let employee: Employee = {};
-    employee.userName = this.employeeForm.value.username;
-    employee.password = this.employeeForm.value.password;
-    employee.firstName = this.employeeForm.value.firstName;
-    employee.lastName = this.employeeForm.value.lastName;
-    employee.email = this.employeeForm.value.email;
-    employee.active = this.employeeForm.value.enabled;
-    employee.roles = this.employee.roles;
-    this.employee.roles = [];
-    this.employee.password = this.employeeForm.value.password;
 
-    // check if user already exists
-    this.employeesService.getEmployees().subscribe(employees => {
-      let userExists = employees.find(u => u.userName === employee.userName);
-      if (!userExists) {
-        console.log("User Does Not Exists");
-        this.employeesService.addEmployee(employee).subscribe(e => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is added' });
-          this.employees.push(e);
-          this.visible = false;
-          this.employeesService.getEmployees().subscribe(users => {
-            for (let user of users) {
-              //  Get each user and each user's groups and each user's role-mappings
-              this.employeesService.getEmployeeRoleMappings(user.id).subscribe(roles => { user.roles = roles });
-              
-            }
-            this.employees = employees;
-            employee.id = this.employees.find(u => u.userName === employee.userName)?.id;
-            console.log(employee.id)
-            if (employee.roles.length > 0) {
-                this.employeesService.addEmployeeRoleMappings(employee.id, employee.roles).subscribe(e => console.log(e));
-                employee.roles = []
-            }
-            console.log("User created with id: ", employee.id)
-          }
-          , err => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured, try again later!' });
-          });
-          console.log(employee.id)
-          
-        },
-          err => {
-            console.log(err);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured, try again later!' });
-          });
-        // Get Userid and add user to groups and roles
-
-      } else {
-        console.log("User Exists");
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'User already exists!' });
+  onNewEmployeeCreated($event){
+    if($event){
+      this.employeesService.getEmployees().subscribe(employees => {
+        this.employees = employees;
+        console.log(this.employees)
       }
-    });
+        , err => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not fetch new employee, please try reloading the page!' });
+        });
+    }
   }
+  
+  
 }
