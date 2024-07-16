@@ -10,7 +10,7 @@ import { Access, Employee } from 'src/app/models/user-management-portal/employee
 })
 export class EmployeesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private keycloakService: KeycloakService) { }
 
   API_URL="http://localhost:8080/user-mgmt/admin/realms/analytix/users"
 
@@ -63,7 +63,7 @@ export class EmployeesService {
 
   
   getEmployeeRoleMappings(id: string): Observable<Role[]>{
-    return this.http.get<{clientMappings: Role[], realmMappings: Role[]}>('http://localhost:5000/admin/realms/analytix/users/'+id+'/role-mappings').pipe(
+    return this.http.get<{clientMappings: Role[], realmMappings: Role[]}>(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/role-mappings`).pipe(
       map((result) => {return result.realmMappings;})
     );
   }
@@ -73,7 +73,7 @@ export class EmployeesService {
     for(let role of roles) {
       rolesRepresentation.push({id: role.id, name: role.name, composite: role.composite, containerId: role.containerId, description: role.description, clientRole: role.clientRole})
     }
-    return this.http.post('http://localhost:5000/admin/realms/analytix/users/'+id+'/role-mappings/realm',rolesRepresentation,{headers: this.headers});
+    return this.http.post(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/role-mappings/realm`,rolesRepresentation,{headers: this.headers});
   }
 
   deleteEmployeeRoleMappings(id: string, roles: Role[]){
@@ -81,15 +81,15 @@ export class EmployeesService {
     for(let role of roles) {
       rolesRepresentation.push({id: role.id, name: role.name, composite: role.composite, containerId: role.containerId, description: role.description, clientRole: role.clientRole})
     }
-    return this.http.delete('http://localhost:5000/admin/realms/analytix/users/'+id+'/role-mappings/realm',{headers: this.headers, body: rolesRepresentation});
+    return this.http.delete(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/role-mappings/realm`,{headers: this.headers, body: rolesRepresentation});
   
   }
   addEmployeeToGroup(id: string,groupId: string){
-    return this.http.put('http://localhost:5000/admin/realms/analytix/users/'+id+'/groups/'+groupId,null,{headers: this.headers});
+    return this.http.put(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/groups/${groupId}`,null,{headers: this.headers});
   }
 
   deleteEmployeeFromGroup(id: string,groupId: string){
-    return this.http.delete('http://localhost:5000/admin/realms/analytix/users/'+id+'/groups/'+groupId,{headers: this.headers});
+    return this.http.delete(`http://localhost:8180/admin/realms/analytix/users/${this.keycloakService.getKeycloakInstance().tokenParsed.sub}/groups/${groupId}`,{headers: this.headers});
   }
 
 }
