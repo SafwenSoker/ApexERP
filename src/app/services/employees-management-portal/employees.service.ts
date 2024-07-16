@@ -36,7 +36,7 @@ export class EmployeesService {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      isActive: true,
+      active: true,
       password: user.password,
     }
     console.log(userKeycloakRepresentation)
