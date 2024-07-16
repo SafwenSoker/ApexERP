@@ -55,7 +55,7 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
           // Remove the suffix from the name and return the updated role object
           return {
             ...role,
-            name: role.name.slice(0, -"esprit".length)
+            name: role.name.slice(0, -"esprit".length+1)
           };
         }
         // Return the role object as is if the name does not have the suffix
