@@ -30,6 +30,7 @@ export class EmployeesService {
   }
 
   addEmployee(user: Employee): Observable<Employee>{
+    
     const userKeycloakRepresentation = {
       userName: user.userName,
       firstName: user.firstName,
@@ -37,9 +38,9 @@ export class EmployeesService {
       email: user.email,
       emailVerified: true,
       isActive: true,
-      credentials: [{type: 'password', value: user.password, temporary: false}],
+      credentials: user.password,
     }
-
+    console.log(userKeycloakRepresentation)
     return this.http.post<Employee>(this.API_URL,userKeycloakRepresentation,{headers:this.headers});
   }
 
