@@ -31,7 +31,7 @@ export class EmployeesService {
 
   addEmployee(user: Employee): Observable<Employee>{
     const userKeycloakRepresentation = {
-      username: user.userName,
+      userName: user.userName,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
