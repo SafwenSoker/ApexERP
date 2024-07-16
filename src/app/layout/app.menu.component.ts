@@ -25,14 +25,14 @@ export class AppMenuComponent implements OnInit {
             //         { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/'] }
             //     ]
             // },
-            {
-                label: 'Project Management Portal',
-                items: [
-                    {
-                        label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
-                    }
-                ]
-            },
+            // {
+            //     label: 'Project Management Portal',
+            //     items: [
+            //         {
+            //             label: 'My Projects', icon: 'pi pi-fw pi-list', routerLink: ['/project-management-portal/my-projects'],
+            //         }
+            //     ]
+            // },
             // {
             //     label: 'Workstation Portal',
             //     items: [
