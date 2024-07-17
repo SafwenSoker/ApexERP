@@ -15,7 +15,7 @@
                                 <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [(ngModel)]="userHrInfo.cin" pInputText />
+                                <p><span class="text-primary">CIN</span>: <input type="text" [(ngModel)]="userHrInfo.cin" pInputText /></p>
                             </ng-template>
                         </p-inplace>
                         <!-- <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p> -->
@@ -27,7 +27,7 @@
                                     date}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <p-calendar [(ngModel)]="userHrInfo.startDate" />
+                                <p><span class="text-primary">Contract Start Date </span> : <p-calendar [(ngModel)]="userHrInfo.startDate" /></p>
                             </ng-template>
                         </p-inplace>
                     </div>
@@ -37,7 +37,7 @@
                                 <p><span class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <p-calendar [(ngModel)]="userHrInfo.endDate" />
+                                <p><span class="text-primary">Contract End Date </span>: <p-calendar [(ngModel)]="userHrInfo.endDate" /></p>
                             </ng-template>
                         </p-inplace>
                         
@@ -47,7 +47,7 @@
                             <ng-template pTemplate="display">
                                 <p><span class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [(ngModel)]="userHrInfo.note" pInputText />
+                                <p><span class="text-primary">Score </span>: <input type="text" [(ngModel)]="userHrInfo.note" pInputText /></p>
                             </ng-template>
                         </p-inplace>
                         
@@ -75,8 +75,7 @@
                         
                     </div>
                 </div>
-                <p-button label="Save Personal Information" icon="pi pi-fw pi-check" [outlined]="true" severity="primary"
-                                (click)="updateHrInfo()"></p-button>
+                
                 <div class="col-12 mt-4">
                     <div class="grid card flex justify-content-between flex-wrap shadow-2 p-4">
                         <div class="col-3 flex justify-content-center text-primary font-bold">3 Projects</div>

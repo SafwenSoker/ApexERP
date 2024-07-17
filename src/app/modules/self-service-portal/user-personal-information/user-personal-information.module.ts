@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { InplaceModule } from 'primeng/inplace';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InplaceModule } from 'primeng/inplace';
     FormsModule,
     ReactiveFormsModule,
     CalendarModule,
-    InplaceModule
+    InplaceModule,
+    InputTextModule
   ]
 })
 export class UserPersonalInformationModule { }
