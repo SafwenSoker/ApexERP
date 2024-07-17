@@ -69,7 +69,7 @@
                                 <p><span class="text-primary">CNSS Number </span>: {{userHrInfo?.cnssNumber}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [value]="userHrInfo?.note" pInputText />
+                                <input type="text" [(ngModel)]="userHrInfo.cnssNumber" pInputText />
                             </ng-template>
                         </p-inplace>
                         
