@@ -15,7 +15,7 @@
                                 <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [value]="userHrInfo?.cin" pInputText />
+                                <input type="text" [(ngModel)]="userHrInfo.cin" pInputText />
                             </ng-template>
                         </p-inplace>
                         <!-- <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p> -->
@@ -75,7 +75,7 @@
                         
                     </div>
                 </div>
-                <p-button label="Save Description" icon="pi pi-fw pi-check" [outlined]="true" severity="primary"
+                <p-button label="Save Personal Information" icon="pi pi-fw pi-check" [outlined]="true" severity="primary"
                                 (click)="updateHrInfo()"></p-button>
                 <div class="col-12 mt-4">
                     <div class="grid card flex justify-content-between flex-wrap shadow-2 p-4">
