@@ -17,6 +17,8 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
   @ViewChild('hrInfoStartDateInplace') hrInfoStartDateInplace!: Inplace;
   @ViewChild('hrInfoEndDateInplace') hrInfoEndDateInplace!: Inplace;
   @ViewChild('hrInfoNoteInplace') hrInfoNoteInplace!: Inplace;
+  @ViewChild('hrInfoCnssNumberInplace') hrInfoCnssNumberInplace!: Inplace;
+  
 
   private ngUnsubscribe = new Subject<void>();
 
@@ -41,6 +43,7 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
     this.hrInfoStartDateInplace.deactivate();
     this.hrInfoEndDateInplace.deactivate();
     this.hrInfoNoteInplace.deactivate();
+    this.hrInfoCnssNumberInplace.deactivate();
   }
 
 }
