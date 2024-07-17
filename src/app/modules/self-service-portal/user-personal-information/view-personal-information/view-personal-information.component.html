@@ -27,7 +27,7 @@
                                     date}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [value]="userHrInfo?.startDate" pInputText />
+                                <p-calendar [(ngModel)]="userHrInfo.startDate" />
                             </ng-template>
                         </p-inplace>
                     </div>
@@ -37,7 +37,7 @@
                                 <p><span class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
                             </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [value]="userHrInfo?.endDate" pInputText />
+                                <p-calendar [(ngModel)]="userHrInfo.endDate" />
                             </ng-template>
                         </p-inplace>
                         
@@ -47,7 +47,7 @@
                             <ng-template pTemplate="display">
                                 <p><span class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            </ng-template>
                             <ng-template pTemplate="content">
-                                <input type="text" [value]="userHrInfo?.note" pInputText />
+                                <input type="text" [(ngModel)]="userHrInfo.note" pInputText />
                             </ng-template>
                         </p-inplace>
                         
