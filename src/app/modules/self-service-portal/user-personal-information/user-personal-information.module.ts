@@ -9,6 +9,7 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
+import { InplaceModule } from 'primeng/inplace';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CalendarModule } from 'primeng/calendar';
     ToastModule,
     FormsModule,
     ReactiveFormsModule,
-    CalendarModule
+    CalendarModule,
+    InplaceModule
   ]
 })
 export class UserPersonalInformationModule { }
