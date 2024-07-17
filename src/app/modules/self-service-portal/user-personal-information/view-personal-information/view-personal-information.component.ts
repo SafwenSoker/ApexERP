@@ -13,7 +13,10 @@ import { UserHrInformationService } from 'src/app/services/self-service-portal/u
 export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
 
   userHrInfo: UserHRInfo;
-  @ViewChild('hrInfoInplace') hrInfoInplace!: Inplace;
+  @ViewChild('hrInfoCINInplace') hrInfoCINInplace!: Inplace;
+  @ViewChild('hrInfoStartDateInplace') hrInfoStartDateInplace!: Inplace;
+  @ViewChild('hrInfoEndDateInplace') hrInfoEndDateInplace!: Inplace;
+  @ViewChild('hrInfoNoteInplace') hrInfoNoteInplace!: Inplace;
 
   private ngUnsubscribe = new Subject<void>();
 
@@ -34,8 +37,10 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
   }
 
   updateHrInfo(){
-    this.hrInfoInplace.deactivate();
-
+    this.hrInfoCINInplace.deactivate();
+    this.hrInfoStartDateInplace.deactivate();
+    this.hrInfoEndDateInplace.deactivate();
+    this.hrInfoNoteInplace.deactivate();
   }
 
 }

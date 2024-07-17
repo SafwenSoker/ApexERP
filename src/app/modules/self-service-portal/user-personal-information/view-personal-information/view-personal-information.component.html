@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-4 mt-6">
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
-                        <p-inplace #hrInfoInplace>
+                        <p-inplace #hrInfoCINInplace>
                             <ng-template pTemplate="display">
                                 <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p>
                             </ng-template>
@@ -21,7 +21,7 @@
                         <!-- <p><span class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p> -->
                     </div>
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
-                        <p-inplace #hrInfoInplace>
+                        <p-inplace #hrInfoStartDateInplace>
                             <ng-template pTemplate="display">
                                 <p><span class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
                                     date}}</p>
@@ -32,7 +32,7 @@
                         </p-inplace>
                     </div>
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
-                        <p-inplace #hrInfoInplace>
+                        <p-inplace #hrInfoEndDateInplace>
                             <ng-template pTemplate="display">
                                 <p><span class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
                             </ng-template>
@@ -43,7 +43,7 @@
                         
                     </div>
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
-                        <p-inplace #hrInfoInplace>
+                        <p-inplace #hrInfoNoteInplace>
                             <ng-template pTemplate="display">
                                 <p><span class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            </ng-template>
                             <ng-template pTemplate="content">
