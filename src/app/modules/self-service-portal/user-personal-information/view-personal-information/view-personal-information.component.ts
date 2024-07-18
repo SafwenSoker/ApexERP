@@ -33,6 +33,7 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
       },
       (error) => {
         this.noUserHrInfo=true;
+        console.log("No HR Info found for this user");
       }
     );
   }
