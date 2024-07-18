@@ -26,9 +26,9 @@
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
                         <p-inplace #hrInfoStartDateInplace>
                             <ng-template pTemplate="display">
-                                <p><span *ngIf="!noUserHrInfo" class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
+                                <p><span *ngIf="!noUserHrInfo;else noStartDate" class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
                                     date}}</p>
-                                <ng-template *ngIf="noUserHrInfo">Click to Add Start Date</ng-template>
+                                <ng-template #noStartDate>Click to Add Start Date</ng-template>
                             </ng-template>
                             <ng-template pTemplate="content">
                                 <p><span class="text-primary">Contract Start Date </span>: <p-calendar [(ngModel)]="userHrInfo.startDate" /></p>
@@ -39,7 +39,7 @@
                         <p-inplace #hrInfoEndDateInplace>
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noEndDate"  class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
-                                <ng-template *ngIf="noUserHrInfo">Click to Add End Date</ng-template>
+                                <ng-template #noEndDate>Click to Add End Date</ng-template>
                             </ng-template>
                             <ng-template pTemplate="content">
                                 <p><span class="text-primary">Contract End Date </span>: <p-calendar [(ngModel)]="userHrInfo.endDate" /></p>
@@ -50,7 +50,7 @@
                         <p-inplace #hrInfoNoteInplace>
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noScore" class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            
-                                <ng-template *ngIf="noUserHrInfo">Click to Add Score</ng-template>
+                                <ng-template #noScore>Click to Add Score</ng-template>
                             </ng-template>
 
                             <ng-template pTemplate="content">
@@ -74,7 +74,7 @@
                         <p-inplace #hrInfoCnssNumberInplace>
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noCnssNumber" class="text-primary">CNSS Number </span>: {{userHrInfo?.cnssNumber}}</p>
-                                    <ng-template *ngIf="noUserHrInfo">Click to Add CNSS Number</ng-template>
+                                    <ng-template #noCnssNumber>Click to Add CNSS Number</ng-template>
                             </ng-template>
                             <ng-template pTemplate="content">
                                 <input type="text" [(ngModel)]="userHrInfo.cnssNumber" pInputText />
