@@ -28,7 +28,7 @@
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noStartDate" class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
                                     date}}</p>
-                                <ng-template #noStartDate pTemplate="content">
+                                <ng-template #noStartDate>
                                     <p>Click to Add Start Date</p>
                                 </ng-template>
                             </ng-template>
