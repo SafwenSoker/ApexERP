@@ -13,6 +13,7 @@ import { UserHrInformationService } from 'src/app/services/self-service-portal/u
 export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
 
   userHrInfo: UserHRInfo;
+  noUserHrInfo: boolean=false;
   @ViewChild('hrInfoCINInplace') hrInfoCINInplace!: Inplace;
   @ViewChild('hrInfoStartDateInplace') hrInfoStartDateInplace!: Inplace;
   @ViewChild('hrInfoEndDateInplace') hrInfoEndDateInplace!: Inplace;
@@ -29,6 +30,9 @@ export class ViewPersonalInformationComponent implements OnInit, OnDestroy{
       (userHrInfo) => {
         console.log(userHrInfo)
         this.userHrInfo = userHrInfo;
+      },
+      (error) => {
+        this.noUserHrInfo=true;
       }
     );
   }
