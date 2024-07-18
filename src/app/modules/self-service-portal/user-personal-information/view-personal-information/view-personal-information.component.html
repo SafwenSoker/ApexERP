@@ -39,19 +39,18 @@
                         <p-inplace #hrInfoEndDateInplace>
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noEndDate"  class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
-                                <p *ngIf="noUserHrInfo">Click to Add End Date</p>
+                                <span *ngIf="noUserHrInfo">Click to Add End Date</span>
                             </ng-template>
                             <ng-template pTemplate="content">
                                 <p><span class="text-primary">Contract End Date </span>: <p-calendar [(ngModel)]="userHrInfo.endDate" /></p>
                             </ng-template>
                         </p-inplace>
-                        
                     </div>
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
                         <p-inplace #hrInfoNoteInplace>
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noScore" class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            
-                                <p *ngIf="noUserHrInfo">Click to Add Score</p>
+                                <span *ngIf="noUserHrInfo">Click to Add Score</span>
                             </ng-template>
 
                             <ng-template pTemplate="content">
@@ -75,7 +74,7 @@
                         <p-inplace #hrInfoCnssNumberInplace>
                             <ng-template pTemplate="display">
                                 <p><span *ngIf="!noUserHrInfo;else noCnssNumber" class="text-primary">CNSS Number </span>: {{userHrInfo?.cnssNumber}}</p>
-                                    <p *ngIf="noUserHrInfo"><span class="text-primary">CNSS Number: </span>Click to Add CNSS Number</p>
+                                    <span *ngIf="noUserHrInfo">Click to Add CNSS Number</span>
                             </ng-template>
                             <ng-template pTemplate="content">
                                 <input type="text" [(ngModel)]="userHrInfo.cnssNumber" pInputText />
