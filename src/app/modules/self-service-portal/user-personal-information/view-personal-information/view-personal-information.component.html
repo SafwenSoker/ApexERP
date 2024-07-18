@@ -12,7 +12,7 @@
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
                         <p-inplace #hrInfoCINInplace>
                             <ng-template pTemplate="display">
-                                <p><span *ngIf="userHrInfo?.cin === '';else noCIN" class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p>
+                                <p><span *ngIf="userHrInfo?.cin !== '';else noCIN" class="text-primary">CIN</span>: {{userHrInfo?.cin}}</p>
                                 <ng-template #noCIN>
                                     <p><span class="text-primary">CIN: </span>Click to Add CIN Number</p>
                                 </ng-template>
@@ -26,7 +26,7 @@
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
                         <p-inplace #hrInfoStartDateInplace>
                             <ng-template pTemplate="display">
-                                <p><span *ngIf="userHrInfo.startDate !==null;else noStartDate" class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
+                                <p><span *ngIf="userHrInfo?.startDate !== '';else noStartDate" class="text-primary">Contract Start Date </span> :{{userHrInfo?.startDate |
                                     date}}</p>
                             </ng-template>
                             <ng-template #noStartDate pTemplate="content">
@@ -37,7 +37,7 @@
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
                         <p-inplace #hrInfoEndDateInplace>
                             <ng-template pTemplate="display">
-                                <p><span *ngIf="userHrInfo.endDate !== null;else noEndDate"  class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
+                                <p><span *ngIf="userHrInfo?.endDate !== null;else noEndDate"  class="text-primary">Contract End Date </span>: {{userHrInfo?.endDate | date}}</p>
                                 <ng-template #noEndDate>
                                     <p><span class="text-primary">End Date: </span>Click to Add End Date</p>
                                 </ng-template>
@@ -51,7 +51,7 @@
                     <div class="flex align-items-center justify-content-left h-4rem font-bold border-round m-2">
                         <p-inplace #hrInfoNoteInplace>
                             <ng-template pTemplate="display">
-                                <p><span *ngIf="userHrInfo.endDate !== null;else noScore" class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            
+                                <p><span *ngIf="userHrInfo?.endDate !== null;else noScore" class="text-primary">Score </span>: {{userHrInfo?.note}}</p>                            
                                 <ng-template #noScore>
                                     <p><span class="text-primary">Score: </span>Click to Add Score</p>
                                 </ng-template>
